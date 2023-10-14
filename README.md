@@ -15,7 +15,7 @@ If you're looking to make modifications or simply set it up locally, here's what
    `git clone https://github.com/citrineos/citrineos.github.io.git && cd citrineos.github.io`
 
 1. **Install Dependencies**: <br/>
-   `bundle install`
+   `gem install bundler jekyll && bundle install`
 
 1. **Build and Serve the Website Locally**:<br/>
    `jekyll serve` <br/>
