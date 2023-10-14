@@ -1,0 +1,23 @@
+<header>
+  <div class="logo">
+    <a href="{{ "/" | relative_url }}"><img src="{{ "/assets/images/231002_Citrine_OS_Logo_CitrineOS_Logo_negative.svg" | relative_url }}" alt="CitrineOS Logo negative"></a>
+</div>
+
+
+  <nav>
+      {% for item in site.data.navigation %}
+        {% if item.logo %}
+          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ item.logo | relative_url }}" alt="{{ item.name }} Logo">
+          </a>
+        {% elsif item.link contains "http" %}
+          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+        {% else %}
+          <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>{{ item.name }}</a>
+        {% endif %}      
+      {% endfor %}
+  </nav>
+
+  
+
+</header>

@@ -1,0 +1,17 @@
+- name: Framework
+  link: /framework.html
+- name: Quickstart
+  link: /quickstart.html
+- name: Pre-Setup
+  link: /pre-setup.html
+- name: References
+  link: /references.html
+- name: About 
+  link: https://s44-t4gh8ceb.webflow.io/citrineos
+  logo: /assets/images/231002_Citrine_OS_Logo_Citrine_Icon.png
+- name: Github
+  link: https://github.com/citrineos/citrineos
+  logo: /assets/images/github-mark-white.svg
+- name: Discord
+  link: https://discord.gg/Tkt7xucXTk
+  logo: /assets/images/discord-logo.svg

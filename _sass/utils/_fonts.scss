@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Roobert';
+  src: url('../../assets/fonts/Roobert-Light.woff2') format('woff2'),
+       url('../../assets/fonts/Roobert-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roobert;
+  src: url('../../assets/fonts/Roobert-Bold.woff') format('woff'),
+       url('../../assets/fonts/Roobert-Bold.woff2') format('woff2');
+       font-weight: 400;
+       font-style: normal;
+}
+
+@font-face {
+  font-family: Roobert;
+  src: url('../../assets/fonts/Roobert-Heavy.woff') format('woff'),
+       url('../../assets/fonts/Roobert-Heavy.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
