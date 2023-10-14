@@ -1,0 +1,52 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Roobert,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+.site-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex: 1;
+  max-width: 75rem;
+  width: 90%;
+  min-height: 100vh;
+  margin-bottom: -10rem;
+  margin: 0 auto;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.content-container:after {
+  content: "";
+  display: block;
+  height: 100px;
+}
+
+@media (max-width: 768px) {
+  .container {
+      padding-left: 1rem; 
+      padding-right: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+      padding-left: 0.5rem;
+  }
+}
