@@ -1,7 +1,8 @@
 ---
 layout: default
-title: CitrineOS | References
+title: References
 ---
+
 # References
 
 Here you can find further references.

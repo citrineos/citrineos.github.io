@@ -1,0 +1,26 @@
+# html site proofer
+# -------------------
+
+name: Links
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 8 * * 1'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+      - run: bundle exec jekyll build
+      - uses: anishathalye/proof-html@v2
+        with:
+          directory: ./_site
+          enforce_https: false
+          # irgnored url underneath should be removed once citrineos is reachable by public
+          ignore_url: |
+            https://github.com/citrineos/citrineos

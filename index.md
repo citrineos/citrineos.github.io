@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CitrineOS | Home
+title: Home
 ---
 
 # Citrine OS: Empowering the Global EV Revolution with Open-Source Innovation
