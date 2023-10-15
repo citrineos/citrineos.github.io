@@ -27,7 +27,7 @@ If you're looking to make modifications or simply set it up locally, here's what
 
 - **Navbar**: To add or modify navbar items, adjust the `_data/navigation.yml` file. Each item has a `name` and a `link`, some also have a `logo`. In this case the logo will be displayed and the name is the fallback in case the logo can not be shown. Follow the existing syntax pattern to add more navbar items.
 
-- **Content**: To add content to pages adjust the markdown files, e.g. framework.md. These pages start with Front Matter that starts and ends with `---`. In between a title can be chosen and the default layout is set.
+- **Content**: To add content to pages adjust the markdown files, e.g. framework.md. These pages start with Front Matter that starts and ends with `---`. In between these markings a title can be chosen and the default layout is set.
   - **Markdown**:
     Jekyll uses Markdown for content. If you're new to Markdown, here's a [quick guide](https://www.markdownguide.org/getting-started/).
 
@@ -37,3 +37,7 @@ If you're looking to make modifications or simply set it up locally, here's what
   Under `/utils/_fonts` a new font could be added. The font then also needs to be updated under `/assets/fonts` following the existing pattern.
   Under `/utiles/_variables` chosen colors can be adjusted.
   These changes will be reflected throughout all of the website.
+
+## Deployment
+
+This site uses github actions for deployment. The trigger is set up to deploy everytime changes are pushed to the branch `main`.
