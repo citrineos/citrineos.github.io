@@ -3,6 +3,7 @@ description: Documentation for the CitrineOS implementation of the Open Charge P
 
 baseurl: ""
 url: "https://citrineos.github.io"
+author: S44 LLC
 
 plugins: 
   - jekyll-sitemap
