@@ -21,3 +21,6 @@ jobs:
         with:
           directory: ./_site
           enforce_https: false
+          # irgnored url underneath should be removed once citrineos is reachable by public
+          ignore_url: |
+            https://github.com/citrineos/citrineos
