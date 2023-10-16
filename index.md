@@ -45,7 +45,7 @@ CitrineOS offers a multitude of benefits:
 
 4. Cost Efficiency: Reduce runtime and operational costs by leveraging our cloud microservices architecture, streamlining management and maintenance.
 
-5. Interoperability: Embrace widespread interoperability, fostering seamless connections between various charging stations and EVs.
+5. Interoperability: Embrace widespread interoperability, fostering seamless connections between various charging stations and CSMS.
 
 6. Reliability: Enhance reliability across the board with our common open source software backend.
 
