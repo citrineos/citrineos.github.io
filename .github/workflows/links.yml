@@ -24,3 +24,5 @@ jobs:
           # irgnored url underneath should be removed once citrineos is reachable by public
           ignore_url: |
             https://github.com/citrineos/citrineos
+          ignore_url_re: |
+            http://localhost:\d+
