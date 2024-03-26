@@ -15,10 +15,10 @@ In this section we assume you have set up your local machine with the prerequisi
     git clone https://github.com/citrineos/citrineos-core
     ```
 
-1. Navigate to the `citrineos-core/50_Server` directory and run the init-all script:
+1. Navigate to the `citrineos-core/Server` directory and run the init-all script:
 
     ```shell
-    cd citrineos-core/50_Server
+    cd citrineos-core/Server
     ./unix-init-install-all.sh
     ```
 
