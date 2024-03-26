@@ -57,7 +57,7 @@ You now have a running CitrineOS server plus the supporting infrastructure, in t
 
 - [RabbitMQ](http://rabbitmq.com) for the OCPP 2.0.1 message bus
 
-- OCPP Citrine Server running the CSMS. You can retrieve the generated OpenAPI docs at [localhost:8081/docs](http://localhost:8081/docs)
+- OCPP Citrine Server running the CSMS. You can retrieve the generated OpenAPI docs at [localhost:8080/docs](http://localhost:8080/docs)
 
 > Please consider that this setup is the development environment and **do not** simply deploy it to an exposed environment with initial passwords!
 
