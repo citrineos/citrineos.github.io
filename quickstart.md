@@ -15,18 +15,10 @@ In this section we assume you have set up your local machine with the prerequisi
     git clone https://github.com/citrineos/citrineos-core
     ```
 
-1. Navigate to the `citrineos-core/Server` directory and run the init-all script:
+1. Navigate to the `citrineos-core/Server` directory and run the entire required stack with docker-compose.
 
     ```shell
     cd citrineos-core/Server
-    ./unix-init-install-all.sh
-    ```
-
-    This script goes through all the modules required for the sever to run, builds them and then installs them into the server's node_modules directory.
-
-1. Now you can run the entire required stack with docker-compose.
-
-    ```shell
     docker-compose up -d 
     ```
 
