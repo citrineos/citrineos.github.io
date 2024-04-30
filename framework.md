@@ -14,19 +14,19 @@ Below is a diagram to introduce you to Citrine's high-level architecture:
 
 ## Adaptable
 
-Citrine's code structure includes 3 common packages: 00_Base, 10_Data, and 99_Util.
+Citrine's code structure includes 3 common packages: 00_Base, 01_Data, 02_Util and 03_Modules.
 
 ### 00_Base
 
 00_Base defines the interfaces and abstract classes needed for the Central System and Module implementations. All OCPP messages and datatypes are here as well.
 
-### 10_Data
+### 01_Data
 
-10_Data implements all the logic for Citrine's persistent data, stored in a relational database. This package is powered by [sequelize-typescript](https://github.com/sequelize/sequelize-typescript). New modules which add persistent datatypes will need to extend this package.
+01_Data implements all the logic for Citrine's persistent data, stored in a relational database. This package is powered by [sequelize-typescript](https://github.com/sequelize/sequelize-typescript). New modules which add persistent datatypes will need to extend this package.
 
-### 99_Util
+### 02_Util
 
-99_Util contains implementations of various infrastructure components and tools. This includes memory caches such as [redis](https://github.com/redis/redis) and a simple Javascript memory cache implementation, and message buses such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). This module can be extended to add additional infrastructure options.
+02_Util contains implementations of various infrastructure components and tools. This includes memory caches such as [redis](https://github.com/redis/redis) and a simple Javascript memory cache implementation, and message buses such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). This module can be extended to add additional infrastructure options.
 
 ## Modular
 
@@ -59,6 +59,8 @@ __
 
 Outside of the OCPP 2.0.1 protocol, modules could do things like provide OCPI interfaces, feed data to analysis tools, handle payments, or more.
 
-## Up Next: [QuickStart](/quickstart.html)
+Our example implementation, Server, and how you can use it! [QuickStart](/quickstart.html)
+
+---
 
 Our implementation, 50_Server, and how you can use it!

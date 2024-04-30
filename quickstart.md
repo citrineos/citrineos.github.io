@@ -5,7 +5,8 @@ title: QuickStart
 
 # QuickStart
 
-In this section we assume you have set up your local machine with the prerequisites required and found on [Pre-Setup](/pre-setup.html)
+In this section we assume you have set up your local machine with the prerequisites required and found
+on [Pre-Setup](/pre-setup.html)
 
 ## Installation
 
@@ -15,15 +16,31 @@ In this section we assume you have set up your local machine with the prerequisi
     git clone https://github.com/citrineos/citrineos-core
     ```
 
-1. Navigate to the `citrineos-core/Server` directory and run the entire required stack with docker-compose.
+1. Navigate to the `citrineos-core` directory and run npm install:
 
     ```shell
     cd citrineos-core/Server
+    npm run install-all
+    ```
+
+    This will install all modules in the `citrineos-core` directory in a verbose setting to give more context on what is going on.
+    For a silent install you can use `npm install`
+
+    We have set up our mono-repo using [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces), which means our modules are set as dependencies in a workspace in the root directory.
+    This allows to install all modules in a single command.
+
+
+1. We have an example on how to run all CitrineOS modules on your machine. 
+    We use the example in the `Server` directory for our local testing and development. 
+    For this, navigate to `./Server` where you can now you can run the entire required stack with docker-compose.
+
+    ```shell
+    cd ./Server
     docker-compose up -d 
     ```
 
     The expected outcome should look like this:
-
+    
     ```shell
 [+] Running 5/6
  - Network server_default          Created                                 28.0s
@@ -38,10 +55,12 @@ In this section we assume you have set up your local machine with the prerequisi
 
 You now have a running CitrineOS server plus the supporting infrastructure, in this case:
 
-- A [Directus](http://directus.io) server for which the web interface can now be reached at [localhost:8055](http://localhost:8055) with the initial credentials `admin@citrineos.com:CitrineOS!`
+- A [Directus](http://directus.io) server for which the web interface can now be reached
+  at [localhost:8055](http://localhost:8055) with the initial credentials `admin@citrineos.com:CitrineOS!`
 
-- A [Postgres Database](https://www.postgresql.org) pre-seeded with the OCPP 2.0.1 schemas as well as an initial Directus setup.
-    The initialized database is named `citrine` with a username: `citrine` and password: `citrine`
+- A [Postgres Database](https://www.postgresql.org) pre-seeded with the OCPP 2.0.1 schemas as well as an initial
+  Directus setup.
+  The initialized database is named `citrine` with a username: `citrine` and password: `citrine`
 
 - [RabbitMQ](http://rabbitmq.com) for the OCPP 2.0.1 message bus
 
@@ -49,18 +68,20 @@ You now have a running CitrineOS server plus the supporting infrastructure, in t
 
 - OCPP Citrine Server running the CSMS. You can retrieve the generated OpenAPI docs at [localhost:8080/docs](http://localhost:8080/docs). There is an unsecured websocket server (security profile '0') at `ws://localhost:8081`, and a security profile 1 websocket server at `ws://localhost:8082`.
 
-> Please consider that this setup is the development environment and **do not** simply deploy it to an exposed environment with initial passwords!
+> Please consider that this setup is the development environment and **do not** simply deploy it to an exposed
+> environment with initial passwords!
 
 ### Configuration
 
-We recommend running and developing the project with docker-compose set-up.
+We recommend running and developing the project with the `docker-compose` set-up.
 
-However if you like to rather run it locally and need to adjust where the server is connecting to, please locally (only) adjust the configuration file at `Server/src/config/envs/local.ts`
+However, if you like to rather run it locally and need to adjust where the server is connecting to, please locally (only)
+adjust the configuration file at `./Server/src/config/envs/local.ts`
 
 You can now use the npm run command to start with your environment setup:
 
 ```shell
-npm run start-unix
+npm run start-unix:local
 ```
 
 You may run into issues attempting this on a Windows DOS command line, in which case `npm run start-windows` is available. Both of these commands set the APP_NAME and APP_ENV environment variables; if you wish to set those yourself, you can use `npm run start-docker`.
@@ -83,6 +104,8 @@ curl --location --request PUT 'http://localhost:8080/data/configuration/boot?sta
 --data '{ "status": "Pending" }'
 ```
 
+Now point your charger to your local machine and port `:8081` for the web-socket connection with security profile 0.
+
 #### Using Security Profile 1
 
 There are two layers of security available before the charger has the opportunity to send an OCPP message such as `BootNotificationRequest`. When the charger attempts to connect, it can be rejected at the transport layer if the websocket server is using security profiles 2 or 3. Otherwise, the http upgrade request occurs. The charger's upgrade request can be rejected if:
@@ -95,13 +118,50 @@ There are two layers of security available before the charger has the opportunit
 
 Once a charger has a Charging Station entry and its password has been set, you can connect it to the security profile 1 websocket server at `ws://localhost:8082`.
 
+
+If you want to add a password for security profile 1, send the following request to the CitrineOS API.
+
+```shell
+curl --location --request PUT 'localhost:8080/data/monitoring/variableAttribute?stationId=cp001&setOnCharger=true' \
+--header 'Content-Type: application/json' \
+--data '{
+    "component": {
+        "name": "SecurityCtrlr"
+    },
+    "variable": {
+        "name": "BasicAuthPassword"
+    },
+    "variableAttribute": [
+        {
+            "value": "testing-citrine"
+        }
+    ],
+    "variableCharacteristics": {
+        "dataType": "passwordString",
+        "supportsMonitoring": false
+    }
+}'
+```
+
+#### Testing
+
+In the case you don't have a charger that supports OCPP 2.0.1 to experiment with, we can recommend using the Linux Foundation Energy project EVerest.[See here](https://github.com/EVerest) for the repository.
+They have built an open source version of Charger Firmware and also allow for using it as a simulator.
+They support OCPP 2.0.1 which makes it a great testing opportunity with CitrineOS.
+For the long route of setting up EVerst you can follow their documentation and build the project yourself.[See here for Docs](https://everest.github.io/nightly/general/03_quick_start_guide.html_)
+As a short cut you can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
+
+
+
+
+
 #### Making changes to CitrineOS
 
 As mentioned above, we recommend using the docker-compose set-up to have a stable and reproducible environment.
-In the docker-compose file we wire up the local citrine server directory to be used.
+In the docker-compose file we wire up the local Citrine server directory to be used.
 This means, the docker container running with the server is using the files that are on your machine.
-We start the citrineOS sever with `npx nodemon` so If you make adjustments to your local files, it will get picked up and hot-reloaded in the container.
+We start the CitrineOS sever with `nodemon src/index.ts` so If you make adjustments to your local files, it will get picked up
+and hot-reloaded in the container.
 
-However, if you are making changes to the dependent packages, you will need to re-install the dependent package to the server and restart it.
 
 Make sure if you've made code changes since you've last run `docker compose up` that you run `docker compose down && docker compose build` before running `docker compose up` again to ensure your changes are reflected in the image docker uses when starting up the CitrineOS container.

@@ -15,4 +15,4 @@ For either path please ensure the following things are installed on your local s
 - npm (Node Package Manager): [Download npm](https://www.npmjs.com/get-npm)
 - Docker: [Download Docker](https://www.docker.com/)
 - Docker Compose: [Install Docker Compose plugin](https://docs.docker.com/compose/install/)
-- Some sort of CodeEditor or IDE. We have had good experience with VSCode: [Download VSCode](https://code.visualstudio.com/)
+- Some sort of CodeEditor or IDE. We have had good experience with [VSCode](https://code.visualstudio.com/) as well as [Intelij IDEA](https://www.jetbrains.com/idea/).
