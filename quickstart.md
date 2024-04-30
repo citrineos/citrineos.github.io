@@ -129,7 +129,7 @@ curl --location --request PUT 'localhost:8080/data/monitoring/variableAttribute?
 In the case you don't have a charger that supports OCPP 2.0.1 to experiment with, we can recommend using the Linux Foundation Energy project EVerest.[See here](https://github.com/EVerest) for the repository.
 They have built an open source version of Charger Firmware and also allow for using it as a simulator.
 They support OCPP 2.0.1 which makes it a great testing opportunity with CitrineOS.
-For the long route of setting up EVerst you can follow their documentation and build the project yourself.[See here for Docs](https://everest.github.io/nightly/general/03_quick_start_guide.html_)
+For the long route of setting up EVerst you can follow their documentation and build the project yourself.[See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
 As a short cut you can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
 
 
