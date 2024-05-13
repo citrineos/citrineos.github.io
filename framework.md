@@ -23,8 +23,8 @@ All OCPP messages and datatypes are here as well.
 #### Decorators
 We make use of custom decorators that define methodes to be used for specific logic use cases.
 - `@AsHandler`:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
-- `@AsMessageEndpoint`: Defines a method as a Fastify exposed API endpoint that takes in HTTP requests that are sent to a charging station.
-- `@AsDataEndpoint`: Defines a method as a Fastify exposed API endpoints that expose CRUD functionality for entaties defined in the 01_Data package.
+- `@AsMessageEndpoint`: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
+- `@AsDataEndpoint`: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the 01_Data package.
 
 ---
 
@@ -42,7 +42,7 @@ New modules which add persistent datatypes will need to extend this package.
 
 This includes:
 - Cache implementations, such as [redis](https://github.com/redis/redis) and a simple Javascript in-memory cache
-- Message broker implementatons such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). 
+- Message broker implementations such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). 
 - Network connection implementation such as websockets
 - Directus Flow implementations such as [directus-flow](https://docs.directus.io/app/flows.html), where we take all `@AsMessageEndpoint` methods initialize flows into Directus.
 - Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.
@@ -61,11 +61,11 @@ The structure for each module should be roughly the same, set up as:
 
 #### Certificates
 
-Is responsible for handling certificate management, especially relevant for ISO15118.
+Is responsible for handling certificate management, especially relevant for ISO15118. Certificates are also used to maintain websocket and OTA firmware update security.
 
 #### Configuration
 
-Handles the configuartion of the Charger Station example messages are `BootNotification` and `Reset`. 
+Handles the configuration of the Charging Station. Example messages are `BootNotification` and `Reset`. 
 
 #### EVDriver
 
@@ -73,12 +73,12 @@ Is responsible for handling driver related functionality, example messages are `
 
 #### Monitoring
 
-Is responsible for handling Monitoring related functionality. Example message are `Nofify` and `SetVariables`.
+Is responsible for handling Monitoring related functionality. Example message are `NotifyEvent` and `SetVariables`.
 
 #### OCPPRouter
 
-The OCPP router handles the OCPP messages and routes to and from the correct charger.
-Further, you can also register callbacks for websocket events or specific OCPP messages to be executed in the future.
+The OCPP router handles the OCPP messages and routes them to and from the correct charger.
+Furthermore, you can register callbacks for websocket events or specific OCPP messages to be executed in the future.
 As an example, our directus extension, on boot, registers a callback for onConnect of a charger, to have real time insights on which chargers are currently online.
 
 #### Reporting
@@ -97,14 +97,14 @@ __
 
 ### Server
 
-The server directory is an example implementation useing the citrine modules.
-It is not thought for production use, but rather for each local development and test environments.
+The server directory is an example implementation using the citrine modules.
+It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
 If you want to just use it for local development, check out our guide here: [QuickStart](/quickstart.html)
 
 ### DirectusExtentions
 
-Directus is quite extensible and can load custom exetnions.
+Directus is quite customizable and can load custom extensions.
 We make use of this to add some functionality to the UI such as real time charger connection insights.  
 Here we have Directus register callbacks with Citrine for when a charger connects or disconnects to publish updates. 
 
