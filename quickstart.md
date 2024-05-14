@@ -72,7 +72,7 @@ You may run into issues attempting this on a Windows DOS command line, in which 
 
 If you want to now connect a charger to CitrineOS, you can do so without any set up, just point the charger to `ws://localhost:8081`. Depending on the charger you are using, you may need to append the station id to the url like so `ws://localhost:8081/<stationId>`. Some chargers take care of this automatically.
 
-In Directus, the `Boot` table can be used to both review the most recent boot status as well as set a boot status for the next `BootNotificationRequest` received from the charging station. After a successful boot, the status is set to `Accepted`. If you wish to fetch the device model from the charger as part of the boot process described in the B02 use case of the protocol, set the status to `Pending` and check the 'Get Base Report On Pending' option. This will cause the next boot to be responded to with a `BootNotificationResponse` that has status `Pending`, then CitrineOS will send a `GetBaseReportRequest`, triggering a series of `NotifyReportRequest` messages. After the full report has been sent, the next attempted boot by the charger will be `Accepted`. 
+In Directus, the `Boot` table can be used to both review the most recent boot status as well as set a boot status for the next `BootNotificationRequest` received from the charging station. After a successful boot, the status is set to `Accepted`. If you wish to fetch the device model from the charger as part of the boot process described in the B02 use case of part 2 of the OCPP 2.0.1 protocol, set the status to `Pending` and check the 'Get Base Report On Pending' option. This will cause the next boot to be responded to with a `BootNotificationResponse` that has status `Pending`, then CitrineOS will send a `GetBaseReportRequest`, triggering a series of `NotifyReportRequest` messages. After the full report has been sent, the next attempted boot by the charger will be `Accepted`. 
 
 The `Boot` table has CRUD endpoints in order to be manipulated via REST API, of which the docs can be found here (if you have CitrineOS running locally): [localhost:8080/docs](http://localhost:8080/docs)
 Here is an example request for charge point `cp001`:
@@ -103,3 +103,5 @@ This means, the docker container running with the server is using the files that
 We start the citrineOS sever with `npx nodemon` so If you make adjustments to your local files, it will get picked up and hot-reloaded in the container.
 
 However, if you are making changes to the dependent packages, you will need to re-install the dependent package to the server and restart it.
+
+Make sure if you've made code changes since you've last run `docker compose up` that you run `docker compose down && docker compose build` before running `docker compose up` again to ensure your changes are reflected in the image docker uses when starting up the CitrineOS container.
