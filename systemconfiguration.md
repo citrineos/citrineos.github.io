@@ -19,7 +19,9 @@ This is a low-level document for engineers interested in learning more about how
 
 ### Configuration Management
 By default, CitrineOS uses a typescript file to store system configuration, such as the files in [Server/src/config](https://github.com/citrineos/citrineos-core/tree/main/Server/src/config).
+
 Environment variables can also be used. They will override the fields in the typescript file when the application starts up. Prefix the variables with 'CITRINEOS', then separate each component of the path to the variable in camel case. Example: CITRINEOS_UTIL_DIRECTUS_HOST will override systemConfig.util.directus.host with its value.
+
 Each module also supports GET and PUT for systemConfig in order to change it while CitrineOS is running. Not all values currently support being changed after application start-up. For example, adding a websocket server to the list after start-up does not currently create a new websocket server.
 
 ---
