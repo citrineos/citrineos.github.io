@@ -3,8 +3,8 @@
 
 name: Links
 on:
-  push:
-  pull_request:
+  schedule:
+    - cron: '0 8 * * 1'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +19,3 @@ jobs:
         with:
           directory: ./_site
           enforce_https: false
-          ignore_url_re: |
-            https://citrineos.github.io/*
-            http://localhost:\d+

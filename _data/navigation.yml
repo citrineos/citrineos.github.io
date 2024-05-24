@@ -4,6 +4,8 @@
   link: /quickstart.html
 - name: Pre-Setup
   link: /pre-setup.html
+- name: System Configuration
+  link: /systemconfiguration.html
 - name: References
   link: /references.html
 - name: About 
