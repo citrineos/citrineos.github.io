@@ -10,7 +10,10 @@ Citrine is an OCPP 2.0.1 Charging Station Management System (CSMS) designed to b
 Below is a diagram to introduce you to Citrine's high-level architecture:
 ![Citrine's C4](/assets/images/CitrineC4.svg)
 
-> N.B.: In the diagram above the websocket connections pass through the cloud before touching the central system. The definitions for the central system in 00_Base do not require direct websocket connectivity. Use of an infrastructure layer between the websockets and central system, such as [AWS's API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html), is thus supported. The implementation which lives in 50_Server handles the websockets directly.
+> N.B.: In the diagram above the websocket connections pass through the cloud before touching the central system. 
+> The definitions for the central system in 00_Base do not require direct websocket connectivity. 
+> Use of an infrastructure layer between the websockets and central system, such as [AWS's API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html), is thus supported. 
+> The implementation which lives in Server handles the websockets directly.
 
 ## Codebase Strucutre
 Citrine's code structure includes 3 common packages: 00_Base, 01_Data, 02_Util and 03_Modules.
@@ -48,6 +51,8 @@ This includes:
 - Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.
 - 
 This module can be extended to add additional infrastructure options.
+
+--- 
 
 ### 03_Modules
 
@@ -93,7 +98,7 @@ Is responsible for handling SmartCharging related functionality. Example message
 
 Is responsible for handling Transaction related functionality. Example message are `TransactionEvent` and `CostUpdated`.
 
-__
+---
 
 ### Server
 
@@ -101,6 +106,8 @@ The server directory is an example implementation using the citrine modules.
 It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
 If you want to just use it for local development, check out our guide here: [QuickStart](/quickstart.html)
+
+---
 
 ### DirectusExtentions
 

@@ -12,13 +12,19 @@ If you're looking to make modifications or simply set it up locally, here's what
 ## Local Setup
 
 1. **Clone the Repository**: <br/>
-   `git clone https://github.com/citrineos/citrineos.github.io.git && cd citrineos.github.io`
+   ```shell
+    git clone https://github.com/citrineos/citrineos.github.io.git && cd citrineos.github.io
+    ```
 
 1. **Install Dependencies**: <br/>
-   `gem install bundler jekyll && bundle install`
+   ```shell
+    gem install bundler jekyll && bundle install
+    ```
 
 1. **Build and Serve the Website Locally**:<br/>
-   `jekyll serve` <br/>
+   ```shell
+    jekyll serve
+   ```
    This will start a local server, and you can access the site at `http://localhost:4000`.
 
 ## Making Changes
