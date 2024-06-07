@@ -19,3 +19,5 @@ jobs:
         with:
           directory: ./_site
           enforce_https: false
+          ignore_url_re: |
+            http://localhost:\d+

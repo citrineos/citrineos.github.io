@@ -5,7 +5,8 @@ title: QuickStart
 
 # QuickStart
 
-In this section we assume you have set up your local machine with the prerequisites required and found on [Pre-Setup](/pre-setup.html)
+In this section we assume you have set up your local machine with the prerequisites required and found
+on [Pre-Setup](/pre-setup.html)
 
 ## Installation
 
@@ -23,25 +24,27 @@ In this section we assume you have set up your local machine with the prerequisi
     ```
 
     The expected outcome should look like this:
-
-    ```shell
-[+] Running 5/6
- - Network server_default          Created                                 28.0s
- ✔ Container server-amqp-broker-1  Healthy                                19.3s
- ✔ Container server-ocpp-db-1      Healthy                                11.4s
- ✔ Container server-redis-1        Healthy                                16.3s
- ✔ Container server-directus-1     Healthy                                27.1s
- ✔ Container server-citrine-1      Started                                27.7s
-    ```
+    
+    ```txt
+    [+] Running 5/6
+   - Network server_default          Created                                 28.0s
+   ✔ Container server-amqp-broker-1  Healthy                                19.3s
+   ✔ Container server-ocpp-db-1      Healthy                                11.4s
+   ✔ Container server-redis-1        Healthy                                16.3s
+   ✔ Container server-directus-1     Healthy                                27.1s
+   ✔ Container server-citrine-1      Started                                27.7s
+      ```
 
 ### After Setup
 
 You now have a running CitrineOS server plus the supporting infrastructure, in this case:
 
-- A [Directus](http://directus.io) server for which the web interface can now be reached at [localhost:8055](http://localhost:8055) with the initial credentials `admin@citrineos.com:CitrineOS!`
+- A [Directus](http://directus.io) server for which the web interface can now be reached
+  at [localhost:8055](http://localhost:8055) with the initial credentials `admin@citrineos.com:CitrineOS!`
 
-- A [Postgres Database](https://www.postgresql.org) pre-seeded with the OCPP 2.0.1 schemas as well as an initial Directus setup.
-    The initialized database is named `citrine` with a username: `citrine` and password: `citrine`
+- A [Postgres Database](https://www.postgresql.org) pre-seeded with the OCPP 2.0.1 schemas as well as an initial
+  Directus setup.
+  The initialized database is named `citrine` with a username: `citrine` and password: `citrine`
 
 - [RabbitMQ](http://rabbitmq.com) for the OCPP 2.0.1 message bus
 
@@ -49,13 +52,15 @@ You now have a running CitrineOS server plus the supporting infrastructure, in t
 
 - OCPP Citrine Server running the CSMS. You can retrieve the generated OpenAPI docs at [localhost:8080/docs](http://localhost:8080/docs). There is an unsecured websocket server (security profile '0') at `ws://localhost:8081`, and a security profile 1 websocket server at `ws://localhost:8082`.
 
-> Please consider that this setup is the development environment and **do not** simply deploy it to an exposed environment with initial passwords!
+> Please consider that this setup is the development environment and **do not** simply deploy it to an exposed
+> environment with initial passwords!
 
 ### Configuration
 
-We recommend running and developing the project with docker-compose set-up.
+We recommend running and developing the project with the `docker-compose` set-up.
 
-However if you like to rather run it locally and need to adjust where the server is connecting to, please locally (only) adjust the configuration file at `Server/src/config/envs/local.ts`
+However, if you like to rather run it locally and need to adjust where the server is connecting to, please locally (only)
+adjust the configuration file at `./Server/src/config/envs/local.ts`
 
 You can now use the npm run command to start with your environment setup:
 
@@ -95,13 +100,58 @@ There are two layers of security available before the charger has the opportunit
 
 Once a charger has a Charging Station entry and its password has been set, you can connect it to the security profile 1 websocket server at `ws://localhost:8082`.
 
+If you want to add a password for security profile 1, send the following request to the CitrineOS API.
+
+```shell
+curl --location --request PUT 'localhost:8080/data/monitoring/variableAttribute?stationId=cp001&setOnCharger=true' \
+--header 'Content-Type: application/json' \
+--data '{
+    "component": {
+        "name": "SecurityCtrlr"
+    },
+    "variable": {
+        "name": "BasicAuthPassword"
+    },
+    "variableAttribute": [
+        {
+            "value": "testing-citrine"
+        }
+    ],
+    "variableCharacteristics": {
+        "dataType": "passwordString",
+        "supportsMonitoring": false
+    }
+}'
+```
+
+
+#### Testing
+
+In the case you don't have a charger that supports OCPP 2.0.1 to experiment with, we can recommend using the Linux Foundation Energy project EVerest.
+[See here](https://github.com/EVerest) for the repository.
+They have built an open source version of charger firmware and also allow for using it as a simulator.
+They support OCPP 2.0.1 which makes it a great testing opportunity with CitrineOS.
+For the long route of setting up EVerst you can follow their documentation and build the project yourself.[See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
+
+As a short-cut you can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
+
+If you want to run EVerest on the side while developing and making changes, you can follow the steps below.
+1. Run your citrine instance locally with `docker compose up -d` in the Citrine repository
+1. Clone the [EVerest Demo](https://github.com/EVerest/everest-demo) repository and `cd` into the repo
+1. With citrine running excute an "add charger" script at `./citrineos/add-charger.sh` This adds a charger, location and password for the charge to Citrine
+1. Bring up EVerest with `docker compose --project-name everest-ac-demo --file "docker-compose.ocpp201.yml" up -d`
+1. Copy over the appropriate device model with `docker cp manager/device_model_storage_citrineos_sp1.db \
+   everest-ac-demo-manager-1:/ext/source/build/dist/share/everest/modules/OCPP201/device_model_storage.db`
+1. Start EVerst having OCPP2.0.1 support with `docker exec everest-ac-demo-manager-1 sh /ext/source/build/run-scripts/run-sil-ocpp201.sh` 
+
+
 #### Making changes to CitrineOS
 
 As mentioned above, we recommend using the docker-compose set-up to have a stable and reproducible environment.
-In the docker-compose file we wire up the local citrine server directory to be used.
+In the docker-compose file we wire up the local Citrine server directory to be used.
 This means, the docker container running with the server is using the files that are on your machine.
-We start the citrineOS sever with `npx nodemon` so If you make adjustments to your local files, it will get picked up and hot-reloaded in the container.
+We start the CitrineOS sever with `nodemon src/index.ts` so If you make adjustments to your local files, it will get picked up
+and hot-reloaded in the container.
 
-However, if you are making changes to the dependent packages, you will need to re-install the dependent package to the server and restart it.
 
 Make sure if you've made code changes since you've last run `docker compose up` that you run `docker compose down && docker compose build` before running `docker compose up` again to ensure your changes are reflected in the image docker uses when starting up the CitrineOS container.
