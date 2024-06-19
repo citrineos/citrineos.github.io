@@ -111,12 +111,13 @@ curl --location --request POST 'localhost:8080/data/configuration/password?callb
   "setOnCharger": false
 }'
 ```
+Please note that the password should be sent in plain text and should not be hashed.
+Providing a password is optional.
+If you do not provide one, it will be automatically generated.
+If you do provide a password, it must comply with the OCPP specification.
+
 Set `setOnCharger` to true if the password has already been updated on the charger and you only need to update the device model associated with the station id. 
 If you need to update the password on the charger (OCPP A01 use case), set `setOnCharger` to false.
-
-Providing a password is optional. 
-If you do not provide one, it will be automatically generated. 
-If you do provide a password, it must comply with the OCPP specification.
 
 #### Testing
 
