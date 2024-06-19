@@ -100,30 +100,24 @@ There are two layers of security available before the charger has the opportunit
 
 Once a charger has a Charging Station entry and its password has been set, you can connect it to the security profile 1 websocket server at `ws://localhost:8082`.
 
-If you want to add a password for security profile 1, send the following request to the CitrineOS API.
+If you want to add a password for security profile 1 and 2, send the following request to the CitrineOS API.
 
 ```shell
-curl --location --request PUT 'localhost:8080/data/monitoring/variableAttribute?stationId=cp001&setOnCharger=true' \
+curl --location --request POST 'localhost:8080/data/configuration/password?callbackUrl=csms.pro/api/notifications' \
 --header 'Content-Type: application/json' \
 --data '{
-    "component": {
-        "name": "SecurityCtrlr"
-    },
-    "variable": {
-        "name": "BasicAuthPassword"
-    },
-    "variableAttribute": [
-        {
-            "value": "testing-citrine"
-        }
-    ],
-    "variableCharacteristics": {
-        "dataType": "passwordString",
-        "supportsMonitoring": false
-    }
+  "stationId": "cp001",
+  "password": "DbkTu048=xueA69@-dB94hjV*fGdyQOzgVuhhH1L",
+  "setOnCharger": false
 }'
 ```
+Please note that the password should be sent in plain text and should not be hashed.
+Providing a password is optional.
+If you do not provide one, it will be automatically generated.
+If you do provide a password, it must comply with the OCPP specification.
 
+Set `setOnCharger` to true if the password has already been updated on the charger and you only need to update the device model associated with the station id. 
+If you need to update the password on the charger (OCPP A01 use case), set `setOnCharger` to false.
 
 #### Testing
 
