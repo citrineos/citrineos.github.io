@@ -2,6 +2,8 @@
   link: /framework.html
 - name: Quickstart
   link: /quickstart.html
+- name: Roadmap
+  link: /roadmap.html
 - name: Pre-Setup
   link: /pre-setup.html
 - name: System Configuration
