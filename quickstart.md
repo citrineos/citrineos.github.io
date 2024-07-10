@@ -10,30 +10,25 @@ on [Pre-Setup](/pre-setup.html)
 
 ## Installation
 
-1. Clone the CitrineOS repository to your local machine:
+**1. Clone the `citrineos/core` repository onto your local machine:**
 
-    ```shell
     git clone https://github.com/citrineos/citrineos-core
-    ```
 
-1. Navigate to the `citrineos-core/Server` directory and run the entire required stack with docker-compose.
+To include OCPI, additionally clone the `citrineos/ocpi` repository:
 
-    ```shell
+    git clone https://github.com/citrineos/citrineos-ocpi
+
+**2. Navigate to the `citrineos-core/Server` directory:**
+
     cd citrineos-core/Server
-    docker-compose up -d 
-    ```
 
-    The expected outcome should look like this:
-    
-    ```txt
-    [+] Running 5/6
-   - Network server_default          Created                                 28.0s
-   ✔ Container server-amqp-broker-1  Healthy                                19.3s
-   ✔ Container server-ocpp-db-1      Healthy                                11.4s
-   ✔ Container server-redis-1        Healthy                                16.3s
-   ✔ Container server-directus-1     Healthy                                27.1s
-   ✔ Container server-citrine-1      Started                                27.7s
-      ```
+**3. Start the entire `citrineos-core` stack with docker-compose:**
+
+    docker compose up -d
+
+Alternatively, to start with OCPI:
+
+    docker compose -f docker-compose.with.ocpi.yml build    
 
 ### After Setup
 
@@ -51,6 +46,8 @@ You now have a running CitrineOS server plus the supporting infrastructure, in t
 - [Redis](https://redis.io/) cache; the default settings will use an in-memory cache but the redis instance is available to use.
 
 - OCPP Citrine Server running the CSMS. You can retrieve the generated OpenAPI docs at [localhost:8080/docs](http://localhost:8080/docs). There is an unsecured websocket server (security profile '0') at `ws://localhost:8081`, and a security profile 1 websocket server at `ws://localhost:8082`.
+
+- If Citrine Server was started with OCPI enabled, you can retrieve the generated OpenAPI docs at [localhost:8085/docs](http://localhost:8085/docs).
 
 > Please consider that this setup is the development environment and **do not** simply deploy it to an exposed
 > environment with initial passwords!
