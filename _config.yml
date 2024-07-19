@@ -1,10 +1,16 @@
 title: CitrineOS
 description: Documentation for the CitrineOS implementation of the Open Charge Point Protocol (OCPP).
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: html
+    css_class   : 'syntax'
 
 baseurl: ""
 url: "https://citrineos.github.io"
 author: S44 LLC
 
-plugins: 
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag

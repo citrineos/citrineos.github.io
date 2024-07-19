@@ -4,20 +4,32 @@
 </div>
 
 
-  <nav>
-      {% for item in site.data.navigation %}
-        {% if item.logo %}
-          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
-            <img src="{{ item.logo | relative_url }}" alt="{{ item.name }} Logo">
-          </a>
-        {% elsif item.link contains "http" %}
-          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
-        {% else %}
-          <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>{{ item.name }}</a>
-        {% endif %}      
-      {% endfor %}
-  </nav>
+  <div class="nav">
+    {% for item in site.data.navigation %}
+    <div class="nav-item">
+      {% if item.logo %}
+      <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
+        <img src="{{ item.logo | relative_url }}" alt="{{ item.name }} Logo">
+      </a>
+      {% elsif item.link contains "http" %}
+      <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+      {% else %}
+      <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>{{ item.name }}</a>
+      {% endif %}
 
-  
+      {% if item.sub_items %}
+      <div class="sub">
+        {% for sub_item in item.sub_items %}
+        <div class="sub-item">
+          <a href="{{ sub_item.link }}" {% if page.url == sub_item.link %}class="current"{% endif %}>{{ sub_item.name }}</a>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+
 
 </header>

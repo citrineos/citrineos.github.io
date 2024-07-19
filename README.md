@@ -27,6 +27,8 @@ If you're looking to make modifications or simply set it up locally, here's what
    ```
    This will start a local server, and you can access the site at `http://localhost:4000`.
 
+Alternatively, you can run `docker compose up` which will install the dependencies, build and serve.
+
 ## Making Changes
 
 ### Adjusting Site Content
