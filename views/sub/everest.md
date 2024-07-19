@@ -25,13 +25,21 @@ EVEREST_IMAGE_TAG=0.0.16 EVEREST_TARGET_URL=ws://host.docker.internal:8081/cp001
 You will notice that there are two args that are configurable:
 
 - `EVEREST_IMAGE_TAG` - determines the image tag that will be used for the Everest image (ghcr.io/everest/everest-demo/manager)
-- `EVEREST_TARGET_URL` - the URL that Everest will point to. Defaulting to `host.docker.internal` assuming CitrineOS will run on same machine, since `localhost` won't work within Docker
+- `EVEREST_TARGET_URL` - the URL that Everest will point to. Defaulting to `host.docker.internal` assuming CitrineOS will run on
+same machine, since `localhost` won't work within Docker
 
 After running `npm run start-everest` (or the Windows alternative), you should see 3 running Everest containers
 and the `manager` container should have the appropriate Everest logs.
 
-### Viewing OCPP logs in Everest
+### Everest UI
+Now that the 3 containers are running in Docker, you should be able to navigate to `[localhost|ip]:1880/ui/` to view
+the Everest simulator UI. There, you should be able to simulate the pause/resume and plug/unplug events among others.
 
+### Everest NodeRed
+You can also view the Everest NodeRed UI `[localhost|ip]:1880/`, but it is not advisable to make any adjustments here
+unless you have a good understanding of this configuration.
+
+### Viewing OCPP logs in Everest
 To view the OCPP logs in Everest, we have utilized Node `http-server`, which you will see being initialized 
 in the Dockerfile. We initialize a simple HTTP server on port `8888` and expose this port so that it is
 mapped in the compose file allowing you to navigate to `localhost:8888`. This HTTP server is configured to
