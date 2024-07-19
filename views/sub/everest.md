@@ -25,7 +25,7 @@ EVEREST_IMAGE_TAG=0.0.16 EVEREST_TARGET_URL=ws://host.docker.internal:8081/cp001
 You will notice that there are two args that are configurable:
 
 - `EVEREST_IMAGE_TAG` - determines the image tag that will be used for the Everest image (ghcr.io/everest/everest-demo/manager)
-- `EVEREST_TARGET_URL` - the URL that Everest will point to
+- `EVEREST_TARGET_URL` - the URL that Everest will point to. Defaulting to `host.docker.internal` assuming CitrineOS will run on same machine, since `localhost` won't work within Docker
 
 After running `npm run start-everest` (or the Windows alternative), you should see 3 running Everest containers
 and the `manager` container should have the appropriate Everest logs.
