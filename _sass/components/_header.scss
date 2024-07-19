@@ -45,8 +45,13 @@ header {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 15px;
   }
-  a.current {
+  
+  > .nav-item:has(a.current) > a, a.current {
     color: $primary-color;
+  }
+
+  li {
+    background-color: yellow; /* Example style for the parent */
   }
 
   img {
