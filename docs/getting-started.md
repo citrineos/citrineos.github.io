@@ -42,6 +42,21 @@ You should now have the following services running:
 | **RabbitMQ**                                  | [amqp://guest:guest@localhost:5672](amqp://guest:guest@localhost:5672)                       | [RabbitMQ](http://rabbitmq.com) message bus.                                                                                                 |
 | **Redis**                                     | N/A                                                                                          | The default settings will use an in-memory cache but a [Redis](https://redis.io/) instance is available to use.                                                        |
 
+Quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
+```
+wscat -c ws://localhost:8081 -x '[
+  2,
+  "15106be4-57ca-11ee-8c99-0242ac120003",
+  "BootNotification",
+  {
+    "reason": "PowerUp",
+    "chargingStation": {
+      "model": "SingleSocketCharger",
+      "vendorName": "VendorX"
+    }
+  }
+]'
+```
 
 ### Configuration
 
