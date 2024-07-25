@@ -1,23 +1,24 @@
 ---
 layout: default
 title: Home
+hero-title: Citrine OS
+hero-subtitle: Empowering the Global EV Revolution with Open-Source Innovation.
+logo: /assets/images/231002_Citrine_OS_Logo_Citrine_Icon.png
 ---
 
-# Citrine OS: Empowering the Global EV Revolution with Open-Source Innovation
+# Our Mission
 
-At CitrineOS, our mission is to drive the transformation of the electric vehicle (EV) charging landscape, making it more attainable, equitable, and diverse than ever before. For over a decade, our parent company, S44, has been at the forefront of EV charging software, powering automotive OEMs and leading EV network operators. Now, through CitrineOS, we are taking a giant leap forward in advancing the adoption of electric vehicles and diversifying the EV charging infrastructure worldwide.
+With CitrineOS, our mission is to drive the transformation of the EV charging landscape, making it more attainable, equitable, and diverse than ever before. For over a decade, our parent company, S44, has been at the forefront of EV charging software, powering automotive OEMs and leading EV network operators. Now, through CitrineOS, we are taking a giant leap forward in advancing the adoption of electric vehicles and diversifying the EV charging infrastructure worldwide.
 
-## Description
-
-### Who We Are
+# Who We Are
 
 CitrineOS, created by S44, is the brainchild of a dedicated team with deep expertise in EV charging technology. We understand the critical role that reliable back-end software plays in the world of EV charging. Our commitment to innovation and inclusivity drives us to make our solutions accessible to everyone.
 
-### What We Offer
+# What We Offer
 
 CitrineOS is more than just software; it's a catalyst for change. We are proud to offer our Open Charge Point Protocol (OCPP) 2.0.1 open source software on GitHub. This groundbreaking platform empowers a wide range of stakeholders, from passionate EV enthusiasts to the most prominent charge point operators, fleet managers, and automotive manufacturers.
 
-### With CitrineOS, you can:
+# With CitrineOS, you can:
 
 1. Provision New Charging Equipment: Seamlessly set up new charging stations, ensuring they're ready for action.
 
@@ -29,11 +30,11 @@ CitrineOS is more than just software; it's a catalyst for change. We are proud t
 
 5. Manage Energy Consumption and Throughput: Optimize energy use and throughput, reducing environmental impact.
 
-### How We Do It
+# How We Do It
 
 Our modular software is meticulously designed based on real-world EV charging use cases. We understand the pressing need to enhance reliability and interoperability in EV charging ecosystems. CitrineOS is the ideal solution for achieving rapid compliance with National EV Infrastructure (NEVI) standards in both new and existing environments.
 
-### Why It Matters
+# Why It Matters
 
 CitrineOS offers a multitude of benefits:
 
@@ -49,7 +50,7 @@ CitrineOS offers a multitude of benefits:
 
 6. Reliability: Enhance reliability across the board with our common open source software backend.
 
-## Differentiator:
+# Differentiator
 
 In a world where proprietary solutions dominate the landscape, CitrineOS stands out as the first and only platform that offers a common, open source software foundation for all. Whether you're a passionate EV enthusiast or a major charge point operator, CitrineOS is your gateway to accelerate CPO deployments, future-proof your EV charging network, and ultimately contribute to a more sustainable and equitable future powered by electric vehicles.
 
