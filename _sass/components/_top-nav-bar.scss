@@ -1,6 +1,6 @@
 header {
   z-index: 1000;
-  top: 0.5rem;
+  top: $top-nav-bar-margin;
   position: sticky;
   display: flex;
   justify-content: space-between;
@@ -10,7 +10,7 @@ header {
   padding-right: 0.5rem;
   box-shadow: inset 0 0 0 2px black;
   border-radius: 15px;
-  margin: 0.5rem;
+  margin: $top-nav-bar-margin;
 
   .logo {
     img {
