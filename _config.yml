@@ -5,6 +5,6 @@ baseurl: ""
 url: "https://citrineos.github.io"
 author: S44 LLC
 
-plugins: 
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
