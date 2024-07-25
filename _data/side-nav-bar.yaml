@@ -10,6 +10,10 @@
       url: /docs/core-concepts/configuration.html
     - title: Connecting a Charger
       url: /docs/core-concepts/connecting-a-charger.html
+    - title: Adding ID Tokens
+      url: /docs/core-concepts/adding-id-tokens.html
+    - title: Viewing OCPP Logs
+      url: /docs/core-concepts/viewing-ocpp-logs.html
     - title: Testing
       url: /docs/core-concepts/testing.html
 - title: References
