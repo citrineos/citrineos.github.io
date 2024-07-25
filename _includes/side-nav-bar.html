@@ -1,0 +1,90 @@
+<style>
+    .side-menu {
+        display: block;
+        width: 312px;
+        overflow-y: scroll;
+        height: calc(100vh - 68px - 8px);
+        padding-left: 16px;
+        padding-right: 16px;
+        position: sticky;
+        top: 100px;
+    }
+    .side-menu ul {
+        list-style-type: none;
+        font-weight: 500;
+        overflow-y: scroll;
+    }
+    .side-menu ul.level-1 {
+        overflow-y: scroll;
+        padding: 0;
+    }
+    .side-menu ul.level-2 {
+        padding-left: 0.75rem;
+    }
+    .side-menu li {
+        font-weight: 300;
+        font-size: 1.125rem;
+        line-height: 1.4;
+        padding: 0;
+        margin-top: 4px;
+    }
+    .side-menu a {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
+        display: block;
+        color: black;
+        text-decoration: none;
+        width: 100%;
+    }
+    .side-menu a:hover {
+        background-color: black;
+        color: #FF8800;
+        border-radius: 5px;
+    }
+    .side-menu a.active {
+        background-color: black;
+        color: #FF8800;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the current URL path
+        var path = window.location.pathname;
+
+        // Select all <a> tags inside the side menu
+        var menuItems = document.querySelectorAll('.side-menu a');
+
+        // Loop through each <a> tag
+        menuItems.forEach(function (item) {
+            console.log(item.getAttribute('href'))
+            // Check if the href attribute matches the current path
+            if (item.getAttribute('href') === path) {
+                console.log("Marking as active", item)
+                // Add the 'active' class to the matching <a> tag
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
+
+<div class="side-menu">
+    <ul class="level-1">
+        {% for item in site.data.side-nav-bar %}
+            {% if item.children %}
+            <li><a>{{ item.title }}</a>
+                <ul class="level-2">
+                    {% for child in item.children %}
+                    <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% else %}
+            <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+

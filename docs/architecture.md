@@ -1,9 +1,9 @@
 ---
-layout: default
-title: Framework
+layout: doc
+title: Architecture
 ---
 
-# Framework
+# Architecture
 
 Citrine is an OCPP 2.0.1 Charging Station Management System (CSMS) designed to be adaptable to various infrastructures and easily extensible via modular design. It uses the [fastify](https://github.com/fastify/fastify) web framework.
 

@@ -7,10 +7,11 @@ html, body {
 }
 
 body {
-  font-family: Roobert,sans-serif;
+    font-family: Roobert,sans-serif;
     font-size: 1.125rem;
     font-weight: 300;
     line-height: 1.4;
+    margin: 0;
 }
 
 h1, h2, h3 {
@@ -22,26 +23,49 @@ h1, h2, h3 {
   flex-direction: column;
 }
 
+.content-nav-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .content-container {
   flex: 1;
-  max-width: 75rem;
-  width: 90%;
-  min-height: 100vh;
-  margin-bottom: -10rem;
+  width: calc(100vw - (100vw - 100%) - 300px);
   margin: 0 auto;
   padding-left: 4rem;
   padding-right: 4rem;
 }
 
-.content-container:after {
-  content: "";
-  display: block;
-  height: 100px;
+code {
+  white-space: pre-wrap;
+}
+
+code {
+  background-color: #f5f6fa;
+  padding: 1px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+pre {
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+table {
+  border: 2px solid black;
+}
+
+table td {
+  border: 2px solid black;
+  padding: 8px;
 }
 
 @media (max-width: 768px) {
   .container {
-      padding-left: 1rem; 
+      padding-left: 1rem;
       padding-right: 1rem;
   }
 }

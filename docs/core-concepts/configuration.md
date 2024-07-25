@@ -1,9 +1,9 @@
 ---
-layout: default
-title: SystemConfiguration
+layout: doc
+title: Configuration
 ---
 
-# System Configuration Documentation
+# Configuring CitrineOS
 
 ## Introduction
 ### Purpose
