@@ -31,8 +31,6 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
-    jekyll-include-cache (0.2.1)
-      jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-seo-tag (2.8.0)
@@ -41,11 +39,6 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    just-the-docs (0.8.2)
-      jekyll (>= 3.8.5)
-      jekyll-include-cache
-      jekyll-seo-tag (>= 2.0)
-      rake (>= 12.3.1)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -85,7 +78,6 @@ DEPENDENCIES
   jekyll
   jekyll-seo-tag
   jekyll-sitemap
-  just-the-docs
 
 BUNDLED WITH
    2.4.22
