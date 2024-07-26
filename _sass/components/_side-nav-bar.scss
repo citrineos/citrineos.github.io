@@ -7,49 +7,46 @@
   padding-right: 16px;
   position: sticky;
   top: calc($top-nav-bar-height + 2 * $top-nav-bar-margin);
-}
 
-.side-menu ul {
-  list-style-type: none;
-  overflow-y: scroll;
-}
+  ul {
+    list-style-type: none;
+    overflow-y: scroll;
 
-.side-menu ul.level-1 {
-  overflow-y: scroll;
-  padding: 0;
-}
+    .level-1 {
+      overflow-y: scroll;
+      padding: 0;
+    }
 
-.side-menu ul.level-2 {
-  padding-left: 0.75rem;
-}
+    .level-2 {
+      padding-left: 0.75rem;
+    }
+  }
 
-.side-menu li {
-  font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.4;
-  padding: 0;
-  margin-top: 4px;
-}
+  li {
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    padding: 0;
+    margin-top: 4px;
+  }
 
-.side-menu a {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 12px;
-  padding-right: 12px;
-  display: block;
-  color: $secondary-color;
-  text-decoration: none;
-  width: 100%;
-}
+  a {
+    padding: 8px 12px;
+    display: block;
+    color: $secondary-color;
+    text-decoration: none;
+    width: 100%;
+  }
 
-.side-menu a:hover {
-  background-color: $secondary-color;
-  color: $primary-color;
-  border-radius: 5px;
-}
+  a.active {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 5px;
+  }
 
-.side-menu a.active {
-  background-color: $secondary-color;
-  color: $primary-color;
-  border-radius: 5px;
+  a:hover {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 5px;
+  }
 }
