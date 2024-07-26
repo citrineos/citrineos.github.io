@@ -14,7 +14,7 @@
       url: /docs/core-concepts/adding-id-tokens.html
     - title: Viewing OCPP Logs
       url: /docs/core-concepts/viewing-ocpp-logs.html
-    - title: Testing (Everest)
+    - title: Testing with Everest
       url: /docs/core-concepts/testing.html
 - title: References
   url: /docs/references.html

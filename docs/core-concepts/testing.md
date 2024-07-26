@@ -1,20 +1,20 @@
 ---
 layout: doc
-title: Testing (Everest)
+title: Testing with Everest
 ---
 
-# Testing
+# Testing with Everest
 
 In the case you don't have a charger that supports OCPP 2.0.1 to experiment with, we can recommend using the Linux 
 Foundation Energy project EVerest. [See here](https://github.com/EVerest) for the repository.  They have built an open source version of
 charger firmware and also allow for using it as a simulator. They support OCPP 2.0.1 which makes it a great testing 
 opportunity with CitrineOS. For the long route of setting up EVerst you can follow their documentation and build 
-the project yourself.[See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
+the project yourself. ~~~~[See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
 
 # Running Everest
 In order to alleviate some of the complexities that may arise when starting Everest, we have created
 some helpful commands that should help in getting the Everest charger simulator running locally and targeting
-CitrineOS.
+CitrineOS.~~~~
 
 You will notice in `/Server/everest` directory the new files created to support running Everest within Docker.
 In addition, we created some helpful NPM commands:
