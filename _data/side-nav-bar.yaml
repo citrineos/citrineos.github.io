@@ -1,0 +1,24 @@
+- title: Architecture
+  url: /docs/architecture.html
+- title: Prerequisites
+  url: /docs/prerequisites.html
+- title: Getting Started
+  url: /docs/getting-started.html
+- title: Core Concepts
+  children:
+    - title: Configurating the System
+      url: /docs/core-concepts/configuration.html
+    - title: Connecting a Charger
+      url: /docs/core-concepts/connecting-a-charger.html
+    - title: Adding ID Tokens
+      url: /docs/core-concepts/adding-id-tokens.html
+    - title: Viewing OCPP Logs
+      url: /docs/core-concepts/viewing-ocpp-logs.html
+    - title: Testing
+      url: /docs/core-concepts/testing.html
+- title: References
+  url: /docs/references.html
+- title: Roadmap
+  url: /docs/roadmap.html
+- title: Making Changes
+  url: /docs/making-changes.html

@@ -1,16 +1,6 @@
-- name: Framework
-  link: /framework.html
-- name: Quickstart
-  link: /quickstart.html
-- name: Roadmap
-  link: /roadmap.html
-- name: Pre-Setup
-  link: /pre-setup.html
-- name: System Configuration
-  link: /systemconfiguration.html
-- name: References
-  link: /references.html
-- name: About 
+- name: Docs
+  link: /docs/architecture.html
+- name: About
   link: https://s44.team/citrineos
   logo: /assets/images/Citrine_Favicon_256_clear3.png
 - name: Github
