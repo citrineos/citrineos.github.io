@@ -78,6 +78,9 @@ DEPENDENCIES
   jekyll
   jekyll-seo-tag
   jekyll-sitemap
+  rake
+  rouge
+  sass-embedded
 
 BUNDLED WITH
    2.4.22
