@@ -10,9 +10,9 @@
   <body>
     <div class="site-container">
       {% include top-nav-bar.html %}
-      <div class="content-container">
-        {% include hero.html %}
-        {{ content }}
+      <div class="content-nav-container">
+        {% include side-nav-bar.html nav=page.nav %}
+        <div class="content-container">{{ content }}</div>
       </div>
       {% include footer.html %}
     </div>
