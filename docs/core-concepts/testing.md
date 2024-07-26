@@ -16,7 +16,7 @@ In order to alleviate some of the complexities that may arise when starting Ever
 some helpful commands that should help in getting the Everest charger simulator running locally and targeting
 CitrineOS.~~~~
 
-You will notice in `/Server/everest` directory the new files created to support running Everest within Docker.
+You will notice in `/Server/everest` directory the~~~~ files created to support running Everest within Docker.
 In addition, we created some helpful NPM commands:
 
 - `npm run start-everest`
