@@ -9,26 +9,22 @@ In the case you don't have a charger that supports OCPP 2.0.1 to experiment with
 Foundation Energy project EVerest. [See here](https://github.com/EVerest) for the repository.  They have built an open source version of
 charger firmware and also allow for using it as a simulator. They support OCPP 2.0.1 which makes it a great testing 
 opportunity with CitrineOS. For the long route of setting up EVerst you can follow their documentation and build 
-the project yourself. ~~~~[See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
+the project yourself. [See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
 
 # Running Everest
 In order to alleviate some of the complexities that may arise when starting Everest, we have created
 some helpful commands that should help in getting the Everest charger simulator running locally and targeting
-CitrineOS.~~~~
+CitrineOS.
 
-You will notice in `/Server/everest` directory the~~~~ files created to support running Everest within Docker.
+You will notice in `/Server/everest` directory the files created to support running Everest within Docker.
 In addition, we created some helpful NPM commands:
 
 - `npm run start-everest`
 - and
 - `npm run start-everest-windows`
 
-Both of which in essence do the same thing which is to trigger the `docker compose up` command from within
-the `/Server/everest` directory so that it can pick up the `Dockerfile` and the `docker-compose.yml` files:
-
-```shell
-EVEREST_IMAGE_TAG=0.0.16 EVEREST_TARGET_URL=ws://host.docker.internal:8081/cp001 docker-compose up
-```
+Both of which in essence do the same thing which is to trigger the `docker compose up` command (below) from within
+the `/Server/everest` directory so that it can pick up the `Dockerfile` and the `docker-compose.yml` files.~~~~
 
 You will notice that there are two args that are configurable:
 
