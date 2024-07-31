@@ -15,7 +15,7 @@ Below is a diagram to introduce you to Citrine's high-level architecture:
 > Use of an infrastructure layer between the websockets and central system, such as [AWS's API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html), is thus supported. 
 > The implementation which lives in Server handles the websockets directly.
 
-## Codebase Strucutre
+## Codebase Structure
 Citrine's code structure includes 3 common packages: 00_Base, 01_Data, 02_Util and 03_Modules.
 
 ### 00_Base
@@ -105,7 +105,7 @@ Is responsible for handling Transaction related functionality. Example message a
 The server directory is an example implementation using the citrine modules.
 It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
-If you want to just use it for local development, check out our guide here: [QuickStart](/quickstart.html)
+If you want to just use it for local development, check out our guide here: [Getting Started](/docs/getting-started.html)
 
 ---
 
