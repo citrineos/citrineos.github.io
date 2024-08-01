@@ -19,40 +19,31 @@ title: Roadmap
 
 ## Current Version
 
-- **Version**: 1.2.3
-- **Highlights**: ISO15118 Support. Directus Files managed certificates & digital asset management.
+- **Version**: 1.3.2
+- **Highlights**: Payments module released. OCPI 2.2.1 support. Smart Charging.
 - **Ongoing Work**: Stable release
 
 ---
 
 ## Next Release
 
-- **Target Version**: 1.3.0
-- **Estimated Release Date**: 2024-07-03
+- **Target Version**: 1.4.0
+- **Estimated Release Date**: 2024-08-16
 - **Features & Improvements**:
-  - Support for OCPP 2.0.1 Smart Charging
-  - Support for OCPI 2.2.1
-    - Registration (Credentials & Versions)
-    - Cdrs
-    - Charging Profiles
-    - Commands - (Start, Stop, & Unlock Connector)
-    - Locations - Push & Pull
-    - Sessions - Push & Pull
-    - Tariffs
-    - Tokens (No Real Time Auth support yet, scheduled for 1.3.X)
-  - Stackbox Payments Module Open Sourced - Web portal payment option via Stripe
-    - Scan and Charge feature - QR Code on Charging Station UI payment via Stripe
+  - OCPP 2.0.1 Local Auth List
+  - OCPP 2.0.1 & OCPI 2.2.1 Reservations
+  - OCPP 2.0.1 ISO15118 Smart Charging & Signed Meter Values
+  - Improved Unit Test Coverage
+  - Expanded Github Actions Integration Tests with Newman
 
 ---
 
 ## Future Plans
 
-### 1.4.X
-- OCPP 2.0.1: Reservations (including OCPI 2.2.1) & Local Auth List Management
-- Unit Test Coverage
-- Github Action Integration Tests
-
 ### 1.5.X
+- Full Operator UI for OCA Certification
+
+### 1.6.X
 - Improve Modularity support (including documentation on how to create CitrineOS modules)
 - Improved Offline Handling & Down Detection
 - Configurable Alerts
