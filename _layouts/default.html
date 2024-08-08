@@ -11,10 +11,13 @@
     <div class="site-container">
       {% include top-nav-bar.html %}
       <div class="content-container">
-        {% include hero.html %}
-        {{ content }}
+        {% if page.title == 404 %}
+          {{ content }}
+        {% else %}
+          {% include hero.html %}
+          {{ content }}
+        {% endif %}
       </div>
-      {% include footer.html %}
     </div>
   </body>
 </html>
