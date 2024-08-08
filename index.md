@@ -4,6 +4,7 @@ title: Home
 hero-title: Citrine OS
 hero-subtitle: Empowering the Global EV Revolution with Open-Source Innovation.
 logo: /assets/images/231002_Citrine_OS_Logo_Citrine_Icon.png
+logo_alt: CitrineOS Logo
 ---
 
 # Our Mission
