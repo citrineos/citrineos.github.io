@@ -67,7 +67,7 @@ However, if you like to rather run it locally and need to adjust where the serve
 You can now use the npm run command to start with your environment setup:
 
 ```shell
-npm run start-unix
+npm run start
 ```
 
-You may run into issues attempting this on a Windows DOS command line, in which case `npm run start-windows` is available. Both of these commands set the APP_NAME and APP_ENV environment variables; if you wish to set those yourself, you can use `npm run start-docker`.
+This command will set the APP_NAME and APP_ENV environment variables; if you wish to set those yourself, you can use `npm run start-docker`.
