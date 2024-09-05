@@ -27,7 +27,7 @@ To include OCPI, additionally clone the `citrineos/ocpi` repository:
 
 Alternatively, to start with OCPI:
 
-    docker compose -f docker-compose.with.ocpi.yml build    
+    docker compose -f docker-compose.yml build    
 
 You should now have the following services running:
 
