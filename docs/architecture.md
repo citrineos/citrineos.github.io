@@ -118,7 +118,7 @@ Here we have Directus register callbacks with Citrine for when a charger connect
 
 ### Other Module Examples
 
-Outside of the OCPP 2.0.1 protocol, modules could do things like provide OCPI interfaces, feed data to analysis tools, handle payments, or more.
+Outside of the OCPP 2.0.1 protocol, modules could do things like [provide OCPI interfaces](https://github.com/citrineos/citrineos-ocpi), feed data to analysis tools, [handle payments](https://github.com/citrineos/citrineos-payment), or more.
 
 ---
 

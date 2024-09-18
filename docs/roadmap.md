@@ -19,39 +19,33 @@ title: Roadmap
 
 ## Current Version
 
-- **Version**: 1.3.2
-- **Highlights**: Payments module released. OCPI 2.2.1 support. Smart Charging.
+- **Version**: 1.4.3
+- **Highlights**: Local Auth List support added. Unit test coverage expanded for authentication.
 - **Ongoing Work**: Stable release
 
 ---
 
 ## Next Release
 
-- **Target Version**: 1.4.0
-- **Estimated Release Date**: 2024-08-16
+- **Target Version**: 1.5.0
+- **Estimated Release Date**: 2024-10-04
 - **Features & Improvements**:
-  - OCPP 2.0.1 Local Auth List
-  - OCPP 2.0.1 & OCPI 2.2.1 Reservations
-  - OCPP 2.0.1 ISO15118 Smart Charging & Signed Meter Values
-  - Improved Unit Test Coverage
-  - Expanded Github Actions Integration Tests with Newman
+  - CitrineOS-Operator custom UI release for OCA Certification
 
 ---
 
 ## Future Plans
 
-### 1.5.X
-- Full Operator UI for OCA Certification
-
 ### 1.6.X
-- Improve Modularity support (including documentation on how to create CitrineOS modules)
-- Improved Offline Handling & Down Detection
-- Configurable Alerts
+- Improve modularity support
+- California OCPP pricing support
+- Payment terminal OCPI support
 
 ### Long Term (Q4-2024, 2025)
-- OpenADR support - CitrineOS as a Virtual End Node
-- OCPI 3.0 support
+- OCPP 1.6 support
 - OCPP 2.1 support
+- OCPI 3.0 support
+- OpenADR support - CitrineOS as a Virtual End Node
 
 ---
 
