@@ -19,7 +19,7 @@ This is a low-level document for engineers interested in learning more about how
 ### Configuration Management
 By default, CitrineOS uses a typescript file to store system configuration, such as the files in [Server/src/config](https://github.com/citrineos/citrineos-core/tree/main/Server/src/config).
 
-Environment variables can also be used. They will override the fields in the typescript file when the application starts up. Prefix the variables with 'CITRINEOS', then separate each component of the path to the variable in camel case. Example: CITRINEOS_UTIL_DIRECTUS_HOST will override systemConfig.util.directus.host with its value.
+Environment variables can also be used. They will override the fields in the typescript file when the application starts up. Prefix the variables with 'CITRINEOS', then separate each component of the path to the variable in camel case. Example: CITRINEOS_DATA_SEQUELIZE_USERNAME will override systemConfig.data.sequelize.username with its value.
 
 Each module also supports GET and PUT for systemConfig in order to change it while CitrineOS is running. Not all values currently support being changed after application start-up. For example, adding a websocket server to the list after start-up does not currently create a new websocket server.
 
@@ -126,14 +126,6 @@ Each module also supports GET and PUT for systemConfig in order to change it whi
 - Logo Path: The path to the logo used in Swagger documentation.
 - Expose Data: Whether to expose data in Swagger documentation.
 - Expose Message: Whether to expose messaging in Swagger documentation.
-
-### Directus
-- Host: The hostname for the Directus server.
-- Port: The port number for the Directus server.
-- Token: The static authorization token CitrineOS uses to access Directus. Either this or Username and Password must be filled.
-- Username: The username of the account CitrineOS uses to access Directus. Will be overriden by token if token is also present on start-up.
-- Password: The password of the account CitrineOS uses to access Directus. Will be overriden by token if token is also present on start-up.
-- Generate Flows: Whether to generate flows automatically.
 
 ### Network Connection
 
