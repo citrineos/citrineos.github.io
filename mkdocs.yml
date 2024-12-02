@@ -1,0 +1,103 @@
+site_name: CitrineOS
+nav:
+  - index.md
+  - roadmap.md
+  - references.md
+  - Getting Started:
+      - getting-started/prerequisites.md
+      - getting-started/getting-started.md
+      - getting-started/testing-with-everest.md
+      - getting-started/making-changes.md
+  - Core Concepts:
+      - core-concepts/architecture.md
+      - core-concepts/configuration.md
+      - core-concepts/connecting-a-charger.md
+#      - core-concepts/device-model.md
+      - core-concepts/adding-id-tokens.md
+      - core-concepts/viewing-ocpp-logs.md
+
+
+theme:
+  name: material
+  language: en
+  logo: assets/img/Icon.svg
+  palette:
+    primary: custom
+  font:
+    text: false
+  favicon: assets/img/favicon.ico
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - navigation.expand
+  custom_dir: overrides
+
+extra_css:
+  - assets/stylesheets/extra.css
+  
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      name: Join Discord
+      link: https://discord.gg/kkUxF7pRU7
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  analytics:
+    provider: google
+    property: G-10677SLNRH
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback! Help us improve this page by
+            opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+{title}+-+{url}" target="_blank" rel="noopener">a new issue</a>.
+  version:
+    provider: mike
+
+
+site_url: https://citrineos.github.io/
+repo_url: https://github.com/citrineos/citrineos-core
+copyright: CitrineOS a Series of LF Projects, LLC For web site terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+site_description: >-
+  Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure.
+
+plugins:
+  - search
+  - mike # used for versioning
+  - privacy
+  - git-revision-date-localized # add created date to page
+#  - minify:
+#      minify_html: true
+strict: true
+markdown_extensions:
+  - toc:
+      permalink: "#"
+      baselevel: 2
+  - pymdownx.blocks.caption
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+

@@ -1,5 +1,4 @@
 ---
-layout: doc
 title: Viewing OCPP Logs
 ---
 

@@ -1,0 +1,56 @@
+name: Deploy MkDocs Page with Mike
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Trigger on semantic version tags (e.g., v1.5.0)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Fetch gh-pages Branch
+        run: |
+          git fetch origin gh-pages --depth=1
+          git branch gh-pages origin/gh-pages
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-root
+
+      - name: Extract Version
+        id: version
+        run: |
+          TAG=${GITHUB_REF##*/}
+          VERSION=$(echo $TAG | sed -E 's/^v([0-9]+\.[0-9]+)\.[0-9]+$/\1.x/')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Deploy MkDocs using Mike
+        run: |
+          poetry run mike deploy --update-aliases ${{ env.VERSION }} latest --push
+          poetry run mike set-default latest --push
+
