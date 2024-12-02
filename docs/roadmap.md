@@ -1,21 +1,8 @@
 ---
-layout: doc
 title: Roadmap
 ---
 
 # Roadmap
-
----
-
-## Table of Contents
-
-- [Current Version](#current-version)
-- [Next Release](#next-release)
-- [Future Plans](#future-plans)
-- [Contribution](#contribution)
-- [Feedback and Suggestions](#feedback-and-suggestions)
-
----
 
 ## Current Version
 

@@ -1,0 +1,36 @@
+name: Deploy new MkDocs Page
+
+# See: https://docs.github.com/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+on:
+  push:
+    branches:
+      - main
+      - feature/move-to-mkdocs
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-root
+
+      - name: Deploy website
+        run: poetry run mkdocs gh-deploy --force

@@ -1,9 +1,8 @@
 ---
-layout: doc
 title: References
 ---
 
-# References
+## References
 
 Want to read more about what we based our project on?
 Take a look at the following urls:

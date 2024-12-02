@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "citrineos-github-io"
+version = "0.1.0"
+description = "Docs page for CitrineOS"
+authors = ["Your Name <you@example.com>"]
+license = "Apache 2.0"
+readme = "README.md"
+packages = [{include = "citrineos"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.45"
+mike = "^2.1.3"
+mkdocs-git-revision-date-localized-plugin = "^1.3.0"
+mkdocs-glightbox = "^0.4.0"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
