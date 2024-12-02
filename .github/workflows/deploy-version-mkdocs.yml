@@ -26,6 +26,11 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
+      - name: Fetch gh-pages Branch
+        run: |
+          git fetch origin gh-pages --depth=1
+          git branch gh-pages origin/gh-pages
+
       - name: Install Python
         uses: actions/setup-python@v5
         with:
