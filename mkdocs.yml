@@ -87,7 +87,7 @@ plugins:
   - git-revision-date-localized # add created date to page
 #  - minify:
 #      minify_html: true
-
+strict: true
 markdown_extensions:
   - toc:
       permalink: "#"

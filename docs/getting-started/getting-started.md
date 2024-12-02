@@ -5,7 +5,7 @@ title: Getting Started
 
 # Getting Started
 
-In this section, we assume you have set up the necessary [prerequisites](/getting-started/prerequisites.html).
+In this section, we assume you have set up the necessary [prerequisites](prerequisites.md).
 
 ## Installation
 

@@ -5,7 +5,7 @@ description = "Docs page for CitrineOS"
 authors = ["Your Name <you@example.com>"]
 license = "Apache 2.0"
 readme = "README.md"
-packages = [{include = "citrineos"}]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.13"
