@@ -8,6 +8,7 @@ nav:
       - getting-started/getting-started.md
       - getting-started/testing-with-everest.md
       - getting-started/making-changes.md
+      - getting-started/running-ocpi.md
   - Core Concepts:
       - core-concepts/architecture.md
       - core-concepts/configuration.md
@@ -87,7 +88,7 @@ plugins:
   - git-revision-date-localized # add created date to page
 #  - minify:
 #      minify_html: true
-strict: true
+
 markdown_extensions:
   - toc:
       permalink: "#"

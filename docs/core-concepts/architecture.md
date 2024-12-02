@@ -46,7 +46,6 @@ This includes:
 - Cache implementations, such as [redis](https://github.com/redis/redis) and a simple Javascript in-memory cache
 - Message broker implementations such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). 
 - Network connection implementation such as websockets
-- Directus Flow implementations such as [directus-flow](https://docs.directus.io/app/flows.html), where we take all `@AsMessageEndpoint` methods initialize flows into Directus.
 - Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.
 - 
 This module can be extended to add additional infrastructure options.
@@ -83,7 +82,6 @@ Is responsible for handling Monitoring related functionality. Example message ar
 
 The OCPP router handles the OCPP messages and routes them to and from the correct charger.
 Furthermore, you can register callbacks for websocket events or specific OCPP messages to be executed in the future.
-As an example, our directus extension, on boot, registers a callback for onConnect of a charger, to have real time insights on which chargers are currently online.
 
 #### Reporting
 
@@ -107,12 +105,6 @@ Citrine is designed in a modular fashion scale each module independently.
 If you want to just use it for local development, check out our guide here: [Getting Started](../getting-started/getting-started.md)
 
 ---
-
-### DirectusExtentions
-
-Directus is quite customizable and can load custom extensions.
-We make use of this to add some functionality to the UI such as real time charger connection insights.  
-Here we have Directus register callbacks with Citrine for when a charger connects or disconnects to publish updates. 
 
 
 ### Other Module Examples
