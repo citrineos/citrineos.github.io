@@ -51,6 +51,6 @@ jobs:
 
       - name: Deploy MkDocs using Mike
         run: |
-          poetry run mike deploy --update-aliases ${{ env.VERSION }} latest
-          poetry run mike set-default latest
+          poetry run mike deploy --update-aliases ${{ env.VERSION }} latest --push
+          poetry run mike set-default latest --push
 
