@@ -10,10 +10,5 @@
     "version": "0.1.x",
     "title": "0.1.x",
     "aliases": []
-  },
-  {
-    "version": "0.0.x",
-    "title": "0.0.x",
-    "aliases": []
   }
 ]
