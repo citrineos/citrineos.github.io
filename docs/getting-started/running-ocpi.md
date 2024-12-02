@@ -3,8 +3,8 @@ layout: doc
 title: Running OCPI
 ---
 
-# Running OCPI
-In this section, we assume have gone through the [Running CORE](/docs/getting-started.html) section and were able 
+# Running Citrine with OCPI
+In this section, we assume have gone through the [Running CORE](getting-started.md) section and were able 
 to run `citrineos/core`. 
 
 ## Installation
@@ -30,4 +30,4 @@ Now along with all of the CORE components, you will also have Citrine OCPI Serve
 ### Configuration
 
 OCPI have very similar structure to CORE, so you would apply configurations changes in the same way. See 
-[Configuration section](/docs/getting-started.html) for more info.
+[Configuration section](getting-started.md/#configuration) for more info.

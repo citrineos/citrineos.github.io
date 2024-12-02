@@ -3,7 +3,7 @@ layout: doc
 title: Getting Started
 ---
 
-# Getting Started
+# Getting Started running Citrine Core
 
 In this section, we assume you have set up the necessary [prerequisites](prerequisites.md).
 
@@ -63,4 +63,4 @@ npm run start
 This command will set the `APP_NAME` and `APP_ENV` environment variables; if you wish to set those yourself, you can use `npm run start-docker`.
 
 ### Running CORE with OCPI
-To run CORE with OCPI you should follow the steps in the [Running OCPI](/docs/running-ocpi.html) section.
+To run CORE with OCPI you should follow the steps in the [Running OCPI](running-ocpi.md) section.
