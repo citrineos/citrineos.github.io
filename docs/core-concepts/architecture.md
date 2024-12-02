@@ -104,7 +104,7 @@ Is responsible for handling Transaction related functionality. Example message a
 The server directory is an example implementation using the citrine modules.
 It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
-If you want to just use it for local development, check out our guide here: [Getting Started](/getting-started/getting-started.html)
+If you want to just use it for local development, check out our guide here: [Getting Started](../getting-started/getting-started.md)
 
 ---
 
