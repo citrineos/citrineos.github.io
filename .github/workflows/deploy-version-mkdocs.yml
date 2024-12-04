@@ -48,11 +48,18 @@ jobs:
           TAG=${GITHUB_REF##*/}
           VERSION=$(echo $TAG | sed -E 's/^v([0-9]+\.[0-9]+)\.[0-9]+$/\1.x/')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-
+  
       - name: Deploy MkDocs using Mike
         env:
           GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
         run: |
-          poetry run mike deploy --update-aliases ${{ env.VERSION }} latest --push
-          poetry run mike set-default latest --push
-
+          echo "Starting MkDocs deployment..."
+          echo "GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}" # Debug statement
+          echo "VERSION being deployed: ${{ env.VERSION }}"               # Debug statement
+          
+          poetry run mike deploy --update-aliases ${{ env.VERSION }} latest --push --verbose
+          echo "Deployment complete for version ${{ env.VERSION }}"       # Debug statement
+          
+          poetry run mike set-default latest --push --verbose
+          echo "Default version set to 'latest'"               
+  
