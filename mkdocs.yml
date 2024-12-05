@@ -56,7 +56,7 @@ extra:
       make our documentation better.
   analytics:
     provider: google
-    property: G-10677SLNRH
+    property: !ENV GOOGLE_ANALYTICS_KEY
     feedback:
       title: Was this page helpful?
       ratings:

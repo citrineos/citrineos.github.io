@@ -50,6 +50,8 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Deploy MkDocs using Mike
+        env:
+          GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
         run: |
           poetry run mike deploy --update-aliases ${{ env.VERSION }} latest --push
           poetry run mike set-default latest --push
