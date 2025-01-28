@@ -48,6 +48,10 @@ wscat -c ws://localhost:8081 -x '[
 ]'
 ```
 
+### Running Operator UI (Beta)
+
+To run the new beta Operator UI, follow the instructions in the [Operator UI repo](https://github.com/citrineos/citrineos-operator-ui?tab=readme-ov-file#citrineos-operator)
+
 ### Configuration
 
 We recommend running and developing the project with the `docker-compose` set-up.
