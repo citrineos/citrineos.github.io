@@ -16,6 +16,7 @@ nav:
 #      - core-concepts/device-model.md
       - core-concepts/adding-id-tokens.md
       - core-concepts/viewing-ocpp-logs.md
+      - core-concepts/data-model.md
 
 
 theme:
