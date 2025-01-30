@@ -48,6 +48,24 @@ mapped in the compose file allowing you to navigate to `localhost:8888`. This HT
 serve the contents of the `/tmp/everest_ocpp_logs` which is where EVerest stores the OCPP logs in the
 Docker container. Conveniently, the logs are in HTML format, so we can easily view them in the browser.
 
+## Running Everest on a Mac with Apple Silicon arm64.
+
+We have seen issues where we would see the `Syscall pipe2() failed` error in the `everest-manager` container when 
+running on M1 and M2 Macs. 
+
+![](/assets/img/everest-failing.png)
+
+As describe in the original issue [here](https://github.com/citrineos/citrineos/issues/48#issuecomment-2622701706),
+it can be resolved by disabling the **`Use Rosetta for x86_64/amd64 emulation on Apple Silicon`** checkbox in
+**Docker Desktop > Settings > Virtual Machine Options**.
+
+![](/assets/img/disable-rosetta.png)
+
+After disabling this checkbox, the `Syscall pipe2() failed` error should go away and you should be able to see Everest
+start up successfully
+
+![](/assets/img/everest-running.png)
+
 # Running EVerest Manually
 You can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
 
