@@ -16,6 +16,7 @@ nav:
 #      - core-concepts/device-model.md
       - core-concepts/adding-id-tokens.md
       - core-concepts/viewing-ocpp-logs.md
+  - api.md
 
 
 theme:
@@ -41,7 +42,7 @@ theme:
 
 extra_css:
   - assets/stylesheets/extra.css
-  
+
 extra:
   social:
     - icon: fontawesome/brands/discord
@@ -86,9 +87,9 @@ plugins:
   - mike # used for versioning
   - privacy
   - git-revision-date-localized # add created date to page
+  - swagger-ui-tag
 #  - minify:
 #      minify_html: true
-
 markdown_extensions:
   - toc:
       permalink: "#"
