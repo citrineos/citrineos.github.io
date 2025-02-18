@@ -58,9 +58,12 @@ Citrine is set up that Modules have the actual implementations of OCPP Functiona
 They pull in the other packages like 00_base, 01_Data, 02_Util and are built on top.
 
 The structure for each module should be roughly the same, set up as:
-- `api.ts`: Defines the API endpoints for the module
+
+- `DataApi.ts`: Defines API endpoints specific to data-related interactions.
+- `MessageApiOcpp106.ts`: Defines API endpoints specific to OCPP 1.6 messages.
+- `MessageApiOcpp201.ts`: Defines API endpoints specific to OCPP 2.0.1 messages. 
 - `module.ts`: Hold the `@AsHandler` decorated methods that handle OCPP messages. Here you will also find the supported call actions listed in an array at the top.
-- `service.ts`: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in `module.ts`
+- `service.ts`: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in `module.ts`.
 
 #### Certificates
 
