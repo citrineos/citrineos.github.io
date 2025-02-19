@@ -1,1 +1,5 @@
-<swagger-ui src="../assets/swagger.json"/>
+---
+title: API
+---
+
+<swagger-ui src="/assets/swagger.json"/>
