@@ -34,7 +34,7 @@ You should now have the following services running:
 
 Quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
 ```
-wscat -c ws://localhost:8081 -x '[
+wscat -c ws://localhost:8081/{STATION_ID} -x '[
   2,
   "15106be4-57ca-11ee-8c99-0242ac120003",
   "BootNotification",
