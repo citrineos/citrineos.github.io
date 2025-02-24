@@ -848,6 +848,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1092,10 +1113,12 @@ The implementation which lives in Server handles the websockets directly.</p>
 <p>00_Base defines the interfaces and abstract classes needed for the Module implementations, you can view this as setting the underlying structure that the modules will implement.
 All OCPP messages and datatypes are here as well.</p>
 <h5 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">#</a></h5>
-<p>We make use of custom decorators that define methodes to be used for specific logic use cases.
-- <code>@AsHandler</code>:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
-- <code>@AsMessageEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
-- <code>@AsDataEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the 01_Data package.</p>
+<p>We make use of custom decorators that define methodes to be used for specific logic use cases.</p>
+<ul>
+<li><code>@AsHandler</code>:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.</li>
+<li><code>@AsMessageEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.</li>
+<li><code>@AsDataEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the 01_Data package.</li>
+</ul>
 <hr />
 <h4 id="01_data">01_Data<a class="headerlink" href="#01_data" title="Permanent link">#</a></h4>
 <p>01_Data implements all the logic for Citrine's persistent data, stored in a relational database. 
@@ -1104,21 +1127,24 @@ New modules which add persistent datatypes will need to extend this package.</p>
 <hr />
 <h4 id="02_util">02_Util<a class="headerlink" href="#02_util" title="Permanent link">#</a></h4>
 <p>02_Util contains implementations of various infrastructure components and tools.</p>
-<p>This includes:
-- Cache implementations, such as <a href="https://github.com/redis/redis">redis</a> and a simple Javascript in-memory cache
-- Message broker implementations such as <a href="https://github.com/googleapis/nodejs-pubsub">google pubsub</a>, <a href="https://github.com/tulios/kafkajs">kafka</a>, and an AMPQP-compatible implementation using <a href="https://github.com/amqp-node/amqplib">amqlib</a>. 
-- Network connection implementation such as websockets
-- Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.
-- 
-This module can be extended to add additional infrastructure options.</p>
+<p>This includes:</p>
+<ul>
+<li>Cache implementations, such as <a href="https://github.com/redis/redis">redis</a> and a simple Javascript in-memory cache</li>
+<li>Message broker implementations such as <a href="https://github.com/googleapis/nodejs-pubsub">google pubsub</a>, <a href="https://github.com/tulios/kafkajs">kafka</a>, and an AMPQP-compatible implementation using <a href="https://github.com/amqp-node/amqplib">amqlib</a>. </li>
+<li>Network connection implementation such as websockets</li>
+<li>Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.</li>
+<li>This module can be extended to add additional infrastructure options.</li>
+</ul>
 <hr />
 <h4 id="03_modules">03_Modules<a class="headerlink" href="#03_modules" title="Permanent link">#</a></h4>
 <p>Citrine is set up that Modules have the actual implementations of OCPP Functional Blocks.
 They pull in the other packages like 00_base, 01_Data, 02_Util and are built on top.</p>
-<p>The structure for each module should be roughly the same, set up as:
-- <code>api.ts</code>: Defines the API endpoints for the module
-- <code>module.ts</code>: Hold the <code>@AsHandler</code> decorated methods that handle OCPP messages. Here you will also find the supported call actions listed in an array at the top.
-- <code>service.ts</code>: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in <code>module.ts</code></p>
+<p>The structure for each module should be roughly the same, set up as:</p>
+<ul>
+<li><code>api.ts</code>: Defines the API endpoints for the module</li>
+<li><code>module.ts</code>: Hold the <code>@AsHandler</code> decorated methods that handle OCPP messages. Here you will also find the supported call actions listed in an array at the top.</li>
+<li><code>service.ts</code>: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in <code>module.ts</code></li>
+</ul>
 <h5 id="certificates">Certificates<a class="headerlink" href="#certificates" title="Permanent link">#</a></h5>
 <p>Is responsible for handling certificate management, especially relevant for ISO15118. Certificates are also used to maintain websocket and OTA firmware update security.</p>
 <h5 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h5>
@@ -1138,7 +1164,7 @@ Furthermore, you can register callbacks for websocket events or specific OCPP me
 <p>Is responsible for handling Transaction related functionality. Example message are <code>TransactionEvent</code> and <code>CostUpdated</code>.</p>
 <hr />
 <h4 id="server">Server<a class="headerlink" href="#server" title="Permanent link">#</a></h4>
-<p>The server directory is an example implementation using the citrine modules.
+<p>The server directory is an example implementation using the Citrine modules.
 It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
 If you want to just use it for local development, check out our guide here: <a href="../../getting-started/getting-started/">Getting Started</a></p>
@@ -1166,7 +1192,7 @@ If you want to just use it for local development, check out our guide here: <a h
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 22, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 24, 2025</span>
   </span>
 
     

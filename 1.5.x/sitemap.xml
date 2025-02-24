@@ -2,54 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://citrineos.github.io/1.5.x/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/references/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/roadmap/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/core-concepts/adding-id-tokens/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/core-concepts/architecture/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/core-concepts/configuration/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/core-concepts/connecting-a-charger/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
+    </url>
+    <url>
+         <loc>https://citrineos.github.io/1.5.x/core-concepts/data-model/</loc>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/core-concepts/viewing-ocpp-logs/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/getting-started/getting-started/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/getting-started/making-changes/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/getting-started/prerequisites/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/getting-started/running-ocpi/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/1.5.x/getting-started/testing-with-everest/</loc>
-         <lastmod>2024-12-04</lastmod>
+         <lastmod>2025-02-24</lastmod>
     </url>
 </urlset>
