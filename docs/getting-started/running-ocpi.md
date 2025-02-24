@@ -25,7 +25,7 @@ The setup process for running CORE with OCPI is very similar to running CORE alo
 Alternatively, you should also be able to run `npm run start-docker-compose`, which will use the 
 `./Server/docker-compose.yml` configuration to `docker compose up`.
 
-Now along with all of the CORE components, you will also have Citrine OCPI Server [localhost:8085](http://localhost:8085) with Swagger UI docs available at [localhost:8085/docs](http://localhost:8085/docs).|
+Now along with all of the CORE components, you will also have Citrine OCPI Server [localhost:8085](http://localhost:8085) with Swagger UI docs available at [localhost:8085/docs](http://localhost:8085/docs).
 
 ### Configuration
 

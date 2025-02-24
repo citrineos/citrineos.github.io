@@ -68,8 +68,8 @@ start up successfully
 
 # Running EVerest Manually
 You can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
-
 To get EVerest running on the side while developing and making changes, you can follow the steps below.
+
 1. Run your CitrineOS instance locally with `docker compose up -d` in the CitrineOS repository.
 1. Clone the [EVerest Demo](https://github.com/EVerest/everest-demo) repository and `cd` into the repo.
 1. With CitrineOS running execute an "add charger" script at `./citrineos/add-charger.sh` This adds a charger, location and password for the charger to CitrineOS.
