@@ -4,9 +4,9 @@ title: Testing with EVerest
 
 # Testing with EVerest
 
-In the case you don't have a charger that supports OCPP 2.0.1 to experiment with, we can recommend using the Linux 
+In the case you don't have a charger that supports OCPP 2.0.1 or OCPP 1.6 to experiment with, we can recommend using the Linux 
 Foundation Energy project EVerest. [See here](https://github.com/EVerest) for the repository.  They have built an open source version of
-charger firmware and also allow for using it as a simulator. They support OCPP 2.0.1 which makes it a great testing 
+charger firmware and also allow for using it as a simulator. They support OCPP 2.0.1 and OCPP 1.6, which makes it a great testing 
 opportunity with CitrineOS. For the long route of setting up EVerst you can follow their documentation and build 
 the project yourself. [See here for Docs](https://everest.github.io/latest/general/03_quick_start_guide.html)
 
@@ -19,18 +19,17 @@ You will notice in `/Server/everest` directory the files created to support runn
 In addition, we created some helpful NPM commands:
 
 - `npm run start-everest`
-- and
-- `npm run start-everest-windows`
+- `npm run start-everest-16`
 
-Both of which in essence do the same thing which is to trigger the `docker compose up` command (below) from within
-the `/Server/everest` directory so that it can pick up the `Dockerfile` and the `docker-compose.yml` files.
+Both of which trigger the `docker compose up` command (below) from within
+the `/Server/everest` directory so that it can pick up the `Dockerfile` and the `docker-compose.yml` files, for OCPP 2.0.1 and OCPP 1.6, respectively.
 
 You will notice that there are two args that are configurable:
 
 - `EVEREST_IMAGE_TAG` - The image tag that will be used for the EVerest image (ghcr.io/everest/everest-demo/manager).
 - `EVEREST_TARGET_URL` - The CSMS URL that EVerest will connect to. Defaults to `host.docker.internal` assuming CitrineOS will run on same machine, since `localhost` won't work within Docker.
 
-After running `npm run start-everest` (or the Windows alternative), you should see 3 running EVerest containers
+After running `npm run start-everest` or `npm run start-everest-16`, you should see 3 running EVerest containers
 and the `manager` container should have the appropriate EVerest logs.
 
 ### EVerest UI

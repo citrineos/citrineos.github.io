@@ -6,34 +6,27 @@ title: Roadmap
 
 ## Current Version
 
-- **Version**: 1.5.X
-- **Highlights**: Operator UI launched! Changes in citrineos-core made to support it.
-- **Ongoing Work**: Stable release. Currently pursuing OCA Certification for this version for the Core and Advance Security certification profiles.
+- **Version**: 
+  - **Core**: 1.7.x
+  - **Operator UI**: 0.4.0
+- **Highlights**: Framework for User Management, expanded multitenancy support, QoL improvements in Operator UI
 
 ---
 
 ## Next Release
 
-- **Target Version**: 1.6.0
-- **Estimated Release Date**: 2025-01-31
+- **Target Version**:
+  - **Core**: 1.8.0
+  - **Operator UI**: 0.5.0
+- **Estimated Release Date**: Aug 2025
 - **Features & Improvements**:
-  - Operator UI: Dashboard, Location & Station management pages
-  - Basic OCPP 1.6 support!
+  - OCPI support with latest citrineos-core.
 
 ---
 
 ## Future Plans
+OCPP 2.1 support, OCPI 3.0 support, OpenADR support - CitrineOS as a Virtual End Node
 
-### 1.6.X
-- Pursue official OCA Certification for certification profiles beyond Core & Advanced Security
-
-### 1.7.X
-- Complete OCPP 1.6 support!
-
-### Other topics for 2025:
-- OCPP 2.1 support
-- OCPI 3.0 support
-- OpenADR support - CitrineOS as a Virtual End Node
 
 ---
 
