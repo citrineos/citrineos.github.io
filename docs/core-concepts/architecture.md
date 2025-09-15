@@ -24,6 +24,7 @@ All OCPP messages and datatypes are here as well.
 
 #### Decorators
 We make use of custom decorators that define methodes to be used for specific logic use cases.
+
 - `@AsHandler`:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
 - `@AsMessageEndpoint`: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
 - `@AsDataEndpoint`: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the 01_Data package.
@@ -103,7 +104,7 @@ Is responsible for handling Transaction related functionality. Example message a
 
 ### Server
 
-The server directory is an example implementation using the citrine modules.
+The server directory is an example implementation using the Citrine modules.
 It is not designed for production use, but rather for local development and test environments.
 Citrine is designed in a modular fashion scale each module independently.
 If you want to just use it for local development, check out our guide here: [Getting Started](../getting-started/getting-started.md)

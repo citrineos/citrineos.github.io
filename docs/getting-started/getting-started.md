@@ -26,15 +26,16 @@ You should now have the following services running:
 | Service                                       | URL                                                                                          | Description                                                                                                                                  |
 |-----------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | **Citrine OCPP HTTP Server**                  | [http://localhost:8080](http://localhost:8080)                                               | See [localhost:8080/docs](http://localhost:8080/docs) for full details.                                                                      |
-| **Citrine OCPP WebSocket Server (Unsecured)** | [ws://localhost:8081](ws://localhost:8081)                                                   | OCPP WebSocket Server running security profile 0.                                                                                            |
-| **Citrine OCPP WebSocket Server (Secured)**   | [wss://localhost:8082](wss://localhost:8082)                                                 | OCPP WebSocket Server running security profile 1.                                                                                            |
+| **Citrine OCPP 2.0.1 WebSocket Server (Unsecured)** | [ws://localhost:8081](ws://localhost:8081)                                                   | OCPP 2.0.1 WebSocket Server running security profile 0.                                                                                            |
+| **Citrine OCPP 2.0.1 WebSocket Server (Secured)**   | [wss://localhost:8082](wss://localhost:8082)                                                 | OCPP 2.0.1 WebSocket Server running security profile 1.                                                                                            |
+| **Citrine OCPP 1.6 WebSocket Server**   | [wss://localhost:8092](wss://localhost:8092)                                                 | OCPP 1.6 WebSocket Server.                                                                                            |
 | **Postgres Database**                         | [postgressql://citrine:citrine@localhost:5432](postgressql://citrine:citrine@localhost:5432) | [Postgres Database](https://www.postgresql.org) pre-seeded with OCPP 2.0.1 schemas. The database is named `citrine`.            |
 | **RabbitMQ**                                  | [amqp://guest:guest@localhost:5672](amqp://guest:guest@localhost:5672)                       | [RabbitMQ](http://rabbitmq.com) message bus.                                                                                                 |
 | **Redis**                                     | N/A                                                                                          | The default settings will use an in-memory cache but a [Redis](https://redis.io/) instance is available to use.                                                        |
 
 Quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
 ```
-wscat -c ws://localhost:8081 -x '[
+wscat -c ws://localhost:8081/{STATION_ID} -x '[
   2,
   "15106be4-57ca-11ee-8c99-0242ac120003",
   "BootNotification",
