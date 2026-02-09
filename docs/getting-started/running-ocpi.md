@@ -18,7 +18,7 @@ The setup process for running CORE with OCPI is very similar to running CORE alo
 
     cd citrineos-ocpi/Server
 
-**3. Start the CORE with OCPI with docker-compose:**
+**3. Start CORE with OCPI with docker-compose:**
 
     docker compose up -d
 
@@ -29,5 +29,5 @@ Now along with all of the CORE components, you will also have Citrine OCPI Serve
 
 ### Configuration
 
-OCPI have very similar structure to CORE, so you would apply configurations changes in the same way. See 
+OCPI has a very similar structure to CORE, so you would apply configurations changes in the same way. See 
 [Configuration section](getting-started.md/#configuration) for more info.

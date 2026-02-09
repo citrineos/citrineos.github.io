@@ -1,6 +1,6 @@
 # CitrineOS Documentation
 
-Welcome to the repository for the website that holds the documentation of CintrineOS.
+Welcome to the repository for the website that holds the documentation of CitrineOS.
 This site is built using [MkDocs](https://www.mkdocs.org), a static site generator for displaying markdown
 documentation.
 If you're looking to make modifications or simply set it up locally, here's what you need to know.

@@ -130,7 +130,7 @@ Each module also supports GET and PUT for systemConfig in order to change it whi
 ### Network Connection
 
 #### Websocket Servers
-- Id: 
+- Id: Unique identifier for the WebSocket server.
 - Host: The hostname for the WebSocket server.
 - Port: The port number for the WebSocket server.
 - Ping Interval: The interval in seconds between pings to keep the connection alive.
@@ -140,7 +140,7 @@ Each module also supports GET and PUT for systemConfig in order to change it whi
 - Tls Key File Path: File path to the public key used for tls.
 - Tls Certificate Chain File Path: File path to the server certificate chain for tls.
 - mTls Certificate Authority Key File Path: File path to the CA public key for mtls.
-- Root CA Certificate File Path:: File path to the CA root certificate for mtls.
+- Root CA Certificate File Path: File path to the CA root certificate for mtls.
 
 ### Certificate Authority
 
