@@ -7,13 +7,18 @@
   {
     "version": "1.5.x",
     "title": "1.5.x",
-    "aliases": [
-      "latest"
-    ]
+    "aliases": []
   },
   {
     "version": "1.4.x",
     "title": "1.4.x",
     "aliases": []
+  },
+  {
+    "version": "v1.8.X",
+    "title": "v1.8.X",
+    "aliases": [
+      "latest"
+    ]
   }
 ]
