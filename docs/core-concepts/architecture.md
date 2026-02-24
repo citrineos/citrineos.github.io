@@ -23,7 +23,7 @@ Citrine's code structure includes 3 common packages: 00_Base, 01_Data, 02_Util a
 All OCPP messages and datatypes are here as well.
 
 #### Decorators
-We make use of custom decorators that define methodes to be used for specific logic use cases.
+We make use of custom decorators that define methods to be used for specific logic use cases.
 
 - `@AsHandler`:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
 - `@AsMessageEndpoint`: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
@@ -46,7 +46,7 @@ New modules which add persistent datatypes will need to extend this package.
 This includes:
 
 - Cache implementations, such as [redis](https://github.com/redis/redis) and a simple Javascript in-memory cache
-- Message broker implementations such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMPQP-compatible implementation using [amqlib](https://github.com/amqp-node/amqplib). 
+- Message broker implementations such as [google pubsub](https://github.com/googleapis/nodejs-pubsub), [kafka](https://github.com/tulios/kafkajs), and an AMQP-compatible implementation using [amqplib](https://github.com/amqp-node/amqplib). 
 - Network connection implementation such as websockets
 - Swagger plugin for displaying API documentation for all endpoints exposed by Fastify.
 
