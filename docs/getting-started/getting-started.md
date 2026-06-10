@@ -13,9 +13,9 @@ In this section, we assume you have set up the necessary [prerequisites](prerequ
 
     git clone https://github.com/citrineos/citrineos-core
 
-**2. Navigate to the `citrineos-core/Server` directory:**
+**2. Navigate to the `citrineos-core/apps/Server` directory:**
 
-    cd citrineos-core/Server
+    cd citrineos-core/apps/Server
 
 **3. Start the entire `citrineos-core` stack with docker-compose:**
 
