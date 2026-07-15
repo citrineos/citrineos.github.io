@@ -128,7 +128,7 @@ the other is Security Profile 2 (8443). The priority is Security Profile 2, othe
         }'
 
 **7. Restart EVerest. It will try to connect to CitrineOS using Security Profile 2. Check for the following logs to confirm
-that this is the case:
+that this is the case:**
 
     # These are the CitrineOS logs
     2025-06-11 20:35:50.214    DEBUG    /usr/local/apps/citrineos/02_Util/dist/networkconnection/WebsocketNetworkConnection.js:211    CitrineOS Logger:WebsocketNetworkConnection    On upgrade request GET /cp001 {
