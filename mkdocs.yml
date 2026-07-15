@@ -9,9 +9,8 @@ nav:
       - getting-started/testing-with-everest.md
   - Core Concepts:
       - core-concepts/architecture.md
-      - core-concepts/configuration.md
-#      - core-concepts/device-model.md
-      - core-concepts/data-model.md
+# TODO once system config is refactored     - core-concepts/configuration.md
+# TODO once folder restructure is finished     - core-concepts/data-model.md
   - Tutorials:
       - tutorials/connecting-a-charger.md
       - tutorials/adding-id-tokens.md
