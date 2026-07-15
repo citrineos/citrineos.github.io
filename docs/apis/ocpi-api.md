@@ -4,11 +4,11 @@ title: OCPI REST API
 
 # Authentication
 
-Every API request must include an `Authorization` header with a Base64-encoded Bearer token, where
+Every API request must include an `Authorization` header with a Base64-encoded Token, where
 the original value should match a Tenant Partner's server token.
 
 ```
-Authorization: Bearer <your-Base64-encoded-token>
+Authorization: Token <your-Base64-encoded-token>
 ```
 
 # API
