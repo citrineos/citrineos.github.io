@@ -2,16 +2,14 @@
 title: Connecting a Charger
 ---
 
-In general, if you want to connect a charger to CitrineOS, you will need to follow these steps:
+In general, you will need to follow these steps to add and connect a charger to CitrineOS:
 
 1. Add the Charging Station
 2. Add an EVSE to the Charging Station
 3. Add a Connector to the Charging Station
 4. Point the charger to CitrineOS
 
-Instructions on how to set this up via Operator UI or GraphQL will be provided in the next few sections.
-
-# Create via Operator UI
+# Via Operator UI
 
 **1. Navigate to `/locations` and click the `Add Location` button on the top right:**
 
@@ -34,7 +32,7 @@ and that the charger `Name` matches with your charger's identifier.**
 
 ![](/assets/img/create-charger-operator-ui/add-connector.png)
 
-# Create via GraphQL
+# Via GraphQL
 
 From [the Hasura GraphQL console](http://localhost:8090/console/api/api-explorer), you can insert a new location with a new charging station, EVSE, and connector, 
 using the following mutation:
