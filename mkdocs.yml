@@ -13,6 +13,7 @@ nav:
 # TODO once folder restructure is finished     - core-concepts/data-model.md
   - Tutorials:
       - tutorials/connecting-a-charger.md
+      - tutorials/security-profiles.md
       - tutorials/adding-id-tokens.md
       - tutorials/viewing-ocpp-logs.md
   - APIs:
