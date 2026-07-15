@@ -53,8 +53,7 @@ We make use of custom decorators that define methods to be used for specific log
 
 - `@AsHandler`:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
 - `@AsMessageEndpoint`: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
-- `@AsDataEndpoint`: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the 01_Data package.
-
+- `@AsDataEndpoint`: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the core package.
 
 ### Modules
 
