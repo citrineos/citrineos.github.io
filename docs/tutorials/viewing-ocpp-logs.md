@@ -2,47 +2,45 @@
 title: Viewing OCPP Logs
 ---
 
-# Viewing OCPP Logs
+# Via Application Logs
 
-With CitrineOS, there are two ways to view OCPP logs.
-
-The first way is to view the application logs as directly. This means navigating to either the docker console or the console of wherever CitrineOS was started from.
+You can view application logs either via Docker or the console of wherever CitrineOS was started from.
 
 Below is an example of an OCPP log as found in the console:
 
-```
-2024-07-25 11:50:40.803 DEBUG   /Documents/citrineos-core/02_Util/src/queue/rabbit-mq/sender.ts:118 CitrineOS Logger:RabbitMqSender Publishing to citrineos: {
-  origin: 'cs',
-  eventGroup: 'general',
-  action: 'BootNotification',
-  context: {
-    stationId: 'CS01',
-    correlationId: '15106be4-57ca-11ee-8c99-0242ac120003',
-    tenantId: '',
-    timestamp: '2024-07-25T11:50:40.803Z'
-  },
-  state: 1,
-  payload: {
-    reason: 'PowerUp',
-    chargingStation: {
-      model: 'SingleSocketCharger',
-      vendorName: 'CS01'
+    2026-07-15 19:19:24.993	DEBUG /packages/core/dist/src/util/queue/rabbit-mq/sender.js:85	CitrineOS Logger:RabbitMqSender	Publishing to citrineos: {
+      origin: 'cs',
+      eventGroup: 'router',
+      action: 'StatusNotification',
+      context: {
+        ocppConnectionName: 'cp001',
+        correlationId: 'af5e40d8-211a-4ba7-92c6-99fe36b8596e',
+        tenantId: 1,
+        timestamp: '2026-07-15T19:19:24.993Z'
+      },
+      state: 1,
+      protocol: 'ocpp2.1',
+      payload: {
+        connectorId: 1,
+        connectorStatus: 'Available',
+        evseId: 2,
+        timestamp: '2026-07-15T19:19:24.796Z'
+      }
     }
-  }
-}
-```
 
-The second approach is to use CitrineOS's Data API to subscribe to OCPP messages. Below is a `cURL` command that will subscribe the specified URL to all OCPP messages and connection events for charger `CS01`:
+# Via Subscription
 
-```bash
-curl --request POST 'localhost:8080/data/ocpprouter/subscription' \
---header 'Content-Type: application/json' \
---data '{
-  "stationId": "CS01",
-  "onConnect": true,
-  "onClose": true,
-  "onMessage": true,
-  "sentMessage": true,
-  "url": "https://2ae3db404d8c.ngrok.app"
-}'
-```
+You can use CitrineOS's Data API to subscribe to OCPP messages. Below is the `cURL` command that will subscribe the 
+specified URL to all OCPP messages and connection events for charger `cp001`:
+
+    curl --request POST 'localhost:8080/data/ocpprouter/subscription' \
+    --header 'Content-Type: application/json' \
+    --data '{
+      "ocppConnectionName": "cp001",
+      "onConnect": true,
+      "onClose": true,
+      "onMessage": true,
+      "sentMessage": true,
+      "url": "<the url that will receive the messages>"
+    }'
+

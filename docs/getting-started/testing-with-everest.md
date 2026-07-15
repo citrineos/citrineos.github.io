@@ -84,7 +84,7 @@ mapped in the compose file allowing you to navigate to `localhost:8888`. This HT
 serve the contents of the `/tmp/everest_ocpp_logs` which is where EVerest stores the OCPP logs in the
 Docker container. Conveniently, the logs are in HTML format, so we can easily view them in the browser.
 
-## Running Everest on a Mac with Apple Silicon arm64.
+# Running Everest on a Mac with Apple Silicon arm64.
 
 We have seen issues where we would see the `Syscall pipe2() failed` error in the `everest-manager` container when 
 running on M1 and M2 Macs. 
