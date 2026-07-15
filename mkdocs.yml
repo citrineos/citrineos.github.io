@@ -10,12 +10,15 @@ nav:
   - Core Concepts:
       - core-concepts/architecture.md
       - core-concepts/configuration.md
-      - core-concepts/connecting-a-charger.md
 #      - core-concepts/device-model.md
-      - core-concepts/adding-id-tokens.md
-      - core-concepts/viewing-ocpp-logs.md
       - core-concepts/data-model.md
-  - api.md
+  - Tutorials:
+      - tutorials/connecting-a-charger.md
+      - tutorials/adding-id-tokens.md
+      - tutorials/viewing-ocpp-logs.md
+  - APIs:
+      - apis/core-api.md
+      - apis/ocpi-api.md
 
 theme:
   name: material

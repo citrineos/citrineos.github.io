@@ -1,14 +1,11 @@
 ---
-title: CitrineOS-Core REST API
+title: Core REST API
 ---
-
-
-## Overview
 
 The CitrineOS Core REST API provides a comprehensive interface for managing charging stations and related operations. 
 This API serves as an integration point for external systems, such as frontends or other services to interact with CitrineOS.
 
-## API Structure
+# API Structure
 
 The API is organized into several functional modules which loosely correspond to OCPP modules:
 
@@ -21,7 +18,7 @@ The API is organized into several functional modules which loosely correspond to
 - **Transactions** - Handle charging transactions and billing
 - **Ocpprouter** - Manage OCPP message routing and subscriptions
 
-## Authentication
+# Authentication
 
 CitrineOS can be configured to either skip authentication and authorization by setting the `localByPass` config to `true`, or to require a Bearer token for OIDC authentication.  
 **Warning:** Skipping authentication is only recommended for local testing and should never be used in production.
@@ -31,4 +28,6 @@ When authentication is required, every API request must include an `Authorizatio
 ```
 Authorization: Bearer <your-token>
 ```
-<swagger-ui src="/assets/swagger.json"/>
+
+# API
+<swagger-ui src="/assets/core-swagger.json"/>
