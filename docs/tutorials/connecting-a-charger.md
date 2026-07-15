@@ -13,13 +13,13 @@ Instructions on how to set this up via Operator UI or GraphQL will be provided i
 
 # Create via Operator UI
 
-**1. Navigate to http://localhost:3000/locations and click the `Add Location` button on the top right:**
+**1. Navigate to `/locations` and click the `Add Location` button on the top right:**
 
 ![](/assets/img/create-charger-operator-ui/add-location.png)
 
 **2. Configure your location and save it.**
 
-**3. Navigate to http://localhost:3000/charging-stations and click the `Add Charging Station` button on the top right:**
+**3. Navigate to `/charging-stations` and click the `Add Charging Station` button on the top right:**
 
 ![](/assets/img/create-charger-operator-ui/add-charging-station.png)
 
@@ -27,9 +27,11 @@ Instructions on how to set this up via Operator UI or GraphQL will be provided i
 and that the charger `Name` matches with your charger's identifier.**
 
 **5. In your charger's details page, configure an EVSE by clicking the `Add New EVSE` button at the top right of the `EVSEs` tab:**
+
 ![](/assets/img/create-charger-operator-ui/add-evse.png)
 
 **6. Once your EVSE is saved, configure a connector by clicking the `Add Connector` button in the EVSE row:**
+
 ![](/assets/img/create-charger-operator-ui/add-connector.png)
 
 # Create via GraphQL
@@ -80,7 +82,7 @@ using the following mutation:
         }
     }
 
-# Pointing your charger
+# Pointing your charger to CitrineOS
 Once CitrineOS is running and your charger is created, you can point the charger to `ws://localhost:8081`. 
 Depending on the charger you are using, you may need to append the station ID to the url, i.e. `ws://localhost:8081/<stationId>`. 
 Some chargers take care of this automatically.

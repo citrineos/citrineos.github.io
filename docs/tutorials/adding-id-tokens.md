@@ -2,49 +2,36 @@
 title: Adding ID Tokens
 ---
 
-# Adding ID Tokens
+With any CSMS, a valid `ID Token` must be loaded into the system for charging to be allowed. They are represented through
+`Authorizations` in CitrineOS.
 
-With any CSMS, a valid `ID Token` must be loaded into the system for charging to be allowed.
+# Create via Operator UI
 
-## From 1.7.0+
+**1. Navigate to `/authorizations` and click the `Add Authorization` button on the top right:**
 
-Starting from 1.7.0, a majority of the CRUD operations were removed from the Data API in favor of using the GraphQL
-API provided by Hasura. To create an `ID Token` from the Hasura console, navigate to the API Explorer page (if you are running locally,
-http://localhost:8090/console/api/api-explorer).
+![](/assets/img/create-authorization/add-authorization.png)
 
-Then enter the following mutation into the query editor to create a minimally-viable `ID Token`:
+**2. Configure your authorization and save it. Below is the `Authorization` that allows you to authorize EVerest transactions:**
 
-```
-mutation CreateAuthorization {
-  insert_Authorizations_one(object: {createdAt: "2025-08-05T10:00:00.000Z", updatedAt: "2025-08-05T10:00:00.000Z", IdTokenInfo: {data: {status: "Accepted", createdAt: "2025-08-05T10:00:00.000Z", updatedAt: "2025-08-05T10:00:00.000Z"}}, IdToken: {data: {idToken: "01", type: "Central", createdAt: "2025-08-05T10:00:00.000Z", updatedAt: "2025-08-05T10:00:00.000Z"}}}) {
-    id
-    tenantId
-    createdAt
-    IdToken {
-      idToken
-      type
+![](/assets/img/create-authorization/everest-authorization.png)
+
+# Create via GraphQL
+
+From [the Hasura GraphQL console](http://localhost:8090/console/api/api-explorer), you can insert a new Authorization 
+using the following mutation (the values will allow you to authorize EVerest transactions):
+
+    mutation CreateAuthorization {
+      insert_Authorizations_one(object: {
+        createdAt: "2026-01-01T00:00:00.000Z", 
+        updatedAt: "2026-01-01T00:00:00.000Z", 
+        idToken: "DEADBEEF",
+        idTokenType: "ISO14443",
+        status: "Accepted"
+    }) {
+        id
+        idToken
+        idTokenType
+        status
+      }
     }
-    IdTokenInfo {
-      status
-    }
-  }
-}
-```
 
-## Prior to 1.7.0
-
-To create an `ID Token` on versions of Citrine prior to 1.7.0, you can run the following `cURL` command which will invoke CitrineOS's Data API:
-
-```bash
-curl --location --request PUT 'localhost:8080/data/evdriver/authorization?idToken=01&type=Central' \
---header 'Content-Type: application/json' \
---data '{
-    "idToken": {
-        "idToken": "01",
-        "type": "Central"
-    },
-    "idTokenInfo": {
-        "status": "Accepted"
-    }
-}'
-```
