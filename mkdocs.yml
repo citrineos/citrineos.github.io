@@ -7,8 +7,6 @@ nav:
       - getting-started/prerequisites.md
       - getting-started/getting-started.md
       - getting-started/testing-with-everest.md
-      - getting-started/making-changes.md
-      - getting-started/running-ocpi.md
   - Core Concepts:
       - core-concepts/architecture.md
       - core-concepts/configuration.md
