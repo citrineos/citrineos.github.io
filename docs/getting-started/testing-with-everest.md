@@ -34,7 +34,7 @@ Then run the following command to start the EVerest simulator for OCPP 2.0.1:
 
 ### Running EVerest OCPP 1.6
 
-Run the following command to start the EVerest simulator for OCPP 2.1:
+Run the following command to start the EVerest simulator for OCPP 1.6:
 
     pnpm start:everest:16
 
@@ -82,25 +82,7 @@ To view the OCPP logs in EVerest, we have utilized Node `http-server`, which you
 in the Dockerfile. We initialize a simple HTTP server on port `8888` and expose this port so that it is
 mapped in the compose file allowing you to navigate to `localhost:8888`. This HTTP server is configured to
 serve the contents of the `/tmp/everest_ocpp_logs` which is where EVerest stores the OCPP logs in the
-Docker container. Conveniently, the logs are in HTML format, so we can easily view them in the browser.
-
-# Running Everest on a Mac with Apple Silicon arm64.
-
-We have seen issues where we would see the `Syscall pipe2() failed` error in the `everest-manager` container when 
-running on M1 and M2 Macs. 
-
-![](/assets/img/everest-failing.png)
-
-As describe in the original issue [here](https://github.com/citrineos/citrineos/issues/48#issuecomment-2622701706),
-it can be resolved by disabling the **`Use Rosetta for x86_64/amd64 emulation on Apple Silicon`** checkbox in
-**Docker Desktop > Settings > Virtual Machine Options**.
-
-![](/assets/img/disable-rosetta.png)
-
-After disabling this checkbox, the `Syscall pipe2() failed` error should go away and you should be able to see Everest
-start up successfully
-
-![](/assets/img/everest-running.png)
+Docker container. The logs are in HTML format, so they're viewable in the browser.
 
 # Running EVerest Manually
 You can also use their demo repository that hosts a Docker packaged EVerest image. [See here for Github Repo](https://github.com/EVerest/everest-demo)
@@ -112,4 +94,4 @@ To get EVerest running on the side while developing and making changes, you can 
 1. Bring up EVerest with `docker compose --project-name everest-ac-demo --file "docker-compose.ocpp201.yml" up -d`.
 1. Copy over the appropriate device model with `docker cp manager/device_model_storage_citrineos_sp1.db \
    everest-ac-demo-manager-1:/ext/source/build/dist/share/everest/modules/OCPP201/device_model_storage.db`.
-1. Start EVerst having OCPP2.0.1 support with `docker exec everest-ac-demo-manager-1 sh /ext/source/build/run-scripts/run-sil-ocpp201.sh`.
+1. Start EVerest having OCPP2.0.1 support with `docker exec everest-ac-demo-manager-1 sh /ext/source/build/run-scripts/run-sil-ocpp201.sh`.
