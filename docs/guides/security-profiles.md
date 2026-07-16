@@ -2,7 +2,7 @@
 title: Security Profiles
 ---
 
-This tutorial assumes you have [already connected a charger](/tutorials/connecting-a-charger).
+In this section, we assume you have [already connected a charger](/guides/connecting-a-charger).
 
 # Security Profile 1
 

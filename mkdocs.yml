@@ -11,11 +11,11 @@ nav:
       - core-concepts/architecture.md
 # TODO once system config is refactored     - core-concepts/configuration.md
 # TODO once folder restructure is finished     - core-concepts/data-model.md
-  - Tutorials:
-      - tutorials/connecting-a-charger.md
-      - tutorials/security-profiles.md
-      - tutorials/adding-id-tokens.md
-      - tutorials/viewing-ocpp-logs.md
+  - Guides:
+      - guides/connecting-a-charger.md
+      - guides/security-profiles.md
+      - guides/adding-id-tokens.md
+      - guides/viewing-ocpp-logs.md
   - APIs:
       - apis/core-api.md
       - apis/ocpi-api.md
