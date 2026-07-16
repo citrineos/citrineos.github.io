@@ -9,7 +9,7 @@ In general, you will need to follow these steps to add and connect a charger to 
 3. Add a Connector to the Charging Station
 4. Point the charger to CitrineOS
 
-# Via Operator UI
+# Create Charger via Operator UI
 
 **1. Navigate to `/locations` and click the `Add Location` button on the top right:**
 
@@ -32,7 +32,7 @@ and that the charger `Name` matches with your charger's identifier.**
 
 ![](/assets/img/create-charger-operator-ui/add-connector.png)
 
-# Via GraphQL
+# Create Charger via GraphQL
 
 From [the Hasura GraphQL console](http://localhost:8090/console/api/api-explorer), you can insert a new location with a new charging station, EVSE, and connector, 
 using the following mutation:
@@ -80,18 +80,23 @@ using the following mutation:
         }
     }
 
-# Pointing your charger to CitrineOS
+# Point Charger to CitrineOS
 Once CitrineOS is running and your charger is created, you can point the charger to `ws://localhost:8081`. 
-Depending on the charger you are using, you may need to append the station ID to the url, i.e. `ws://localhost:8081/<stationId>`. 
-Some chargers take care of this automatically.
+Depending on the charger you are using, you may need to append the station identifier (which should match with the "name" 
+of the charger) to the url, i.e. `ws://localhost:8081/cp001`. Some chargers take care of this automatically.
 
-# Booting in OCPP 2.0.1
+# Boot in OCPP 2.0.1
 
-The `Boot` table can be used to both review the most recent boot status as well as set a boot status for the next `BootNotificationRequest` received from the charging station. After a successful boot, the status is set to `Accepted`. If you wish to fetch the device model from the charger as part of the boot process described in the B02 use case of part 2 of the OCPP 2.0.1 protocol, set the status to `Pending` and check the 'Get Base Report On Pending' option. This will cause the next boot to be responded to with a `BootNotificationResponse` that has status `Pending`, then CitrineOS will send a `GetBaseReportRequest`, triggering a series of `NotifyReportRequest` messages. After the full report has been sent, the next attempted boot by the charger will be `Accepted`.
+The `Boot` table can be used to review the most recent boot status and set a boot status for the next `BootNotificationRequest` 
+received from the charging station. After a successful boot, the status is set to `Accepted`. If you wish to fetch the device model 
+from the charger as part of the boot process described in the B02 use case of part 2 of the OCPP 2.0.1 protocol, set the status to `Pending` 
+and check the `Get Base Report On Pending` option. This will cause the next boot to be responded to with a `BootNotificationResponse` 
+that has status `Pending`, then CitrineOS will send a `GetBaseReportRequest`, triggering a series of `NotifyReportRequest` messages. 
+After the full report has been sent, the next attempted boot by the charger will be `Accepted`.
 
 The `Boot` table has CRUD endpoints via REST API, of which the docs can be found [here](/apis/core-api) or running locally at [http://localhost:8080/docs](http://localhost:8080/docs).
 Here is an example request for charger `cp001`:
 
-    curl --location --request PUT 'http://localhost:8080/data/configuration/boot?stationId=cp001' \
-    --header 'Content-Type: application/json' \
-    --data '{ "status": "Pending" }'
+    curl --location --request PUT 'http://localhost:8080/data/configuration/boot?ocppConnectionName=cp001&tenantId=1' \
+        --header 'Content-Type: application/json' \
+        --data '{ "status": "Pending" }'
