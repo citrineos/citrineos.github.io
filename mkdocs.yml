@@ -3,6 +3,7 @@ nav:
   - index.md
   - roadmap.md
   - references.md
+  - faqs.md
   - Getting Started:
       - getting-started/prerequisites.md
       - getting-started/getting-started.md
@@ -98,6 +99,7 @@ markdown_extensions:
       permalink: "#"
       baselevel: 2
   - pymdownx.blocks.caption
+  - pymdownx.blocks.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
