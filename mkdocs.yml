@@ -89,7 +89,8 @@ plugins:
   - mike # used for versioning
   - privacy
   - git-revision-date-localized # add created date to page
-  - swagger-ui-tag
+  - swagger-ui-tag:
+      supportedSubmitMethods: []
 #  - minify:
 #      minify_html: true
 markdown_extensions:
