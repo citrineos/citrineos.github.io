@@ -31,5 +31,5 @@ information about the Core REST API, [click here](/apis/core-api).
     type: info
     open: true
 
-OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](/roadmap) for information on upcoming OCPI versions.
+OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](/roadmap) for information on upcoming OCPI version support.
 ///
