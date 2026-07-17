@@ -3,7 +3,9 @@ layout: doc
 title: Getting Started
 ---
 
-In this section, we assume you have set up the necessary [prerequisites](prerequisites.md).
+/// admonition | Before continuing, set up the necessary [prerequisites](prerequisites.md).
+    type: warning
+///
 
 # Installation
 

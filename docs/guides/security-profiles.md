@@ -2,7 +2,9 @@
 title: Security Profiles
 ---
 
-In this section, we assume you have [already connected a charger](/guides/connecting-a-charger).
+/// admonition | Before continuing, [connect a charger](/guides/connecting-a-charger).
+    type: warning
+///
 
 # Security Profile 1
 
