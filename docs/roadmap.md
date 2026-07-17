@@ -16,7 +16,7 @@ TBD.
 ---
 
 # Future Plans
-OCPI 3.0 support, OpenADR support - CitrineOS as a Virtual End Node
+Full OCPP 2.1 support, OCPI 3.0 support, OpenADR support - CitrineOS as a Virtual End Node
 
 
 ---
