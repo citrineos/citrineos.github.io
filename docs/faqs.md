@@ -18,11 +18,11 @@ Yes, CitrineOS can support chargers using different protocols at the same time. 
 based on the protocol sent as part of the websocket connection.
 ///
 
-/// details | APIs?
+/// details | What APIs are available?
     type: info
     open: true
     
-CitrineOS uses REST API to support communications with the Charging Station and GraphQL to support database operations. For more
+CitrineOS uses REST API to support communications with charging stations and GraphQL to support database operations. For more
 information about the Core REST API, [click here](/apis/core-api).
 
 ///
@@ -32,4 +32,12 @@ information about the Core REST API, [click here](/apis/core-api).
     open: true
 
 OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](/roadmap) for information on upcoming OCPI version support.
+///
+
+/// details | What technologies support CitrineOS?
+    type: info
+    open: true
+
+CitrineOS is a TypeScript-based Node.js application with a PostgreSQL database and RabbitMQ message broker. The Operator UI
+is a NextJS-based web application with GraphQL integration to CitrineOS's data.
 ///
