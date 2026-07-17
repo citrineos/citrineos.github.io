@@ -2,7 +2,7 @@
 title: FAQs (Frequently Asked Questions)
 ---
 
-/// details | What OCPP Protocols are supported?
+/// details | What versions OCPP are supported?
     type: info
     open: true
 
@@ -18,10 +18,18 @@ Yes, CitrineOS can support chargers using different protocols at the same time. 
 based on the protocol sent as part of the websocket connection.
 ///
 
-/// details | What APIs does CitrineOS use?
+/// details | APIs?
     type: info
     open: true
     
-CitrineOS uses REST API to support communications with the Charging Station and GraphQL to support database operations.
+CitrineOS uses REST API to support communications with the Charging Station and GraphQL to support database operations. For more
+information about the Core REST API, [click here](/apis/core-api).
 
+///
+
+/// details | What versions of OCPI are supported?
+    type: info
+    open: true
+
+OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](/roadmap) for information on upcoming OCPI versions.
 ///
