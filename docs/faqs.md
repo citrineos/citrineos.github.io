@@ -6,7 +6,7 @@ title: FAQs (Frequently Asked Questions)
     type: info
     open: true
 
-OCPP 1.6, 2.0.1, and 2.1 are supported by CitrineOS. For more information about the differences between versions, 
+OCPP 1.6 and 2.x are supported by CitrineOS. For more information about the differences between versions, 
 [click here](https://openchargealliance.org/protocols/open-charge-point-protocol/).
 ///
 
