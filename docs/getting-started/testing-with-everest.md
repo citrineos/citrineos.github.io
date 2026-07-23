@@ -8,31 +8,51 @@ firmware that can also be used as a simulator. They support OCPP 1.6, 2.0.1, and
 follow their documentation and build the project, following the docs [here](https://everest.github.io/latest/how-to-guides/getting-started/get-started-sw.html).
 
 # Running EVerest
+
 We have created helpful commands to run the EVerest charger simulator locally, targeting CitrineOS, with minimal configuration required.
-Running these commands will start the EVerest simulator in Docker, represented through three running containers. Before running these commands, navigate to `apps/ocpp-server` directory:
+Running these commands will start the EVerest simulator in Docker, represented through three running containers. You may choose
+to execute these EVerest commands in the following ways below.
+
+## Via pnpm citrine --everest
+
+Before running these commands, ensure you're in root directory `citrineos-core`. You can add `--everest` or `--everest` 
+for EVerest 2.x and 1.6, respectively, to run alongside the CitrineOS stack: 
+
+    pnpm citrine --everest
+    pnpm citrine down --everest
+
+Refer to [the README](https://github.com/citrineos/citrineos-core#running-the-full-stack-with-docker) 
+for more information about the remaining flags.
+
+## Via pnpm start:everest
+
+If you prefer to control when EVerest spins up, you can run it using pnpm. Before running these commands, 
+navigate to the `apps/ocpp-server` directory:
 
     cd apps/ocpp-server
 
-## Commands
+### Commands
 
-### Running EVerest OCPP 2.1
+#### Running EVerest OCPP 2.1
 
 Run the following command to start the EVerest simulator for OCPP 2.1:
 
     pnpm start:everest
 
-### Running EVerest OCPP 2.0.1
+#### Running EVerest OCPP 2.0.1
 
 Edit the package.json command for `start:everest` so it runs EVerest with OCPP 2.0.1:
 
-    ... the remaining package.json scripts
-    "start:everest": "cd ./everest && cross-env OCPP_VERSION=2.0.1 EVEREST_IMAGE_TAG=2025.6.1-dt-esdp docker compose up -d",
+    scripts: {
+        ... the remaining package.json scripts
+        "start:everest": "cd ./everest && cross-env OCPP_VERSION=2.0.1 EVEREST_IMAGE_TAG=2025.6.1-dt-esdp docker compose up -d",
+    }
 
 Then run the following command to start the EVerest simulator for OCPP 2.0.1:
 
     pnpm start:everest
 
-### Running EVerest OCPP 1.6
+#### Running EVerest OCPP 1.6
 
 Run the following command to start the EVerest simulator for OCPP 1.6:
 
