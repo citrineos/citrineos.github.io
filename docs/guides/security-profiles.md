@@ -118,9 +118,9 @@ The file name can be found in the response in step 1 with pattern, Root_Certific
 
 **4. The password should have been set at [step 1 in Security Profile 1](#security-profile-1)**
 
-**5. Set variables for connection profiles, same as [step 2 in Security Profile 1](#security-profile-1), add a new
-Security Profile 2 configuration slot in the request body. Set its `configurationSlot` to `3`, `securityProfile` to `2` and point `ocppCsmsUrl` at your security
-profile 3 server's port (e.g. `wss://host.docker.internal:8443/cp001`). Update `NetworkConfigurationPriority` to `3,2,1`**
+**5. Set variables for connection profiles with security profile 2, same as [step 2 in Security Profile 1](#security-profile-1). 
+Update `configurationSlot`: `2`. Set its `securityProfile` to `2` and point `ocppCsmsUrl` at your security
+profile 3 server's port (e.g. `wss://host.docker.internal:8443/cp001`).**
 
     curl --location 'http://localhost:8080/ocpp/2.0.1/monitoring/setVariables?ocppConnectionName=cp001&tenantId=1' \
         --header 'Content-Type: application/json' \
@@ -128,7 +128,7 @@ profile 3 server's port (e.g. `wss://host.docker.internal:8443/cp001`). Update `
         --data '{
             "setVariableData": [
                 {
-                    "attributeValue": "3,2,1",
+                    "attributeValue": "2,1",
                     "attributeType": "Actual",
                     "component": {
                         "name": "OCPPCommCtrlr"
@@ -138,7 +138,7 @@ profile 3 server's port (e.g. `wss://host.docker.internal:8443/cp001`). Update `
                     }
                 },
                 {
-                    "attributeValue": "[{\"configurationSlot\":1,\"connectionData\":{\"messageTimeout\":30,\"ocppCsmsUrl\":\"ws://host.docker.internal:8081/cp001\",\"ocppInterface\":\"Wired0\",\"ocppTransport\":\"JSON\",\"ocppVersion\":\"OCPP20\",\"securityProfile\":1}},{\"configurationSlot\":2,\"connectionData\":{\"messageTimeout\":30,\"ocppCsmsUrl\":\"ws://host.docker.internal:8082/cp001\",\"ocppInterface\":\"Wired0\",\"ocppTransport\":\"JSON\",\"ocppVersion\":\"OCPP20\",\"securityProfile\":1}},{\"configurationSlot\":3,\"connectionData\":{\"messageTimeout\":30,\"ocppCsmsUrl\":\"wss://host.docker.internal:8443/cp001\",\"ocppInterface\":\"Wired0\",\"ocppTransport\":\"JSON\",\"ocppVersion\":\"OCPP20\",\"securityProfile\":2}}]",
+                    "attributeValue": "[{\"configurationSlot\":1,\"connectionData\":{\"messageTimeout\":30,\"ocppCsmsUrl\":\"ws://host.docker.internal:8081/cp001\",\"ocppInterface\":\"Wired0\",\"ocppTransport\":\"JSON\",\"ocppVersion\":\"OCPP20\",\"securityProfile\":1}},{\"configurationSlot\":2,\"connectionData\":{\"messageTimeout\":30,\"ocppCsmsUrl\":\"wss://host.docker.internal:8443/cp001\",\"ocppInterface\":\"Wired0\",\"ocppTransport\":\"JSON\",\"ocppVersion\":\"OCPP20\",\"securityProfile\":2}}]",
                     "attributeType": "Actual",
                     "component": {
                         "name": "InternalCtrlr"
@@ -150,8 +150,8 @@ profile 3 server's port (e.g. `wss://host.docker.internal:8443/cp001`). Update `
             ]
         }'
 
-After sending the request, EVerest should have 3 connection configurations: 8081, 8082 and new 8443 for profile 2. 
-The priority is 8443, otherwise it falls back to 8082.
+After sending the request, EVerest should have 2 connection configurations: 8081 and new 8443 for profile 2. 
+The priority is 8443, otherwise it falls back to 8081.
 
 **6. Restart everest-manager.**
 
@@ -159,16 +159,28 @@ Inside citrine-core root folder
 
     docker restart everest-manager-1
 
+It will try to connect to CitrineOS using Security Profile 1 on 8082. Check for the following logs to confirm
+that this is the case:
+
+    # These are the EVerest logs
+    2026-07-30 20:50:36.433999 [INFO] evse_security:E  :: Requesting certificate location: [CSMS] location:"/ext/dist/etc/everest/certs/ca/csms/CSMS_ROOT_CA.pem"
+    2026-07-30 20:50:36.437847 [INFO] ocpp:OCPP201     :: Loading CA csms bundle to verify server certificate: /ext/dist/etc/everest/certs/ca/csms/CSMS_ROOT_CA.pem
+    2026-07-30 20:50:36.839422 [INFO] ocpp:OCPP201     :: LWS connect with info port: [8443] address: [host.docker.internal] path: [/cp001] protocol: [ocpp2.1, ocpp2.0.1] security profile: [2]
+    2026-07-30 20:50:37.159290 [INFO] ocpp:OCPP201     :: OCPP client successfully connected to server with version: ocpp2.0.1
+
 # Security Profile 3
 
 Security Profile 3 adds mutual TLS (mTLS) on top of Security Profile 2: the charging station authenticates
 with its own client certificate instead of a username/password. Ensure that CitrineOS is running and your
-charger is currently connected to Citrine using Security Profile 1, and follow along with
+charger is currently connected to Citrine using Security Profile 2 following along with
 [Security Profile 2](#security-profile-2) above.
 
 **1. Generate or reuse the CSMS certificate chain.**
 
-1. To generate new certificate chain same as [step 1 in Security Profile 2](#security-profile-2), but
+If in [step 1 in Security Profile 2](#security-profile-2), you have sent the request with `serverId=2&serverId=3`, 
+then this step, step 2 and step 3 can be skipped. Otherwise, you need to follow either option 1 or option 2 below.
+
+1. To generate new different certificate chain, do the same as [step 1 in Security Profile 2](#security-profile-2), but
    set `serverId` to your security profile 3 websocket server's `id` (the config entry with `securityProfile: 3`,
    e.g. `serverId=3`).
 2. To reuse the existing certificate chain for server 2, Update your `config.json` (If via docker, it is stored in data folder by default.) 
@@ -179,7 +191,36 @@ charger is currently connected to Citrine using Security Profile 1, and follow a
 
 **3. Install the CSMS Root Certificate on EVerest — identical to [step 3 in Security Profile 2](#security-profile-2).**
 
-**4. Equip the charging station with a certificate signed by CitrineOS, so it has a client certificate to present
+**4. Add needed variables for everest to generate CSR:**
+
+    curl --location 'http://localhost:8080/ocpp/2.0.1/monitoring/setVariables?identifier=cp001&tenantId=1' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "setVariableData": [
+                {
+                    "attributeValue": "US",
+                    "attributeType": "Actual",
+                    "component": {
+                        "name": "ISO15118Ctrlr"
+                    },
+                    "variable": {
+                        "name": "CountryName"
+                    }
+                },
+                {
+                    "attributeValue": "Pionix",
+                    "attributeType": "Actual",
+                    "component": {
+                        "name": "ISO15118Ctrlr"
+                    },
+                    "variable": {
+                        "name": "OrganizationName"
+                    }
+                }
+            ]
+        }'
+
+**5. Equip the charging station with a certificate signed by CitrineOS, so it has a client certificate to present
 when connecting with Security Profile 3. Trigger the charger to request one with a `SignChargingStationCertificate`
 trigger message:**
 
@@ -193,9 +234,15 @@ This causes the charging station to send a `SignCertificateRequest` with its CSR
 Profile 2) connection; CitrineOS signs it using the sub CA generated in step 1 and returns it via
 `CertificateSigned`, so the charger now holds a client certificate it can use to connect with Security Profile 3.
 
-**5. Set variables for connection profiles, same as [step 5 in Security Profile 2](#security-profile-2), add a new
-Security Profile 3 configuration slot'. Set its `securityProfile` to `3` and point `ocppCsmsUrl` at your security
-profile 3 server's port (e.g. `wss://host.docker.internal:8444/cp001`). Update `NetworkConfigurationPriority` to `3,2,1`**
+**6. Set variables for connection profiles, update and send the same request as [step 5 in Security Profile 2](#security-profile-2).
+Update `configurationSlot`: `2` in request body. Set its `securityProfile` to `3` and point `ocppCsmsUrl` at your security
+profile 3 server's port (e.g. `wss://host.docker.internal:8444/cp001`).**
 
-**6. Restart EVerest, same as [step 6 in Security Profile 2](#security-profile-2), but check the logs for a
+**7. Restart EVerest, same as [step 6 in Security Profile 2](#security-profile-2), but check the logs for a
 connection using Security Profile 3.**
+
+    # These are the EVerest logs
+    2026-07-30 21:17:03.916862 [INFO] evse_security:E  :: Requesting certificate location: [CSMS] location:"/ext/dist/etc/everest/certs/ca/csms/CSMS_ROOT_CA.pem"
+    2026-07-30 21:17:03.937165 [INFO] ocpp:OCPP201     :: Loading CA csms bundle to verify server certificate: /ext/dist/etc/everest/certs/ca/csms/CSMS_ROOT_CA.pem
+    2026-07-30 21:17:04.310938 [INFO] ocpp:OCPP201     :: LWS connect with info port: [8444] address: [host.docker.internal] path: [/cp001] protocol: [ocpp2.1, ocpp2.0.1] security profile: [3]
+    2026-07-30 21:17:04.628483 [INFO] ocpp:OCPP201     :: OCPP client successfully connected to server with version: ocpp2.0.1
