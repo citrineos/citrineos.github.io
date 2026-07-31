@@ -159,7 +159,7 @@ Inside citrine-core root folder
 
     docker restart everest-manager-1
 
-It will try to connect to CitrineOS using Security Profile 1 on 8082. Check for the following logs to confirm
+It will try to connect to CitrineOS using Security Profile 2 on 8443. Check for the following logs to confirm
 that this is the case:
 
     # These are the EVerest logs
