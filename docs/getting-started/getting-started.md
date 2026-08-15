@@ -13,9 +13,9 @@ In this section, we assume you have set up the necessary [prerequisites](prerequ
 
     git clone https://github.com/citrineos/citrineos-core
 
-**2. Navigate to the `citrineos-core/Server` directory:**
+**2. Navigate into the repository:**
 
-    cd citrineos-core/Server
+    cd citrineos-core
 
 **3. Start the entire `citrineos-core` stack with docker-compose:**
 
@@ -33,9 +33,24 @@ You should now have the following services running:
 | **RabbitMQ**                                  | [amqp://guest:guest@localhost:5672](amqp://guest:guest@localhost:5672)                       | [RabbitMQ](http://rabbitmq.com) message bus.                                                                                                                                                                         |
 | **Redis**                                     | N/A                                                                                          | The default settings will use an in-memory cache but a [Redis](https://redis.io/) instance is available to use.                                                                                                      |
 
-Quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
+Quickly verify the connection to the server by using `wscat` to connect and send a `BootNotification`.
+
+First, connect to the server:
+```bash
+wscat -c ws://localhost:8081/{STATION_ID} -s ocpp2.0.1
 ```
-wscat -c ws://localhost:8081/{STATION_ID} -x '[
+
+Then, paste the following `BootNotification` message into the prompt and press Enter.
+
+> **Note:** `wscat` reads input line-by-line, so the JSON message **must** be pasted as a single line:
+
+```json
+[2, "15106be4-57ca-11ee-8c99-0242ac120003", "BootNotification", {"reason": "PowerUp", "chargingStation": {"model": "SingleSocketCharger", "vendorName": "VendorX"}}]
+```
+
+*(Formatted view for readability):*
+```json
+[
   2,
   "15106be4-57ca-11ee-8c99-0242ac120003",
   "BootNotification",
@@ -46,7 +61,20 @@ wscat -c ws://localhost:8081/{STATION_ID} -x '[
       "vendorName": "VendorX"
     }
   }
-]'
+]
+```
+
+You should receive a response indicating the boot was accepted, which confirms the app is working:
+```json
+[
+  3,
+  "15106be4-57ca-11ee-8c99-0242ac120003",
+  {
+    "currentTime": "2023-10-18T12:00:00.000Z",
+    "interval": 60,
+    "status": "Accepted"
+  }
+]
 ```
 
 ### Running Operator UI (Beta)
