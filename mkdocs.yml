@@ -3,21 +3,23 @@ nav:
   - index.md
   - roadmap.md
   - references.md
+  - faqs.md
   - Getting Started:
       - getting-started/prerequisites.md
       - getting-started/getting-started.md
       - getting-started/testing-with-everest.md
-      - getting-started/making-changes.md
-      - getting-started/running-ocpi.md
   - Core Concepts:
       - core-concepts/architecture.md
-      - core-concepts/configuration.md
-      - core-concepts/connecting-a-charger.md
-#      - core-concepts/device-model.md
-      - core-concepts/adding-id-tokens.md
-      - core-concepts/viewing-ocpp-logs.md
-      - core-concepts/data-model.md
-  - api.md
+# TODO once system config is refactored     - core-concepts/configuration.md
+# TODO once folder restructure is finished     - core-concepts/data-model.md
+  - Guides:
+      - guides/connecting-a-charger.md
+      - guides/security-profiles.md
+      - guides/adding-id-tokens.md
+      - guides/viewing-ocpp-logs.md
+  - APIs:
+      - apis/core-api.md
+      - apis/ocpi-api.md
 
 theme:
   name: material
@@ -38,6 +40,7 @@ theme:
     - navigation.top
     - search.suggest
     - navigation.expand
+    - content.code.copy
   custom_dir: overrides
 
 extra_css:
@@ -87,14 +90,17 @@ plugins:
   - mike # used for versioning
   - privacy
   - git-revision-date-localized # add created date to page
-  - swagger-ui-tag
+  - swagger-ui-tag:
+      supportedSubmitMethods: []
 #  - minify:
 #      minify_html: true
 markdown_extensions:
   - toc:
       permalink: "#"
       baselevel: 2
+  - pymdownx.blocks.admonition
   - pymdownx.blocks.caption
+  - pymdownx.blocks.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
