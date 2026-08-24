@@ -36,7 +36,7 @@ The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo conta
                                            |-- pnpm-workspace.yaml      [NEW]
                                            |-- pnpm-lock.yaml
 
-## Generally Mapping 1.x Code to 2.x Code
+## 1.x Code to 2.x Code
 
 | 1.x path | 2.x path | note                                                                   |
 |---|---|------------------------------------------------------------------------|
@@ -55,10 +55,9 @@ The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo conta
 ## Station ID -> OCPP Connection Name
 
 Charging Station "human-readable" identifiers are now stored in the `ocppConnectionName` column, while the `id` column 
-became the dedicated database serial integer identifier. This helps with multi-tenancy, renaming charging stationds, 
-and keeps the shape of charging stations similar to other database schemas. As a result, every related entity to 
-Charging Stations had to ensure that their `stationId` references the Charging Station's `id` integer column, rather 
-than the `ocppConnectionName` string column.
+became the dedicated database serial integer identifier. As a result, every related entity to Charging Stations had to 
+be updated so that their `stationId` references the Charging Station's `id` integer column, rather than the 
+`ocppConnectionName` string column. All related indexes were also updated to reflect this change.
 
 If you have skipped the migration due to existing data, as warned above, you will need to ensure that all tables 
 referencing `stationId` as the Charging Station's string value `ocppConnectionName` are updated to reference the proper
@@ -69,6 +68,13 @@ which lives in `apps/ocpp-server/migrations/20260427000000-rename-charging-stati
 
 Note that if you are on version 1.9.x, you can follow the example of the migration above, as it runs against the 
 `stationPkId` column. If you are on a version prior to 1.9.x, the column to migrate will be `stationId`. 
+
+## Additional OCPPMessage Columns
+
+This is not a breaking change if you're not reliant on a particular OCPPMessage structure. OCPPMessage deprecated the
+`state` and `message` columns in favor of `type`, `payload`, and `raw`. `state` was replaced by `type` because the latter
+stores the actual OCPP Message Type. `message` was replaced by `payload` (the parsed payload) and `raw` (the raw OCPP 
+message received).
 
 # PNPM
 
@@ -85,8 +91,7 @@ To support testability and module organization, CitrineOS now uses `Awilix` for 
 
 # Types
 
-OCPP message models (1.6, 2.0.1, 2.1) were moved to a standalone package `types` so consumers can depend on the schemas 
-without pulling in `base`.
+OCPP message models were moved to a standalone package `types` so consumers can depend on the schemas without pulling in `base`.
 
 # Handlers
 
@@ -99,8 +104,8 @@ type. You can find the handlers in `packages/core/src/handlers`.
 All Data APIs annotated with `@AsDataEndpoint` were moved into their own module `Api` and endpoints declared into their
 own files, organized by protocol and module. You can find the new module in `packages/core/modules/Api`.
 
+# Drizzle
 
-# Drizzle (ongoing)
-
-CitrineOS is slowly migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
-the release of version 2.0.0, so you can track the progress in `packages/core/src/dal/layers/drizzle`.
+CitrineOS is migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
+the release of version 2.0.0, so you can track the progress in `packages/core/src/dal/layers/drizzle`. If you want
+to try the already-migrated repositories, you can enable `CITRINEOS_USE_DRIZZLE`.
