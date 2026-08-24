@@ -39,7 +39,7 @@ Note the flags combine freely:
 
 Once running, quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
 
-    wscat -c ws://localhost:8081/{STATION_ID} -x '[
+    wscat -c ws://localhost:8081/{STATION_ID} -s ocpp2.0.1 -x '[
       2,
       "15106be4-57ca-11ee-8c99-0242ac120003",
       "BootNotification",
