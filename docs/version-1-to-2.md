@@ -41,8 +41,8 @@ Configurations for CitrineOS used to come from three places:
 2. A persisted config.json in file storage
 3. BOOTSTRAP_CITRINEOS_* / CITRINEOS_* env vars
 
-In 2.x configurations are now determined via non-persisted environment variables, represented by the Zod schema over
-in `packages/types/src/config/types.ts`. Therefore, your old config.json settings will not be picked up; you will have 
+In 2.x configurations are now determined via non-persisted environment variables, represented by the Zod schema in 
+`packages/types/src/config/types.ts`. Therefore, your old config.json settings will not be picked up; you will have 
 to port them to environment variables manually. Additionally, websocket configurations were moved into their own file
 called `websocket-servers.json`.
 
