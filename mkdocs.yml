@@ -11,7 +11,7 @@ nav:
       - getting-started/testing-with-everest.md
   - Core Concepts:
       - core-concepts/architecture.md
-# TODO once system config is refactored     - core-concepts/configuration.md
+      - core-concepts/configuration.md
 # TODO once folder restructure is finished     - core-concepts/data-model.md
   - Guides:
       - guides/connecting-a-charger.md
