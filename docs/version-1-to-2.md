@@ -33,7 +33,7 @@ This is not a breaking change if you're not reliant on a particular OCPPMessage 
 stores the actual OCPP Message Type. `message` was replaced by `payload` (the parsed payload) and `raw` (the raw OCPP
 message received).
 
-## [CONFIGURATION] System Configuration Is No Longer Persisted
+## [CONFIGURATION] System Configuration is no longe persisted
 
 Configurations for CitrineOS used to come from three places: 
 

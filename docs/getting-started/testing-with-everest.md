@@ -2,6 +2,10 @@
 title: Testing with EVerest
 ---
 
+/// admonition | Before continuing, set up the necessary [prerequisites](prerequisites.md).
+    type: warning
+///
+
 If you don't have a charger that supports OCPP 1.6, 2.0.1, or 2.1, we recommend using the Linux 
 Foundation Energy project EVerest (repository [here](https://github.com/EVerest)). They have built an open-source charger 
 firmware that can also be used as a simulator. They support OCPP 1.6, 2.0.1, and 2.1. To set up EVerest yourself, you can 

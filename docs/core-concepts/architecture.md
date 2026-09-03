@@ -45,26 +45,14 @@ The code is organized into two main folders:
 ## packages
 
 1. `base` - OCPP interfaces and types, utilities, and configurations.
-2. `core` - Modules handling business logic and data layer.
-3. `ocpi-base` - OCPI interfaces and types, utilities, and configurations.
-
-### Decorators
-We make use of custom decorators that define methods to be used for specific logic use cases.
-
-- `@AsHandler`:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.
-- `@AsMessageEndpoint`: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.
-- `@AsDataEndpoint`: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the core package.
+2. `dal` - The data access layer, such as database repositories and models.
+3. `ocpp` - Modules handling business logic and data layer.
+4. `ocpi` - OCPI interfaces and types, utilities, and configurations.
+5. `types` - Types that are shared amongst all modules.
 
 ### Modules
 
-Each module is separated into logical groups of the business logic for OCPP functionality. 
-The structure for each module is similar, usually including the following components:
-
-- `DataApi.ts`: Defines API endpoints specific to data-related interactions.
-- `1.6/MessageApi.ts`: Defines API endpoints specific to OCPP 1.6 messages.
-- `2/MessageApi.ts`: Defines API endpoints specific to OCPP 2.0.1 / 2.1 messages.
-- `module.ts`: Holds the `@AsHandler` decorated methods that handle OCPP messages. Here you will also find the supported call actions listed in an array at the top.
-- `services.ts`: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in `module.ts`.
+Each module is separated into logical groups of the business logic for OCPP functionality.
 
 #### Certificates
 
@@ -103,4 +91,7 @@ Handles tenant-related functionality.
 
 Handles transaction-related functionality. Example message are `TransactionEvent` and `CostUpdated`.
 
+### Handlers
 
+The logic for processing OCPP messages can be found in the individual handlers named after the event they handle. Every
+module registers the set of handlers related to the messages they should be able to handle.

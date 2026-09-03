@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: Getting Started
+title: Running CitrineOS
 ---
 
 /// admonition | Before continuing, set up the necessary [prerequisites](prerequisites.md).
@@ -9,7 +9,7 @@ title: Getting Started
 
 # Installation
 
-**1. Clone the `citrineos/core` repository onto your local machine:**
+**1. Clone the `citrineos-core` repository onto your local machine:**
 
     git clone https://github.com/citrineos/citrineos-core
 
@@ -37,20 +37,28 @@ Note the flags combine freely:
 
     pnpm citrine --local --ocpi
 
-Once running, quickly verify the connection to the server by using `wscat` to send an `BootNotification`:
+Once running, quickly verify the connection to the server by using `wscat` to send an `BootNotification` by doing the
+following:
 
-    wscat -c ws://localhost:8081/{STATION_ID} -s ocpp2.0.1 -x '[
-      2,
-      "15106be4-57ca-11ee-8c99-0242ac120003",
-      "BootNotification",
-      {
-        "reason": "PowerUp",
-        "chargingStation": {
-          "model": "SingleSocketCharger",
-          "vendorName": "VendorX"
+Connect to the server:
+
+    wscat -c ws://localhost:8081/{STATION_ID} -s ocpp2.0.1
+
+Enter the following `BootNotification`:
+
+    [2, "15106be4-57ca-11ee-8c99-0242ac120003", "BootNotification", {"reason": "PowerUp", "chargingStation": {"model": "SingleSocketCharger", "vendorName": "VendorX"}}]
+
+You should receive a response indicating the boot was accepted, which confirms the app is working:
+
+    [
+        3,
+        "15106be4-57ca-11ee-8c99-0242ac120003",
+        {
+            "currentTime": "2023-10-18T12:00:00.000Z",
+            "interval": 60,
+            "status": "Accepted"
         }
-      }
-    ]'
+    ]
 
 ## Services
 

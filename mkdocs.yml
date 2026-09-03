@@ -7,7 +7,7 @@ nav:
   - version-1-to-2.md
   - Getting Started:
       - getting-started/prerequisites.md
-      - getting-started/getting-started.md
+      - getting-started/running-citrineos.md
       - getting-started/testing-with-everest.md
   - Core Concepts:
       - core-concepts/architecture.md
