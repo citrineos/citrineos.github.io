@@ -23,7 +23,7 @@ based on the protocol sent as part of the websocket connection.
     open: true
     
 CitrineOS uses REST API to support communications with charging stations and GraphQL to support database operations. For more
-information about the Core REST API, [click here](/apis/core-api).
+information about the Core REST API, [click here](../apis/core-api).
 
 ///
 
@@ -31,7 +31,7 @@ information about the Core REST API, [click here](/apis/core-api).
     type: info
     open: true
 
-OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](/roadmap) for information on upcoming OCPI version support.
+OCPI 2.2.1 is supported by CitrineOS. Refer to the [roadmap](../roadmap) for information on upcoming OCPI version support.
 ///
 
 /// details | What technologies support CitrineOS?

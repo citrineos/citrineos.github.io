@@ -31,9 +31,9 @@ Below is an example of an OCPP log as found in the console:
 # Via Subscription
 
 You can use CitrineOS's Data API to subscribe to OCPP messages. Below is the `cURL` command that will subscribe the 
-specified URL to all OCPP messages and connection events for charger `cp001`:
+specified URL to all OCPP messages and connection events for charger `cp001` in the default tenant:
 
-    curl --request POST 'localhost:8080/data/ocpprouter/subscription' \
+    curl --request POST 'localhost:8080/ocpprouter/subscription?tenantId=1' \
     --header 'Content-Type: application/json' \
     --data '{
       "ocppConnectionName": "cp001",

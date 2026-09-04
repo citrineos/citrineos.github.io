@@ -13,24 +13,24 @@ In general, you will need to follow these steps to add and connect a charger to 
 
 **1. Navigate to `/locations` and click the `Add Location` button on the top right:**
 
-![](/assets/img/create-charger-operator-ui/add-location.png)
+![](../assets/img/create-charger-operator-ui/add-location.png)
 
 **2. Configure your location and save it.**
 
 **3. Navigate to `/charging-stations` and click the `Add Charging Station` button on the top right:**
 
-![](/assets/img/create-charger-operator-ui/add-charging-station.png)
+![](../assets/img/create-charger-operator-ui/add-charging-station.png)
 
 **4. Configure your charging station and save it. Ensure that the location is the one you configured in the previous steps, 
 and that the charger `Name` matches with your charger's identifier.**
 
 **5. In your charger's details page, configure an EVSE by clicking the `Add New EVSE` button at the top right of the `EVSEs` tab:**
 
-![](/assets/img/create-charger-operator-ui/add-evse.png)
+![](../assets/img/create-charger-operator-ui/add-evse.png)
 
 **6. Once your EVSE is saved, configure a connector by clicking the `Add Connector` button in the EVSE row:**
 
-![](/assets/img/create-charger-operator-ui/add-connector.png)
+![](../assets/img/create-charger-operator-ui/add-connector.png)
 
 # Create Charger via GraphQL
 

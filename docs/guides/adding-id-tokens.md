@@ -9,11 +9,11 @@ With any CSMS, a valid `ID Token` must be loaded into the system for charging to
 
 **1. Navigate to `/authorizations` and click the `Add Authorization` button on the top right:**
 
-![](/assets/img/create-authorization/add-authorization.png)
+![](../assets/img/create-authorization/add-authorization.png)
 
 **2. Configure your authorization and save it. Below is the `Authorization` that allows you to authorize EVerest transactions:**
 
-![](/assets/img/create-authorization/everest-authorization.png)
+![](../assets/img/create-authorization/everest-authorization.png)
 
 # Create via GraphQL
 
