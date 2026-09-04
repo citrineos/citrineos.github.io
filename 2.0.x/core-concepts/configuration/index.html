@@ -7,6 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description"/>
 <link href="https://citrineos.github.io/2.0.x/core-concepts/configuration/" rel="canonical">
+<link href="../architecture/" rel="prev"/>
+<link href="../../guides/connecting-a-charger/" rel="next"/>
 <link href="../../assets/img/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator"/>
 <title>Configuration - CitrineOS</title>
@@ -25,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#configuring-citrineos">
+<a class="md-skip" href="#introduction">
           Skip to content
         </a>
 </div>
@@ -172,16 +174,23 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../version-1-to-2/">
+<span class="md-ellipsis">
+    CitrineOS 1.x to 2.x
+  </span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-ellipsis">
     Getting Started
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             Getting Started
           </label>
@@ -194,9 +203,9 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../getting-started/getting-started/">
+<a class="md-nav__link" href="../../getting-started/running-citrineos/">
 <span class="md-ellipsis">
-    Getting Started
+    Running CitrineOS
   </span>
 </a>
 </li>
@@ -210,16 +219,16 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-ellipsis">
     Core Concepts
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             Core Concepts
           </label>
@@ -231,19 +240,254 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction">
+<span class="md-ellipsis">
+      Introduction
+    </span>
+</a>
+<nav aria-label="Introduction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope">
+<span class="md-ellipsis">
+      Scope
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-servers">
+<span class="md-ellipsis">
+      Websocket Servers
+    </span>
+</a>
+<nav aria-label="Websocket Servers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-server-configurations">
+<span class="md-ellipsis">
+      Websocket Server Configurations
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environment-variables">
+<span class="md-ellipsis">
+      Environment Variables
+    </span>
+</a>
+<nav aria-label="Environment Variables" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setting-values">
+<span class="md-ellipsis">
+      Setting values
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#top-level">
+<span class="md-ellipsis">
+      Top level
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database">
+<span class="md-ellipsis">
+      DATABASE
+    </span>
+</a>
+<nav aria-label="DATABASE" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_pool-optional">
+<span class="md-ellipsis">
+      DATABASE_POOL — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_ssl-optional">
+<span class="md-ellipsis">
+      DATABASE_SSL — optional
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache">
+<span class="md-ellipsis">
+      CACHE
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fileaccess">
+<span class="md-ellipsis">
+      FILEACCESS
+    </span>
+</a>
+<nav aria-label="FILEACCESS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-local">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is local
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-s3">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is s3
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-gcp">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is gcp
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auth">
+<span class="md-ellipsis">
+      AUTH
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oidcclient-optional">
+<span class="md-ellipsis">
+      OIDCCLIENT — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations">
+<span class="md-ellipsis">
+      INTEGRATIONS
+    </span>
+</a>
+<nav aria-label="INTEGRATIONS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_v2gca">
+<span class="md-ellipsis">
+      INTEGRATIONS_V2GCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_chargingstationca">
+<span class="md-ellipsis">
+      INTEGRATIONS_CHARGINGSTATIONCA
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rbac-optional">
+<span class="md-ellipsis">
+      RBAC — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swagger">
+<span class="md-ellipsis">
+      SWAGGER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timeouts">
+<span class="md-ellipsis">
+      TIMEOUTS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp">
+<span class="md-ellipsis">
+      OCPP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transactions">
+<span class="md-ellipsis">
+      TRANSACTIONS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evdriver">
+<span class="md-ellipsis">
+      EVDRIVER
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
     Guides
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
             Guides
           </label>
@@ -280,15 +524,15 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
 <span class="md-ellipsis">
     APIs
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_8">
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
 <span class="md-nav__icon md-icon"></span>
             APIs
           </label>
@@ -325,14 +569,6 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#configuring-citrineos">
-<span class="md-ellipsis">
-      Configuring CitrineOS
-    </span>
-</a>
-<nav aria-label="Configuring CitrineOS" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
 <a class="md-nav__link" href="#introduction">
 <span class="md-ellipsis">
       Introduction
@@ -341,275 +577,206 @@
 <nav aria-label="Introduction" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#purpose">
-<span class="md-ellipsis">
-      Purpose
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#scope">
 <span class="md-ellipsis">
       Scope
     </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#audience">
-<span class="md-ellipsis">
-      Audience
-    </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration-overview">
-<span class="md-ellipsis">
-      Configuration Overview
-    </span>
-</a>
-<nav aria-label="Configuration Overview" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration-management">
-<span class="md-ellipsis">
-      Configuration Management
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#system-configuration">
-<span class="md-ellipsis">
-      System Configuration
-    </span>
-</a>
-<nav aria-label="System Configuration" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#central-system">
-<span class="md-ellipsis">
-      Central System
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#modules">
-<span class="md-ellipsis">
-      Modules
-    </span>
-</a>
-<nav aria-label="Modules" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#certificates">
-<span class="md-ellipsis">
-      Certificates
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration">
-<span class="md-ellipsis">
-      Configuration
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#evdriver">
-<span class="md-ellipsis">
-      EVDriver
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#monitoring">
-<span class="md-ellipsis">
-      Monitoring
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#reporting">
-<span class="md-ellipsis">
-      Reporting
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#smartcharging">
-<span class="md-ellipsis">
-      SmartCharging
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#transactions">
-<span class="md-ellipsis">
-      Transactions
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#data">
-<span class="md-ellipsis">
-      Data
-    </span>
-</a>
-<nav aria-label="Data" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sequelize">
-<span class="md-ellipsis">
-      Sequelize
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#util">
-<span class="md-ellipsis">
-      Util
-    </span>
-</a>
-<nav aria-label="Util" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cache">
-<span class="md-ellipsis">
-      Cache
-    </span>
-</a>
-<nav aria-label="Cache" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#redis">
-<span class="md-ellipsis">
-      Redis
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#message-broker">
-<span class="md-ellipsis">
-      Message Broker
-    </span>
-</a>
-<nav aria-label="Message Broker" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pubsub">
-<span class="md-ellipsis">
-      Pubsub
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#kafka">
-<span class="md-ellipsis">
-      Kafka
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#amqp">
-<span class="md-ellipsis">
-      AMQP
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#swagger">
-<span class="md-ellipsis">
-      Swagger
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#network-connection">
-<span class="md-ellipsis">
-      Network Connection
-    </span>
-</a>
-<nav aria-label="Network Connection" class="md-nav">
-<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#websocket-servers">
 <span class="md-ellipsis">
       Websocket Servers
     </span>
 </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#certificate-authority">
-<span class="md-ellipsis">
-      Certificate Authority
-    </span>
-</a>
-<nav aria-label="Certificate Authority" class="md-nav">
+<nav aria-label="Websocket Servers" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#v2g-ca">
+<a class="md-nav__link" href="#websocket-server-configurations">
 <span class="md-ellipsis">
-      V2G CA
+      Websocket Server Configurations
     </span>
 </a>
-<nav aria-label="V2G CA" class="md-nav">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environment-variables">
+<span class="md-ellipsis">
+      Environment Variables
+    </span>
+</a>
+<nav aria-label="Environment Variables" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#hubject">
+<a class="md-nav__link" href="#setting-values">
 <span class="md-ellipsis">
-      Hubject
+      Setting values
     </span>
 </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#charging-station-ca">
+<a class="md-nav__link" href="#top-level">
 <span class="md-ellipsis">
-      Charging Station CA
+      Top level
     </span>
 </a>
-<nav aria-label="Charging Station CA" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database">
+<span class="md-ellipsis">
+      DATABASE
+    </span>
+</a>
+<nav aria-label="DATABASE" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#acme">
+<a class="md-nav__link" href="#database_pool-optional">
 <span class="md-ellipsis">
-      Acme
+      DATABASE_POOL — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_ssl-optional">
+<span class="md-ellipsis">
+      DATABASE_SSL — optional
     </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache">
+<span class="md-ellipsis">
+      CACHE
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fileaccess">
+<span class="md-ellipsis">
+      FILEACCESS
+    </span>
+</a>
+<nav aria-label="FILEACCESS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-local">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is local
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-s3">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is s3
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-gcp">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is gcp
+    </span>
+</a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auth">
+<span class="md-ellipsis">
+      AUTH
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oidcclient-optional">
+<span class="md-ellipsis">
+      OIDCCLIENT — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations">
+<span class="md-ellipsis">
+      INTEGRATIONS
+    </span>
+</a>
+<nav aria-label="INTEGRATIONS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_v2gca">
+<span class="md-ellipsis">
+      INTEGRATIONS_V2GCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_chargingstationca">
+<span class="md-ellipsis">
+      INTEGRATIONS_CHARGINGSTATIONCA
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rbac-optional">
+<span class="md-ellipsis">
+      RBAC — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swagger">
+<span class="md-ellipsis">
+      SWAGGER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timeouts">
+<span class="md-ellipsis">
+      TIMEOUTS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp">
+<span class="md-ellipsis">
+      OCPP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transactions">
+<span class="md-ellipsis">
+      TRANSACTIONS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evdriver">
+<span class="md-ellipsis">
+      EVDRIVER
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -622,176 +789,954 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1>Configuration</h1>
-<h2 id="configuring-citrineos">Configuring CitrineOS<a class="headerlink" href="#configuring-citrineos" title="Permanent link">#</a></h2>
-<h3 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h3>
-<h4 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">#</a></h4>
-<p>CitrineOS uses a configuration object, defined in the code as SystemConfig, to define its behavior. This document describes the structure of this object, how to access and modify it, and the meaning of each key-value pair.</p>
-<h4 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">#</a></h4>
-<p>The configuration object controls the host and port of all servers in the application as well as optional OCPP features and certain values which can be different from network to network (heartbeat interval, message timeout, etc). Where specific technologies can fill a role in CitrineOS, such as RabbitMQ for the message broker, the configuration object contains the information needed for those technologies.</p>
-<h4 id="audience">Audience<a class="headerlink" href="#audience" title="Permanent link">#</a></h4>
-<p>This is a low-level document for engineers interested in learning more about how to use CitrineOS.</p>
-<h3 id="configuration-overview">Configuration Overview<a class="headerlink" href="#configuration-overview" title="Permanent link">#</a></h3>
-<h4 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">#</a></h4>
-<p>By default, CitrineOS uses a typescript file to store system configuration, such as the files in <a href="https://github.com/citrineos/citrineos-core/tree/main/Server/src/config">Server/src/config</a>.</p>
-<p>Environment variables can also be used. They will override the fields in the typescript file when the application starts up. Prefix the variables with 'CITRINEOS', then separate each component of the path to the variable in camel case. Example: CITRINEOS_DATA_SEQUELIZE_USERNAME will override systemConfig.data.sequelize.username with its value.</p>
-<p>Each module also supports GET and PUT for systemConfig in order to change it while CitrineOS is running. Not all values currently support being changed after application start-up. For example, adding a websocket server to the list after start-up does not currently create a new websocket server.</p>
-<hr/>
-<h2 id="system-configuration">System Configuration<a class="headerlink" href="#system-configuration" title="Permanent link">#</a></h2>
-<ul>
-<li>Env: The environment setting (e.g., development, production).</li>
-<li>Log Level: The verbosity level of the logging.</li>
-<li>Max Call Length Seconds: Maximum duration in seconds for a call.</li>
-<li>Max Caching Seconds: Maximum duration in seconds for caching data.</li>
-</ul>
-<h3 id="central-system">Central System<a class="headerlink" href="#central-system" title="Permanent link">#</a></h3>
-<ul>
-<li>Host: The hostname for the central system.</li>
-<li>Port: The port number for the central system.</li>
-</ul>
-<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">#</a></h3>
-<h4 id="certificates">Certificates<a class="headerlink" href="#certificates" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The URL prefix for certificate endpoints.</li>
-<li>Host: The host where the certificate services are running.</li>
-<li>Port: The port number for accessing certificate services.</li>
-</ul>
-<h4 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h4>
-<ul>
-<li>Heartbeat Interval: The interval in seconds for sending heartbeat messages.</li>
-<li>Boot Retry Interval: Time interval in seconds before retrying a failed boot process.</li>
-<li>Unknown Charger Status: Default status for chargers not recognized by the system.</li>
-<li>Get Base Report On Pending: Boolean flag to get a base report if the status is pending.</li>
-<li>Boot With Rejected Variables: Boolean flag to attempt booting with rejected variables.</li>
-<li>Auto Accept: Automatically accept configurations if this is set.</li>
-<li>Endpoint Prefix: The endpoint URL prefix for configuration modules.</li>
-<li>Host: Hostname for the configuration service.</li>
-<li>Port: Port number for the configuration service.</li>
-</ul>
-<h4 id="evdriver">EVDriver<a class="headerlink" href="#evdriver" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The endpoint prefix for EV driver communications.</li>
-<li>Host: The host where the EV driver module is running.</li>
-<li>Port: The port for EV driver communications.</li>
-</ul>
-<h4 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The endpoint prefix for monitoring services.</li>
-<li>Host: The hostname for the monitoring service.</li>
-<li>Port: The port number for monitoring services.</li>
-</ul>
-<h4 id="reporting">Reporting<a class="headerlink" href="#reporting" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The endpoint prefix used for reporting services.</li>
-<li>Host: The hostname for the reporting service.</li>
-<li>Port: The port number for reporting services.</li>
-</ul>
-<h4 id="smartcharging">SmartCharging<a class="headerlink" href="#smartcharging" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The endpoint prefix for smart charging services.</li>
-<li>Host: The hostname for smart charging services.</li>
-<li>Port: The port number for smart charging services.</li>
-</ul>
-<h4 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">#</a></h4>
-<ul>
-<li>Endpoint Prefix: The endpoint prefix for transaction services.</li>
-<li>Host: The hostname for transaction services.</li>
-<li>Port: The port number for transaction services.</li>
-<li>Cost Updated Interval: The interval in seconds for updating the cost information.</li>
-<li>Send Cost Updated On Meter Value: Whether to send cost updates with meter readings.</li>
-</ul>
-<h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">#</a></h3>
-<h4 id="sequelize">Sequelize<a class="headerlink" href="#sequelize" title="Permanent link">#</a></h4>
-<ul>
-<li>Host: The hostname for the Sequelize database.</li>
-<li>Port: The port number for the Sequelize database.</li>
-<li>Database: The name of the database used.</li>
-<li>Dialect: The type of SQL dialect used (e.g., PostgreSQL, MySQL).</li>
-<li>Username: The username of the account CitrineOS will use to access the database.</li>
-<li>Password: The password of the account CitrineOS will use to access the database.</li>
-<li>Storage: The storage option for Sequelize.</li>
-<li>Sync: Whether to synchronize the database schema automatically.</li>
-</ul>
-<h3 id="util">Util<a class="headerlink" href="#util" title="Permanent link">#</a></h3>
-<h4 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">#</a></h4>
-<ul>
-<li>Memory: Whether in-memory caching is used.</li>
-</ul>
-<h5 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">#</a></h5>
-<ul>
-<li>Host: The hostname for the Redis server.</li>
-<li>Port: The port number for the Redis server.</li>
-</ul>
-<h4 id="message-broker">Message Broker<a class="headerlink" href="#message-broker" title="Permanent link">#</a></h4>
-<h5 id="pubsub">Pubsub<a class="headerlink" href="#pubsub" title="Permanent link">#</a></h5>
-<ul>
-<li>Topic Prefix: The prefix for topics in Pub/Sub messaging.</li>
-<li>Topic Name: The name of the topic that CitrineOS will use.</li>
-<li>Service Path: Path of the Google Pub/Sub instance. </li>
-</ul>
-<h5 id="kafka">Kafka<a class="headerlink" href="#kafka" title="Permanent link">#</a></h5>
-<ul>
-<li>Topic Prefix: The prefix for topics.</li>
-<li>Topic Name: The name of the topic that CitrineOS will use.</li>
-<li>Brokers: A list of Kafka brokers.</li>
-<li>SASL:</li>
-<li>Mechanism: The SASL mechanism used for authentication.</li>
-<li>Username: The username for SASL authentication.</li>
-<li>Password: The password for SASL authentication.</li>
-</ul>
-<h5 id="amqp">AMQP<a class="headerlink" href="#amqp" title="Permanent link">#</a></h5>
-<ul>
-<li>URL: The URL for accessing AMQP services.</li>
-<li>Exchange: The exchange used in AMQP messaging.</li>
-</ul>
-<h4 id="swagger">Swagger<a class="headerlink" href="#swagger" title="Permanent link">#</a></h4>
-<ul>
-<li>Path: The URL path for accessing Swagger documentation.</li>
-<li>Logo Path: The path to the logo used in Swagger documentation.</li>
-<li>Expose Data: Whether to expose data in Swagger documentation.</li>
-<li>Expose Message: Whether to expose messaging in Swagger documentation.</li>
-</ul>
-<h4 id="network-connection">Network Connection<a class="headerlink" href="#network-connection" title="Permanent link">#</a></h4>
-<h5 id="websocket-servers">Websocket Servers<a class="headerlink" href="#websocket-servers" title="Permanent link">#</a></h5>
-<ul>
-<li>Id: Unique identifier for the WebSocket server.</li>
-<li>Host: The hostname for the WebSocket server.</li>
-<li>Port: The port number for the WebSocket server.</li>
-<li>Ping Interval: The interval in seconds between pings to keep the connection alive.</li>
-<li>Protocol: The communication protocol used.</li>
-<li>Security Profile: The security profile level.</li>
-<li>Allow Unknown Charging Stations: Whether to allow connections from unknown charging stations.</li>
-<li>Tls Key File Path: File path to the public key used for tls.</li>
-<li>Tls Certificate Chain File Path: File path to the server certificate chain for tls.</li>
-<li>mTls Certificate Authority Key File Path: File path to the CA public key for mtls.</li>
-<li>Root CA Certificate File Path: File path to the CA root certificate for mtls.</li>
-</ul>
-<h4 id="certificate-authority">Certificate Authority<a class="headerlink" href="#certificate-authority" title="Permanent link">#</a></h4>
-<h5 id="v2g-ca">V2G CA<a class="headerlink" href="#v2g-ca" title="Permanent link">#</a></h5>
-<ul>
-<li>Name: The name of the V2G certificate authority.</li>
-</ul>
-<h6 id="hubject">Hubject<a class="headerlink" href="#hubject" title="Permanent link">#</a></h6>
-<ul>
-<li>Base URL: The base URL for the Hubject V2G services.</li>
-<li>Token URL: The URL for obtaining a token from Hubject.</li>
-<li>ISO Version: The ISO standard version supported by Hubject.</li>
-</ul>
-<h5 id="charging-station-ca">Charging Station CA<a class="headerlink" href="#charging-station-ca" title="Permanent link">#</a></h5>
-<ul>
-<li>Name: The name of the charging station certificate authority.</li>
-</ul>
-<h6 id="acme">Acme<a class="headerlink" href="#acme" title="Permanent link">#</a></h6>
-<ul>
-<li>Env: The environment setting for Acme services (e.g., staging, production).</li>
-<li>Account Key File Path: The file path for the account key.</li>
-<li>Email: The contact email associated with the CA.</li>
-</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>CitrineOS uses environment variables represented by the Zod schema in <code>packages/types/src/config/types.ts</code>
+to define its behavior. This document describes the structure of this object, how to access and modify it, and 
+provides low-level details about each available configuration.</p>
+<h3 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">#</a></h3>
+<p>The configuration object controls the information needed for the specific technologies that fill a role in the application (
+database, queue, cache, etc.) as well as optional OCPP features and certain values which can be different from network 
+to network (heartbeat interval, message timeout, etc.).</p>
+<h2 id="websocket-servers">Websocket Servers<a class="headerlink" href="#websocket-servers" title="Permanent link">#</a></h2>
+<p>Setting up websocket servers doesn't happen from environment variables, but rather through the <code>websocket-servers.json</code>
+file. You may change what file CitrineOS reads websocket servers from by setting <code>CITRINEOS_WEBSOCKETSERVERCONFIGFILE</code>.</p>
+<h3 id="websocket-server-configurations">Websocket Server Configurations<a class="headerlink" href="#websocket-server-configurations" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>—</td>
+<td>Identifies this server. Must be unique across the array; used as the key for the server's certificate manager and stored on the <code>ServerNetworkProfile</code> row.</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>—</td>
+<td>Bind address for this websocket listener.</td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td>integer &gt;= 1</td>
+<td>Yes</td>
+<td>—</td>
+<td>Port for this listener. Each entry is its own HTTP/HTTPS server, so ports must not collide.</td>
+</tr>
+<tr>
+<td><code>protocols</code></td>
+<td>array of <code>ocpp1.6</code> / <code>ocpp2.0.1</code> / <code>ocpp2.1</code></td>
+<td>Yes</td>
+<td>—</td>
+<td>The OCPP subprotocols this listener will negotiate. A station offering none of them is rejected at upgrade.</td>
+</tr>
+<tr>
+<td><code>securityProfile</code></td>
+<td>integer 0–3</td>
+<td>Yes</td>
+<td>—</td>
+<td>OCPP security profile. 0 = plain ws, no auth; 1 = ws + HTTP Basic; 2 = TLS + Basic; 3 = mTLS (client cert). Drives whether an <code>http</code> or <code>https</code> server is created, and whether client certs are requested and verified.</td>
+</tr>
+<tr>
+<td><code>tenantId</code></td>
+<td>positive integer</td>
+<td>One of</td>
+<td>—</td>
+<td>Pins the whole listener to a single tenant. Mutually exclusive with <code>dynamicTenantResolution</code> — exactly one must be set.</td>
+</tr>
+<tr>
+<td><code>dynamicTenantResolution</code></td>
+<td>boolean</td>
+<td>One of</td>
+<td><code>false</code></td>
+<td>Resolves the tenant per connection from the request path segment, matched against <code>Tenant.tenantWebsocketServerPath</code>, instead of pinning one tenant to the listener.</td>
+</tr>
+<tr>
+<td><code>pingInterval</code></td>
+<td>integer &gt;= 1</td>
+<td>No</td>
+<td><code>60</code></td>
+<td>Seconds between websocket pings (jitter applied on the first). Also sets the connection's cache TTL at <code>pingInterval × 3</code>, so it doubles as the liveness timeout.</td>
+</tr>
+<tr>
+<td><code>allowUnknownChargingStations</code></td>
+<td>boolean</td>
+<td>No</td>
+<td><code>false</code></td>
+<td>Lets a station with no matching DB row connect and be provisioned ad hoc. Development and testing only — <strong>do not use in production!!</strong></td>
+</tr>
+<tr>
+<td><code>ignoreAuthenticationHeaders</code></td>
+<td>boolean</td>
+<td>No</td>
+<td><code>false</code></td>
+<td>Skips the HTTP Basic auth filter that security profiles 1 and 2 would otherwise enforce. An escape hatch for stations that cannot send credentials; it removes the authentication the profile implies.</td>
+</tr>
+<tr>
+<td><code>forceProtocol</code></td>
+<td><code>ocpp1.6</code> / <code>ocpp2.0.1</code> / <code>ocpp2.1</code></td>
+<td>No</td>
+<td>—</td>
+<td>Pins negotiation to one version instead of picking from the station's offered list. If the station or this server does not support it, the upgrade fails with an explicit error.</td>
+</tr>
+<tr>
+<td><code>tlsKeyFilePath</code></td>
+<td>string</td>
+<td>Profiles 2, 3</td>
+<td>—</td>
+<td>Server private key.</td>
+</tr>
+<tr>
+<td><code>tlsCertificateChainFilePath</code></td>
+<td>string</td>
+<td>Profiles 2, 3</td>
+<td>—</td>
+<td>Server certificate chain, served via SNI for any profile above 1.</td>
+</tr>
+<tr>
+<td><code>mtlsCertificateAuthorityKeyFilePath</code></td>
+<td>string</td>
+<td>Profile 3</td>
+<td>—</td>
+<td>CA key for mTLS client-certificate handling.</td>
+</tr>
+<tr>
+<td><code>rootCACertificateFilePath</code></td>
+<td>string</td>
+<td>No</td>
+<td>—</td>
+<td>Root CA used as the TLS <code>ca</code> bundle to verify client certificates. Only read when <code>securityProfile &gt; 2</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">#</a></h2>
+<p>You won't need to set anything if you are happy with the default values found in the Zod schema <code>packages/types/src/config/types.ts</code>.
+Otherwise, follow the sections below to learn how to set the values you need.</p>
+<h3 id="setting-values">Setting values<a class="headerlink" href="#setting-values" title="Permanent link">#</a></h3>
+<p>To set an environment variable, prefix it with CITRINEOS_ and append the path to the field, uppercased, with one 
+underscore per level, not per word. A camelCase field name stays one segment:</p>
+<pre><code>logLevel                        →  CITRINEOS_LOGLEVEL
+database.host                   →  CITRINEOS_DATABASE_HOST
+timeouts.maxCallLengthSeconds   →  CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS
+fileAccess.local.defaultFilePath →  CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH
+</code></pre>
+<p>Matching is case-insensitive. Values are parsed as JSON when possible and used as a raw string otherwise, so numbers and 
+booleans need no special handling, and an empty object switches a whole optional block on with its defaults:</p>
+<pre><code>CITRINEOS_LOGLEVEL: '1'
+CITRINEOS_OCPP_AUTOACCEPT: 'false'
+CITRINEOS_INTEGRATIONS_V2GCA: '{}' # opt in to the Hubject test PKI
+</code></pre>
+<h3 id="top-level">Top level<a class="headerlink" href="#top-level" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_ENV</code></td>
+<td><code>development</code> | <code>production</code></td>
+<td><code>development</code></td>
+<td>Runtime mode; affects log formatting.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_HOST</code></td>
+<td>string</td>
+<td><code>0.0.0.0</code></td>
+<td>HTTP bind address for the server.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_PORT</code></td>
+<td>integer &gt; 0</td>
+<td><code>8080</code></td>
+<td>HTTP port for the server.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGLEVEL</code></td>
+<td>integer 0–6</td>
+<td><code>2</code></td>
+<td>Log verbosity; <code>2</code> is debug.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_WEBSOCKETSERVERCONFIGFILE</code></td>
+<td>string</td>
+<td><code>websocket-servers.json</code></td>
+<td>Path (relative to the <code>fileAccess</code> root) of the JSON file listing the websocket servers this instance hosts.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="database"><code>DATABASE</code><a class="headerlink" href="#database" title="Permanent link">#</a></h3>
+<p>The <code>DATABASE</code> block is optional — every field has a default, so an unset database still resolves to a local Postgres.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_HOST</code></td>
+<td>string</td>
+<td><code>localhost</code></td>
+<td>Database host.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_PORT</code></td>
+<td>integer &gt; 0</td>
+<td><code>5432</code></td>
+<td>Database port.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_DATABASE</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database name. Note the doubled segment — the field is <code>database.database</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_DIALECT</code></td>
+<td>string</td>
+<td><code>postgres</code></td>
+<td>Sequelize dialect.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_USERNAME</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database user.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_PASSWORD</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database password.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SYNC</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Sync models to the schema on boot.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_ALTER</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Alter existing tables to match models when syncing.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_FORCE</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Drop and recreate tables when syncing. Destructive.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_MAXRETRIES</code></td>
+<td>integer &gt; 0</td>
+<td><code>3</code></td>
+<td>Connection attempts before giving up at startup.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_RETRYDELAY</code></td>
+<td>integer &gt; 0</td>
+<td><code>1000</code></td>
+<td>Milliseconds between connection attempts.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="database_pool-optional"><code>DATABASE_POOL</code> — optional<a class="headerlink" href="#database_pool-optional" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_MAX</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Maximum pooled connections.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_MIN</code></td>
+<td>integer &gt;= 0</td>
+<td>unset</td>
+<td>Minimum pooled connections held open.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_ACQUIRE</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Milliseconds to wait for a connection before erroring.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_IDLE</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Milliseconds a connection may sit idle before release.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="database_ssl-optional"><code>DATABASE_SSL</code> — optional<a class="headerlink" href="#database_ssl-optional" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_REQUIRE</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Require a TLS connection to the database.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_REJECTUNAUTHORIZED</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Verify the server certificate. Set <code>false</code> only for self-signed setups.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_CA</code></td>
+<td>string</td>
+<td>unset</td>
+<td>CA certificate used to verify the database server.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cache"><code>CACHE</code><a class="headerlink" href="#cache" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_CACHE_TYPE</code></td>
+<td><code>memory</code> | <code>redis</code></td>
+<td><code>memory</code></td>
+<td>Cache backend. <code>memory</code> is per-process, so multi-instance deployments want <code>redis</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_CACHE_URL</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required when type is <code>redis</code>. Must start with <code>redis://</code> or <code>rediss://</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="messagebroker_amqp"><code>MESSAGEBROKER_AMQP</code><a class="headerlink" href="#messagebroker_amqp" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_URL</code></td>
+<td>string</td>
+<td><code>amqp://guest:guest@localhost:5672</code></td>
+<td>AMQP connection URL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_EXCHANGE</code></td>
+<td>string</td>
+<td><code>citrineos</code></td>
+<td>Exchange modules publish to and subscribe from.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_INSTANCEIDENTIFIER</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Identifies this instance on the broker; useful when several instances share an exchange.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_MAXRECONNECTDELAYSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>Ceiling on the reconnect backoff.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fileaccess"><code>FILEACCESS</code><a class="headerlink" href="#fileaccess" title="Permanent link">#</a></h3>
+<p>Storage the server reads its runtime files through — the websocket servers file, TLS material, the ACME account key, RBAC rules. </p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_TYPE</code></td>
+<td><code>local</code> | <code>s3</code> | <code>gcp</code></td>
+<td><code>local</code></td>
+<td>Selects the storage backend.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-local">When <code>FILEACCESS_TYPE</code> is <code>local</code><a class="headerlink" href="#when-fileaccess_type-is-local" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH</code></td>
+<td>string</td>
+<td><code>src/assets</code> from the block default (<code>data</code> if you set <code>local</code> yourself without it)</td>
+<td>Root directory, resolved from the <strong>process working directory</strong> — which differs between pnpm (<code>apps/ocpp-server</code>) and Docker (repo root).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-s3">When <code>FILEACCESS_TYPE</code> is <code>s3</code><a class="headerlink" href="#when-fileaccess_type-is-s3" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_REGION</code></td>
+<td>string</td>
+<td>unset</td>
+<td>AWS region.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_ENDPOINT</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Custom endpoint URL, e.g. for MinIO.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME</code></td>
+<td>string</td>
+<td><code>citrineos-s3-bucket</code></td>
+<td>Bucket used when a key carries no bucket of its own.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Path-style addressing, required by MinIO and most S3-compatible servers.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_ACCESSKEYID</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Access key. The AWS SDK's own <code>AWS_*</code> variables also work.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Secret key.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-gcp">When <code>FILEACCESS_TYPE</code> is <code>gcp</code><a class="headerlink" href="#when-fileaccess_type-is-gcp" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_PROJECTID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required. GCP project ID.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_DEFAULTBUCKETNAME</code></td>
+<td>string</td>
+<td><code>citrineos-s3-bucket</code></td>
+<td>Bucket name.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_CREDENTIALS</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Service account credentials inline. If unset, Application Default Credentials are used.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auth"><code>AUTH</code><a class="headerlink" href="#auth" title="Permanent link">#</a></h3>
+<p>Guards the HTTP API. At least one of <code>oidc</code> or <code>localBypass</code> must be active; the block defaults to <code>localBypass: true</code> for local development.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_AUTH_LOCALBYPASS</code></td>
+<td>boolean</td>
+<td><code>true</code> (from the block default)</td>
+<td>Skips authentication entirely. Development only.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_OIDC_JWKSURI</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required within the <code>oidc</code> block. Where the signing keys are fetched from.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_OIDC_ISSUER</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required. Expected <code>iss</code> claim.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_OIDC_AUDIENCE</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required. Expected <code>aud</code> claim.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_OIDC_CACHETIMESECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td>unset</td>
+<td>How long fetched JWKS keys are cached.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_OIDC_RATELIMIT</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Rate-limits JWKS fetches.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oidcclient-optional"><code>OIDCCLIENT</code> — optional<a class="headerlink" href="#oidcclient-optional" title="Permanent link">#</a></h3>
+<p>Credentials the server uses as an OIDC <em>client</em> when calling out. All four are required if the block is set.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_TOKENURL</code></td>
+<td>string</td>
+<td>—</td>
+<td>Token endpoint.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_CLIENTID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Client ID.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_CLIENTSECRET</code></td>
+<td>string</td>
+<td>—</td>
+<td>Client secret.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_AUDIENCE</code></td>
+<td>string</td>
+<td>—</td>
+<td>Audience requested in the token.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="integrations"><code>INTEGRATIONS</code><a class="headerlink" href="#integrations" title="Permanent link">#</a></h3>
+<p>Both CAs are opt-in and off by default, but zero-config once enabled — <code>'{}'</code> is enough to accept every default.</p>
+<h4 id="integrations_v2gca"><code>INTEGRATIONS_V2GCA</code><a class="headerlink" href="#integrations_v2gca" title="Permanent link">#</a></h4>
+<p>For Plug &amp; Charge PKI.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Set to <code>'{}'</code> to enable with the Hubject test PKI.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_NAME</code></td>
+<td><code>hubject</code></td>
+<td><code>hubject</code></td>
+<td>Provider. Hubject is the only implementation.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_BASEURL</code></td>
+<td>string</td>
+<td>Hubject test base URL</td>
+<td>API base URL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_TOKENURL</code></td>
+<td>string</td>
+<td>Hubject test token URL</td>
+<td>Where the bearer token is obtained.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTID</code></td>
+<td>string</td>
+<td><code>YOUR_CLIENT_ID</code></td>
+<td>Client ID — the default is a placeholder, so real use requires setting it.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTSECRET</code></td>
+<td>string</td>
+<td><code>YOUR_CLIENT_SECRET</code></td>
+<td>Client secret — likewise a placeholder.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="integrations_chargingstationca"><code>INTEGRATIONS_CHARGINGSTATIONCA</code><a class="headerlink" href="#integrations_chargingstationca" title="Permanent link">#</a></h4>
+<p>For station certificates via ACME.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Set to <code>'{}'</code> to enable ACME against the Let's Encrypt staging directory.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_NAME</code></td>
+<td><code>acme</code></td>
+<td><code>acme</code></td>
+<td>Provider. ACME is the only implementation.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ENV</code></td>
+<td><code>staging</code> | <code>production</code></td>
+<td><code>staging</code></td>
+<td>Which ACME directory to use. <code>staging</code> issues untrusted certs but has generous rate limits.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH</code></td>
+<td>string</td>
+<td><code>certificates/acme_account_key.pem</code></td>
+<td>ACME account key, resolved against the <code>fileAccess</code> root.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL</code></td>
+<td>string (email)</td>
+<td><code>test@citrineos.com</code></td>
+<td>Contact address registered with the ACME account.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rbac-optional"><code>RBAC</code> — optional<a class="headerlink" href="#rbac-optional" title="Permanent link">#</a></h3>
+<p>Set <code>CITRINEOS_RBAC='{}'</code> to enable with defaults.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_RBAC_RULESDIR</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Directory holding the rules file.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_RBAC_RULESFILENAME</code></td>
+<td>string</td>
+<td><code>rbac-rules.json</code></td>
+<td>Rules file mapping tenant → URL pattern → HTTP method → required roles.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="swagger"><code>SWAGGER</code><a class="headerlink" href="#swagger" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_SWAGGER_ENABLED</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Serves the API docs. Set <code>false</code> in production if you do not want them exposed.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_PATH</code></td>
+<td>string</td>
+<td><code>/docs</code></td>
+<td>Mount path for the docs UI.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_LOGOPATH</code></td>
+<td>string</td>
+<td><code>src/assets/logo.png</code></td>
+<td>Logo shown in the docs. Resolved from the process working directory, <strong>not</strong> from <code>fileAccess</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_EXPOSEDATA</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Includes response data schemas in the docs.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_EXPOSEMESSAGE</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Includes message schemas in the docs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timeouts"><code>TIMEOUTS</code><a class="headerlink" href="#timeouts" title="Permanent link">#</a></h3>
+<p><code>TIMEOUTS_MAXCACHINGSECONDS</code> must be greater than or equal to <code>TIMEOUTS_MAXCALLLENGTHSECONDS</code>, or startup fails.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>20</code></td>
+<td>How long an OCPP call may remain outstanding before it is considered timed out.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_MAXCACHINGSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>How long call state is cached. Cannot be lower than <code>maxCallLengthSeconds</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_STALECALLMAXAGESECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td>unset</td>
+<td>Age past which a pending call is discarded as stale.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_SHUTDOWNGRACEPERIODSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>How long shutdown waits for in-flight work before forcing exit.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_REALTIMEAUTHDEFAULTTIMEOUTSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>15</code></td>
+<td>How long a real-time authorization request waits for a decision.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_NOTREADYTHRESHOLDSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code></td>
+<td>How long the instance may be unhealthy before it reports not-ready.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ocpp"><code>OCPP</code><a class="headerlink" href="#ocpp" title="Permanent link">#</a></h3>
+<p>These apply to every OCPP version — there is no per-protocol split.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_OCPP_HEARTBEATINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code></td>
+<td>Heartbeat interval in seconds sent to stations on boot.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_BOOTRETRYINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>15</code></td>
+<td>Retry interval in seconds sent when a boot is Pending or Rejected.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_UNKNOWNCHARGERSTATUS</code></td>
+<td><code>Accepted</code> | <code>Pending</code> | <code>Rejected</code></td>
+<td><code>Accepted</code></td>
+<td>Boot status returned to a station with no <code>BootConfig</code> row.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_GETBASEREPORTONPENDING</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Requests a base report from stations left in Pending.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_BOOTWITHREJECTEDVARIABLES</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Allows a boot to proceed even when some variables were rejected.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_AUTOACCEPT</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Promotes boot status automatically. When <code>false</code>, a station stays where it is until something changes it explicitly.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transactions"><code>TRANSACTIONS</code><a class="headerlink" href="#transactions" title="Permanent link">#</a></h3>
+<p>Exactly one of <code>TRANSACTIONS_COSTUPDATEDINTERVAL</code> or <code>TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE</code> must be set — setting both, 
+or neither, fails startup.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_COSTUPDATEDINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code> (from the block default)</td>
+<td>Sends a cost update on a fixed interval, in seconds.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Sends a cost update on each meter value instead of on an interval.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_RECEIPTBASEURL</code></td>
+<td>string (URL)</td>
+<td>unset</td>
+<td>Base URL used to build receipt links for completed transactions.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_PUBLICKEYFILEID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required within the block. File ID of the public key used to verify signed meter values.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_SIGNINGMETHOD</code></td>
+<td><code>RSASSA-PKCS1-v1_5</code> | <code>ECDSA</code> | <code>SECP192R1</code></td>
+<td>—</td>
+<td>Required within the block. Signature algorithm to verify against.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_REJECTUNSUPPORTEDSIGNEDMETERVALUES</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Rejects signed meter values that do not match the configured method rather than accepting them unverified.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evdriver"><code>EVDRIVER</code><a class="headerlink" href="#evdriver" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_EVDRIVER_ENABLEGETCHARGINGPROFILESONSTARTTRANSACTION</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Requests the station's charging profiles when a transaction starts.</td>
+</tr>
+</tbody>
+</table>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 9, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 3, 2026</span>
 </span>
 </aside>
 <form class="md-feedback" hidden="" name="feedback">

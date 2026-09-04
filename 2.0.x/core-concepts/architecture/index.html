@@ -8,7 +8,7 @@
 <meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description"/>
 <link href="https://citrineos.github.io/2.0.x/core-concepts/architecture/" rel="canonical">
 <link href="../../getting-started/testing-with-everest/" rel="prev"/>
-<link href="../../guides/connecting-a-charger/" rel="next"/>
+<link href="../configuration/" rel="next"/>
 <link href="../../assets/img/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator"/>
 <title>Architecture - CitrineOS</title>
@@ -174,16 +174,23 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../version-1-to-2/">
+<span class="md-ellipsis">
+    CitrineOS 1.x to 2.x
+  </span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-ellipsis">
     Getting Started
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             Getting Started
           </label>
@@ -196,9 +203,9 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../getting-started/getting-started/">
+<a class="md-nav__link" href="../../getting-started/running-citrineos/">
 <span class="md-ellipsis">
-    Getting Started
+    Running CitrineOS
   </span>
 </a>
 </li>
@@ -213,15 +220,15 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-ellipsis">
     Core Concepts
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             Core Concepts
           </label>
@@ -275,13 +282,6 @@
 </a>
 <nav aria-label="packages" class="md-nav">
 <ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#decorators">
-<span class="md-ellipsis">
-      Decorators
-    </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#modules">
 <span class="md-ellipsis">
@@ -356,28 +356,42 @@
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#handlers">
+<span class="md-ellipsis">
+      Handlers
+    </span>
+</a>
 </li>
 </ul>
 </nav>
 </li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../configuration/">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+</a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
     Guides
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
             Guides
           </label>
@@ -414,15 +428,15 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
 <span class="md-ellipsis">
     APIs
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_8">
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
 <span class="md-nav__icon md-icon"></span>
             APIs
           </label>
@@ -489,13 +503,6 @@
 <nav aria-label="packages" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#decorators">
-<span class="md-ellipsis">
-      Decorators
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#modules">
 <span class="md-ellipsis">
       Modules
@@ -569,6 +576,13 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#handlers">
+<span class="md-ellipsis">
+      Handlers
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -622,26 +636,13 @@
 <h3 id="packages">packages<a class="headerlink" href="#packages" title="Permanent link">#</a></h3>
 <ol>
 <li><code>base</code> - OCPP interfaces and types, utilities, and configurations.</li>
-<li><code>core</code> - Modules handling business logic and data layer.</li>
-<li><code>ocpi-base</code> - OCPI interfaces and types, utilities, and configurations.</li>
+<li><code>dal</code> - The data access layer, such as database repositories and models.</li>
+<li><code>ocpp</code> - Modules handling business logic and data layer.</li>
+<li><code>ocpi</code> - OCPI interfaces and types, utilities, and configurations.</li>
+<li><code>types</code> - Types that are shared amongst all modules.</li>
 </ol>
-<h4 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">#</a></h4>
-<p>We make use of custom decorators that define methods to be used for specific logic use cases.</p>
-<ul>
-<li><code>@AsHandler</code>:Defines a method as an OCPP call handler that listens for specific OCPP messages types from the message broker.</li>
-<li><code>@AsMessageEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that takes in HTTP requests that are sent to a charging station.</li>
-<li><code>@AsDataEndpoint</code>: Defines a method as a Fastify-exposed API endpoint that exposes CRUD functionality for entities defined in the core package.</li>
-</ul>
 <h4 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">#</a></h4>
-<p>Each module is separated into logical groups of the business logic for OCPP functionality. 
-The structure for each module is similar, usually including the following components:</p>
-<ul>
-<li><code>DataApi.ts</code>: Defines API endpoints specific to data-related interactions.</li>
-<li><code>1.6/MessageApi.ts</code>: Defines API endpoints specific to OCPP 1.6 messages.</li>
-<li><code>2/MessageApi.ts</code>: Defines API endpoints specific to OCPP 2.0.1 / 2.1 messages.</li>
-<li><code>module.ts</code>: Holds the <code>@AsHandler</code> decorated methods that handle OCPP messages. Here you will also find the supported call actions listed in an array at the top.</li>
-<li><code>services.ts</code>: Offers the deeper logic for the OCPP functional Blocks and is called by the methods in <code>module.ts</code>.</li>
-</ul>
+<p>Each module is separated into logical groups of the business logic for OCPP functionality.</p>
 <h5 id="certificates">Certificates<a class="headerlink" href="#certificates" title="Permanent link">#</a></h5>
 <p>Handles certificate management, especially relevant for ISO15118. Certificates are also used to maintain websocket and OTA firmware update security.</p>
 <h5 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h5>
@@ -661,12 +662,15 @@ websocket events or specific OCPP messages to be executed in the future.</p>
 <p>Handles tenant-related functionality.</p>
 <h5 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">#</a></h5>
 <p>Handles transaction-related functionality. Example message are <code>TransactionEvent</code> and <code>CostUpdated</code>.</p>
+<h4 id="handlers">Handlers<a class="headerlink" href="#handlers" title="Permanent link">#</a></h4>
+<p>The logic for processing OCPP messages can be found in the individual handlers named after the event they handle. Every
+module registers the set of handlers related to the messages they should be able to handle.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 3, 2026</span>
 </span>
 </aside>
 <form class="md-feedback" hidden="" name="feedback">

@@ -6,19 +6,19 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description"/>
-<link href="https://citrineos.github.io/2.0.x/getting-started/getting-started/" rel="canonical">
-<link href="../prerequisites/" rel="prev"/>
-<link href="../testing-with-everest/" rel="next"/>
-<link href="../../assets/img/favicon.ico" rel="icon"/>
+<link href="https://citrineos.github.io/2.0.x/version-1-to-2/" rel="canonical">
+<link href="../faqs/" rel="prev"/>
+<link href="../getting-started/prerequisites/" rel="next"/>
+<link href="../assets/img/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator"/>
-<title>Getting Started - CitrineOS</title>
-<link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<title>CitrineOS 1.x to 2.x - CitrineOS</title>
+<link href="../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 
-<link href="../../assets/external/fonts.googleapis.com/css.9e07dd4c.css" rel="stylesheet">
+<link href="../assets/external/fonts.googleapis.com/css.9e07dd4c.css" rel="stylesheet">
 <style>:root{--md-text-font:"False";--md-code-font:"Roboto Mono"}</style>
-<link href="../../assets/stylesheets/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-JVZY6NS6JV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-JVZY6NS6JV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-JVZY6NS6JV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
 <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
 </head>
@@ -27,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#installation">
+<a class="md-skip" href="#breaking-changes">
           Skip to content
         </a>
 </div>
@@ -40,8 +40,8 @@
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <!-- Link to home -->
-<a aria-label="CitrineOS" class="md-header__button md-logo" data-md-component="logo" href="../.." title="CitrineOS">
-<img alt="logo" src="../../assets/img/Icon.svg"/>
+<a aria-label="CitrineOS" class="md-header__button md-logo" data-md-component="logo" href=".." title="CitrineOS">
+<img alt="logo" src="../assets/img/Icon.svg"/>
 </a>
 <!-- Button to open drawer -->
 <label class="md-header__button md-icon" for="__drawer">
@@ -58,7 +58,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Getting Started
+              CitrineOS 1.x to 2.x
             
           </span>
 </div>
@@ -130,8 +130,8 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="CitrineOS" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="CitrineOS">
-<img alt="logo" src="../../assets/img/Icon.svg"/>
+<a aria-label="CitrineOS" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CitrineOS">
+<img alt="logo" src="../assets/img/Icon.svg"/>
 </a>
     CitrineOS
   </label>
@@ -147,51 +147,30 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../..">
+<a class="md-nav__link" href="..">
 <span class="md-ellipsis">
     About
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../roadmap/">
+<a class="md-nav__link" href="../roadmap/">
 <span class="md-ellipsis">
     Roadmap
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../references/">
+<a class="md-nav__link" href="../references/">
 <span class="md-ellipsis">
     References
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faqs/">
+<a class="md-nav__link" href="../faqs/">
 <span class="md-ellipsis">
     FAQs (Frequently Asked Questions)
-  </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-<span class="md-ellipsis">
-    Getting Started
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
-<span class="md-nav__icon md-icon"></span>
-            Getting Started
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../prerequisites/">
-<span class="md-ellipsis">
-    Prerequisites
   </span>
 </a>
 </li>
@@ -199,13 +178,13 @@
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
-    Getting Started
+    CitrineOS 1.x to 2.x
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
-    Getting Started
+    CitrineOS 1.x to 2.x
   </span>
 </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
@@ -215,45 +194,128 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
+<a class="md-nav__link" href="#breaking-changes">
 <span class="md-ellipsis">
-      Installation
+      Breaking Changes
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-with-docker">
-<span class="md-ellipsis">
-      Running with Docker
-    </span>
-</a>
-<nav aria-label="Running with Docker" class="md-nav">
+<nav aria-label="Breaking Changes" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#services">
+<a class="md-nav__link" href="#database-station-id-ocpp-connection-name">
 <span class="md-ellipsis">
-      Services
+      [DATABASE] Station ID -&gt; OCPP Connection Name
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#stopping-docker">
+<a class="md-nav__link" href="#database-additional-ocppmessage-columns">
 <span class="md-ellipsis">
-      Stopping Docker
+      [DATABASE] Additional OCPPMessage Columns
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-system-configuration-is-no-longe-persisted">
+<span class="md-ellipsis">
+      [CONFIGURATION] System Configuration is no longe persisted
     </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monorepo">
+<span class="md-ellipsis">
+      Monorepo
+    </span>
+</a>
+<nav aria-label="Monorepo" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#folder-structure">
+<span class="md-ellipsis">
+      Folder Structure
+    </span>
+</a>
+<nav aria-label="Folder Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#types">
+<span class="md-ellipsis">
+      Types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dal">
+<span class="md-ellipsis">
+      DAL
+    </span>
+</a>
+<nav aria-label="DAL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizzle">
+<span class="md-ellipsis">
+      Drizzle
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../testing-with-everest/">
+<a class="md-nav__link" href="#handlers">
 <span class="md-ellipsis">
-    Testing with EVerest
-  </span>
+      Handlers
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#apis">
+<span class="md-ellipsis">
+      APIs
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filenames-in-kebab-case">
+<span class="md-ellipsis">
+      Filenames in Kebab Case
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pnpm">
+<span class="md-ellipsis">
+      PNPM
+    </span>
+</a>
+<nav aria-label="PNPM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-citrineos">
+<span class="md-ellipsis">
+      Running CitrineOS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dependency-injection-via-awilix">
+<span class="md-ellipsis">
+      Dependency Injection (via Awilix)
+    </span>
 </a>
 </li>
 </ul>
@@ -263,20 +325,34 @@
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-ellipsis">
-    Core Concepts
+    Getting Started
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
-            Core Concepts
+            Getting Started
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../core-concepts/architecture/">
+<a class="md-nav__link" href="../getting-started/prerequisites/">
 <span class="md-ellipsis">
-    Architecture
+    Prerequisites
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/running-citrineos/">
+<span class="md-ellipsis">
+    Running CitrineOS
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/testing-with-everest/">
+<span class="md-ellipsis">
+    Testing with EVerest
   </span>
 </a>
 </li>
@@ -287,41 +363,27 @@
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
 <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-ellipsis">
-    Guides
+    Core Concepts
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
-            Guides
+            Core Concepts
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../guides/connecting-a-charger/">
+<a class="md-nav__link" href="../core-concepts/architecture/">
 <span class="md-ellipsis">
-    Connecting a Charger
+    Architecture
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../guides/security-profiles/">
+<a class="md-nav__link" href="../core-concepts/configuration/">
 <span class="md-ellipsis">
-    Security Profiles
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../guides/adding-id-tokens/">
-<span class="md-ellipsis">
-    Adding ID Tokens
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../guides/viewing-ocpp-logs/">
-<span class="md-ellipsis">
-    Viewing OCPP Logs
+    Configuration
   </span>
 </a>
 </li>
@@ -332,25 +394,70 @@
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
 <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
-    APIs
+    Guides
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/connecting-a-charger/">
+<span class="md-ellipsis">
+    Connecting a Charger
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/security-profiles/">
+<span class="md-ellipsis">
+    Security Profiles
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/adding-id-tokens/">
+<span class="md-ellipsis">
+    Adding ID Tokens
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/viewing-ocpp-logs/">
+<span class="md-ellipsis">
+    Viewing OCPP Logs
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+<span class="md-ellipsis">
+    APIs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
             APIs
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../apis/core-api/">
+<a class="md-nav__link" href="../apis/core-api/">
 <span class="md-ellipsis">
     Core REST API
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../apis/ocpi-api/">
+<a class="md-nav__link" href="../apis/ocpi-api/">
 <span class="md-ellipsis">
     OCPI REST API
   </span>
@@ -374,36 +481,129 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
+<a class="md-nav__link" href="#breaking-changes">
 <span class="md-ellipsis">
-      Installation
+      Breaking Changes
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-with-docker">
-<span class="md-ellipsis">
-      Running with Docker
-    </span>
-</a>
-<nav aria-label="Running with Docker" class="md-nav">
+<nav aria-label="Breaking Changes" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#services">
+<a class="md-nav__link" href="#database-station-id-ocpp-connection-name">
 <span class="md-ellipsis">
-      Services
+      [DATABASE] Station ID -&gt; OCPP Connection Name
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#stopping-docker">
+<a class="md-nav__link" href="#database-additional-ocppmessage-columns">
 <span class="md-ellipsis">
-      Stopping Docker
+      [DATABASE] Additional OCPPMessage Columns
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-system-configuration-is-no-longe-persisted">
+<span class="md-ellipsis">
+      [CONFIGURATION] System Configuration is no longe persisted
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monorepo">
+<span class="md-ellipsis">
+      Monorepo
+    </span>
+</a>
+<nav aria-label="Monorepo" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#folder-structure">
+<span class="md-ellipsis">
+      Folder Structure
+    </span>
+</a>
+<nav aria-label="Folder Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#types">
+<span class="md-ellipsis">
+      Types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dal">
+<span class="md-ellipsis">
+      DAL
+    </span>
+</a>
+<nav aria-label="DAL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizzle">
+<span class="md-ellipsis">
+      Drizzle
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#handlers">
+<span class="md-ellipsis">
+      Handlers
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#apis">
+<span class="md-ellipsis">
+      APIs
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filenames-in-kebab-case">
+<span class="md-ellipsis">
+      Filenames in Kebab Case
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pnpm">
+<span class="md-ellipsis">
+      PNPM
+    </span>
+</a>
+<nav aria-label="PNPM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-citrineos">
+<span class="md-ellipsis">
+      Running CitrineOS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dependency-injection-via-awilix">
+<span class="md-ellipsis">
+      Dependency Injection (via Awilix)
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -412,109 +612,115 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Getting Started</h1>
+<h1>CitrineOS 1.x to 2.x</h1>
 <div class="admonition warning">
-<p class="admonition-title">Before continuing, set up the necessary <a href="../prerequisites/">prerequisites</a>.</p>
+<p class="admonition-title">Prior to upgrading to version 2.x, if you have existing data, do not run the Sequelize migrations as they may cause data loss.</p>
+<p>You can turn off the migrations by setting the DB_STRATEGY to "none" in the docker-compose or entrypoint.sh.</p>
 </div>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p><strong>1. Clone the <code>citrineos/core</code> repository onto your local machine:</strong></p>
-<pre><code>git clone https://github.com/citrineos/citrineos-core
+<h2 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">#</a></h2>
+<h3 id="database-station-id-ocpp-connection-name">[DATABASE] Station ID -&gt; OCPP Connection Name<a class="headerlink" href="#database-station-id-ocpp-connection-name" title="Permanent link">#</a></h3>
+<p>Charging Station "human-readable" identifiers are now stored in the <code>ocppConnectionName</code> column, while the <code>id</code> column
+became the dedicated database serial integer identifier. As a result, every related entity to Charging Stations had to
+be updated so that their <code>stationId</code> references the Charging Station's <code>id</code> integer column, rather than the
+<code>ocppConnectionName</code> string column. All related indexes were also updated to reflect this change.</p>
+<p>If you have skipped the migration due to existing data, as warned above, you will need to ensure that all tables
+referencing <code>stationId</code> as the Charging Station's string value <code>ocppConnectionName</code> are updated to reference the proper
+Charging Station <code>id</code> serial integer column.</p>
+<p>You can find an example of how to craft the necessary SQL in the migration file <code>apps/ocpp-server/migrations/20260427000000-rename-charging-station-columns.ts</code>.</p>
+<p>Note that if you are on version 1.9.x, you can follow the example of the migration above, as it runs against the
+<code>stationPkId</code> column. If you are on a version prior to 1.9.x, the column to migrate will be <code>stationId</code>.</p>
+<h3 id="database-additional-ocppmessage-columns">[DATABASE] Additional OCPPMessage Columns<a class="headerlink" href="#database-additional-ocppmessage-columns" title="Permanent link">#</a></h3>
+<p>This is not a breaking change if you're not reliant on a particular OCPPMessage structure. OCPPMessage deprecated the
+<code>state</code> and <code>message</code> columns in favor of <code>type</code>, <code>payload</code>, and <code>raw</code>. <code>state</code> was replaced by <code>type</code> because the latter
+stores the actual OCPP Message Type. <code>message</code> was replaced by <code>payload</code> (the parsed payload) and <code>raw</code> (the raw OCPP
+message received).</p>
+<h3 id="configuration-system-configuration-is-no-longe-persisted">[CONFIGURATION] System Configuration is no longe persisted<a class="headerlink" href="#configuration-system-configuration-is-no-longe-persisted" title="Permanent link">#</a></h3>
+<p>Configurations for CitrineOS used to come from three places: </p>
+<ol>
+<li>the <code>SystemConfig</code> in src/config/envs/{local,docker}.ts (selected by APP_ENV)</li>
+<li>A persisted config.json in file storage</li>
+<li>BOOTSTRAP_CITRINEOS_<em> / CITRINEOS_</em> env vars</li>
+</ol>
+<p>In 2.x configurations are now determined via non-persisted environment variables, represented by the Zod schema in 
+<code>packages/types/src/config/types.ts</code>. Therefore, your old config.json settings will not be picked up; you will have 
+to port them to environment variables manually. Additionally, websocket configurations were moved into their own file
+called <code>websocket-servers.json</code>.</p>
+<p>In general, this is how you migrate to the new environment variables if you already had an old environment:</p>
+<ol>
+<li>Delete your persisted config.json. The Zod schema defaults are the old local-dev values.</li>
+<li>Rename your environment variables. Use one underscore per level, not per word, drop the BOOTSTRAP_ prefix, and always 
+   prefix with CITRINEOS_. For example, <code>timeouts.maxCallLengthSeconds</code> becomes <code>CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS</code>. 
+   Unknown vars now log a warning at startup instead of silently doing nothing.</li>
+<li>Move util.networkConnection.websocketServers into websocket-servers.json. The field names are the same, but
+   the validation is stricter: id/host/port/protocols/securityProfile required, unique ids, exactly one of tenantId or 
+   dynamicTenantResolution.</li>
+<li><code>util</code> and <code>modules</code> configs were flattened. Everything moves up a level and is keyed by what it configures, not 
+   which module reads it (<code>modules.transactions.costUpdatedInterval</code> becomes <code>transactions.costUpdatedInterval</code>). 
+   The three per-protocol boot blocks collapse into one shared ocpp block — so 1.6 and 2.0.1 chargers can no longer be 
+   booted differently via config.</li>
+<li>Per-module OCPP action lists, per-module host/port, modules.tenant.ocppRouterBaseUrl, and ocpiServer (OCPI is its own app)
+   were all completely removed as configs.</li>
+</ol>
+<p>For more information on the changes and how to migrate, go over to the main repository: https://github.com/citrineos/citrineos-core#migrating-from-the-old-configuration</p>
+<h2 id="monorepo">Monorepo<a class="headerlink" href="#monorepo" title="Permanent link">#</a></h2>
+<p>The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo containing the following modules:</p>
+<ol>
+<li>Core (OCPP)</li>
+<li>OCPI
+3Operator UI</li>
+</ol>
+<h3 id="folder-structure">Folder Structure<a class="headerlink" href="#folder-structure" title="Permanent link">#</a></h3>
+<pre><code>1.x                                    2.x
+-------------------------------        -------------------------------
+|-- 00_Base/                           |-- packages/
+|-- 01_Data/                           |   |-- base/                [NEW] 00_Base
+|-- 02_Util/                           |   |-- dal/                 [NEW] 01_Data, data access layer
+|-- 03_Modules/                        |   |-- ocpi/                [NEW] previously in citrineos-ocpi
+|-- Server/                            |   |-- ocpp/                [NEW] combination of 02_Util and 03_Modules
+|-- migrations/                        |   |-- types/               [NEW] split out of base
+|-- db.sync.ts                         |-- apps/
+|-- db.force-sync.ts                   |   |-- mock-msp/            [NEW]
+|-- entrypoint.sh                      |   |-- ocpi-server/         [NEW] previously in citrineos-ocpi
+|-- .sequelizerc                       |   |-- ocpp-server/         [NEW] previously Server
+|-- package-lock.json                  |   |-- operator-ui/         [NEW] previously in citrineos-operator-ui
+                                       |-- scripts/                 [NEW]
+                                       |-- docker-compose.yml       [NEW]
+                                       |-- docker-compose.local.yml [NEW]
+                                       |-- pnpm-workspace.yaml      
+                                       |-- pnpm-lock.yaml
 </code></pre>
-<p><strong>2. Install all workspace dependencies from the root directory:</strong></p>
-<pre><code>pnpm install
-</code></pre>
-<p><strong>3. Build all packages from the root directory:</strong></p>
-<pre><code>pnpm build
-</code></pre>
-<h2 id="running-with-docker">Running with Docker<a class="headerlink" href="#running-with-docker" title="Permanent link">#</a></h2>
-<p>In the repository root, you can execute one of the following commands to spin up a complete CitrineOS environment in Docker:</p>
-<pre><code>pnpm citrine            # ocpp-server + operator UI from published ghcr.io images
-pnpm citrine --local    # ocpp-server + operator UI from local source instead of pulling
-pnpm citrine --solo     # ocpp-server only (no operator UI)
-</code></pre>
-<p>If you want to run OCPI with the remaining stack:</p>
-<pre><code>pnpm citrine --ocpi     # also run the OCPI server from published ghcr.io images
-</code></pre>
-<p>Note the flags combine freely:</p>
-<pre><code>pnpm citrine --local --ocpi
-</code></pre>
-<p>Once running, quickly verify the connection to the server by using <code>wscat</code> to send an <code>BootNotification</code>:</p>
-<pre><code>wscat -c ws://localhost:8081/{STATION_ID} -x '[
-  2,
-  "15106be4-57ca-11ee-8c99-0242ac120003",
-  "BootNotification",
-  {
-    "reason": "PowerUp",
-    "chargingStation": {
-      "model": "SingleSocketCharger",
-      "vendorName": "VendorX"
-    }
-  }
-]'
-</code></pre>
-<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">#</a></h3>
-<p>More information can be found <a href="https://github.com/citrineos/citrineos-core#information-on-docker-setup">here</a>. You can access the following services at the specified URLs:</p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>URL</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>OCPP HTTP Server</strong></td>
-<td><a href="http://localhost:8080">http://localhost:8080</a></td>
-<td>See <a href="http://localhost:8080/docs">localhost:8080/docs</a> for full details.</td>
-</tr>
-<tr>
-<td><strong>OCPP WebSocket Server (Unsecured)</strong></td>
-<td><a href="ws://localhost:8081">ws://localhost:8081</a></td>
-<td>OCPP WebSocket Server running security profile 0. Supports all protocols (1.6, 2.0.1, 2.1).</td>
-</tr>
-<tr>
-<td><strong>OCPP WebSocket Server (Secured)</strong></td>
-<td><a href="wss://localhost:8082">wss://localhost:8082</a></td>
-<td>OCPP 2.0.1 WebSocket Server running security profile 1. Supports all protocols (1.6, 2.0.1, 2.1).</td>
-</tr>
-<tr>
-<td><strong>Postgres Database</strong></td>
-<td><a href="postgressql://citrine:citrine@localhost:5432">postgressql://citrine:citrine@localhost:5432</a></td>
-<td><a href="https://www.postgresql.org">Postgres Database</a> pre-seeded with OCPP schemas. The database is named <code>citrine</code>. <b>Please note:</b> Docker compose automaitcally enables Postgis in Postgres which is required.</td>
-</tr>
-<tr>
-<td><strong>GraphQL Engine</strong></td>
-<td><a href="http:///localhost:8090">http://localhost:8090</a></td>
-<td>The Hasura GraphQL engine to support GraphQL operations against the database. You can view the console at <a href="http://localhost:8090/console">http://localhost:8090/console</a>.</td>
-</tr>
-<tr>
-<td><strong>RabbitMQ</strong></td>
-<td><a href="amqp://guest:guest@localhost:5672">amqp://guest:guest@localhost:5672</a></td>
-<td><a href="http://rabbitmq.com">RabbitMQ</a> message bus.</td>
-</tr>
-<tr>
-<td><strong>Operator UI</strong></td>
-<td><a href="http://localhost:3000">http://localhost:3000</a></td>
-<td>Web-based Operator interface for CitrineOS.</td>
-</tr>
-<tr>
-<td><strong>OCPI HTTP Server</strong></td>
-<td><a href="http://localhost:8085">http://localhost:8085</a></td>
-<td>See <a href="http://localhost:8085/docs">localhost:8085/docs</a> for full details (if the <code>--ocpi</code> flag was used).</td>
-</tr>
-</tbody>
-</table>
-<h3 id="stopping-docker">Stopping Docker<a class="headerlink" href="#stopping-docker" title="Permanent link">#</a></h3>
-<p>If you want to take down the containers:</p>
-<pre><code>pnpm citrine down       # stop the stack (pass the same flags you started it with)
-</code></pre>
+<h4 id="types">Types<a class="headerlink" href="#types" title="Permanent link">#</a></h4>
+<p>OCPP message models were moved to a standalone package <code>types</code> so consumers can depend on the schemas without pulling in <code>base</code>.</p>
+<h4 id="dal">DAL<a class="headerlink" href="#dal" title="Permanent link">#</a></h4>
+<p>Data access layer-related classes (such as Sequelize repository and models) were moved to a standalone package <code>dal</code>
+so the data access layer can be imported without pulling in <code>base</code> or <code>core</code>.</p>
+<h5 id="drizzle">Drizzle<a class="headerlink" href="#drizzle" title="Permanent link">#</a></h5>
+<p>CitrineOS is migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
+the release of version 2.0.0, so you can track the progress in <code>packages/ocpp/src/dal/layers/drizzle</code>. If you want
+to try the already-migrated repositories, you can enable it by setting <code>CITRINEOS_USE_DRIZZLE</code> to "true".</p>
+<h4 id="handlers">Handlers<a class="headerlink" href="#handlers" title="Permanent link">#</a></h4>
+<p>All module handlers decorated with <code>@AsHandler</code> were moved out of their respective <code>module.ts</code> files and separated into
+their own handlers decorated with <code>@AsRequestHandler</code> or <code>@AsResponseHandler</code>, organized by protocol and request/response
+type. You can find the handlers in <code>packages/ocpp/src/handlers</code>.</p>
+<h4 id="apis">APIs<a class="headerlink" href="#apis" title="Permanent link">#</a></h4>
+<p>All Data APIs annotated with <code>@AsDataEndpoint</code> were moved into their own module <code>Api</code> and endpoints declared into their
+own files, organized by protocol and module. You can find the new module in <code>packages/ocpp/src/apis</code>.</p>
+<h3 id="filenames-in-kebab-case">Filenames in Kebab Case<a class="headerlink" href="#filenames-in-kebab-case" title="Permanent link">#</a></h3>
+<p>Any filenames that were created and not necessary for a library's config were renamed to be in kebab case. This means
+filenames-now-look-like-this.</p>
+<h2 id="pnpm">PNPM<a class="headerlink" href="#pnpm" title="Permanent link">#</a></h2>
+<p>CitrineOS now uses <code>pnpm</code>, so any commands that you currently run should be prefixed with <code>pnpm</code>.</p>
+<h3 id="running-citrineos">Running CitrineOS<a class="headerlink" href="#running-citrineos" title="Permanent link">#</a></h3>
+<p>The command <code>pnpm citrine</code> was added to make it easier to run CitrineOS. You can check what flags are available using 
+<code>pnpm citrine --help</code></p>
+<h2 id="dependency-injection-via-awilix">Dependency Injection (via Awilix)<a class="headerlink" href="#dependency-injection-via-awilix" title="Permanent link">#</a></h2>
+<p>To support testability and module organization, CitrineOS now uses <code>Awilix</code> for dependency injection.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 3, 2026</span>
 </span>
 </aside>
 <form class="md-feedback" hidden="" name="feedback">
@@ -544,7 +750,7 @@ pnpm citrine --solo     # ocpp-server only (no operator UI)
               
                 
               
-              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+Getting%20Started+-+/getting-started/getting-started/" rel="noopener" target="_blank">a new issue</a>.
+              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+CitrineOS%201.x%20to%202.x+-+/version-1-to-2/" rel="noopener" target="_blank">a new issue</a>.
             </div>
 </div>
 </div>
@@ -619,8 +825,8 @@ pnpm citrine --solo     # ocpp-server only (no operator UI)
 </aside>
 </div>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "toc.follow", "navigation.top", "search.suggest", "navigation.expand", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
-<script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "toc.follow", "navigation.top", "search.suggest", "navigation.expand", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);

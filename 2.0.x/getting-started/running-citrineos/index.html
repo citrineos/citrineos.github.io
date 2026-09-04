@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description"/>
-<link href="https://citrineos.github.io/2.0.x/guides/viewing-ocpp-logs/" rel="canonical">
-<link href="../adding-id-tokens/" rel="prev"/>
-<link href="../../apis/core-api/" rel="next"/>
+<link href="https://citrineos.github.io/2.0.x/getting-started/running-citrineos/" rel="canonical">
+<link href="../prerequisites/" rel="prev"/>
+<link href="../testing-with-everest/" rel="next"/>
 <link href="../../assets/img/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator"/>
-<title>Viewing OCPP Logs - CitrineOS</title>
+<title>Running CitrineOS - CitrineOS</title>
 <link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 
@@ -27,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#via-application-logs">
+<a class="md-skip" href="#installation">
           Skip to content
         </a>
 </div>
@@ -58,7 +58,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Viewing OCPP Logs
+              Running CitrineOS
             
           </span>
 </div>
@@ -181,36 +181,83 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-ellipsis">
     Getting Started
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             Getting Started
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../getting-started/prerequisites/">
+<a class="md-nav__link" href="../prerequisites/">
 <span class="md-ellipsis">
     Prerequisites
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../getting-started/running-citrineos/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Running CitrineOS
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Running CitrineOS
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installation">
+<span class="md-ellipsis">
+      Installation
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../getting-started/testing-with-everest/">
+<a class="md-nav__link" href="#running-with-docker">
+<span class="md-ellipsis">
+      Running with Docker
+    </span>
+</a>
+<nav aria-label="Running with Docker" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#services">
+<span class="md-ellipsis">
+      Services
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stopping-docker">
+<span class="md-ellipsis">
+      Stopping Docker
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../testing-with-everest/">
 <span class="md-ellipsis">
     Testing with EVerest
   </span>
@@ -250,76 +297,47 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_8" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
 <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
     Guides
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
             Guides
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../connecting-a-charger/">
+<a class="md-nav__link" href="../../guides/connecting-a-charger/">
 <span class="md-ellipsis">
     Connecting a Charger
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../security-profiles/">
+<a class="md-nav__link" href="../../guides/security-profiles/">
 <span class="md-ellipsis">
     Security Profiles
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../adding-id-tokens/">
+<a class="md-nav__link" href="../../guides/adding-id-tokens/">
 <span class="md-ellipsis">
     Adding ID Tokens
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Viewing OCPP Logs
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../guides/viewing-ocpp-logs/">
 <span class="md-ellipsis">
     Viewing OCPP Logs
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#via-application-logs">
-<span class="md-ellipsis">
-      Via Application Logs
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#via-subscription">
-<span class="md-ellipsis">
-      Via Subscription
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -370,18 +388,36 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#via-application-logs">
+<a class="md-nav__link" href="#installation">
 <span class="md-ellipsis">
-      Via Application Logs
+      Installation
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#via-subscription">
+<a class="md-nav__link" href="#running-with-docker">
 <span class="md-ellipsis">
-      Via Subscription
+      Running with Docker
     </span>
 </a>
+<nav aria-label="Running with Docker" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#services">
+<span class="md-ellipsis">
+      Services
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stopping-docker">
+<span class="md-ellipsis">
+      Stopping Docker
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -390,50 +426,114 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Viewing OCPP Logs</h1>
-<h2 id="via-application-logs">Via Application Logs<a class="headerlink" href="#via-application-logs" title="Permanent link">#</a></h2>
-<p>You can view application logs either via Docker or the console of wherever CitrineOS was started from.</p>
-<p>Below is an example of an OCPP log as found in the console:</p>
-<pre><code>2026-07-15 19:19:24.993 DEBUG /packages/ocpp/dist/src/util/queue/rabbit-mq/sender.js:85 CitrineOS Logger:RabbitMqSender Publishing to citrineos: {
-  origin: 'cs',
-  eventGroup: 'router',
-  action: 'StatusNotification',
-  context: {
-    ocppConnectionName: 'cp001',
-    correlationId: 'af5e40d8-211a-4ba7-92c6-99fe36b8596e',
-    tenantId: 1,
-    timestamp: '2026-07-15T19:19:24.993Z'
-  },
-  state: 1,
-  protocol: 'ocpp2.1',
-  payload: {
-    connectorId: 1,
-    connectorStatus: 'Available',
-    evseId: 2,
-    timestamp: '2026-07-15T19:19:24.796Z'
-  }
-}
+<h1>Running CitrineOS</h1>
+<div class="admonition warning">
+<p class="admonition-title">Before continuing, set up the necessary <a href="../prerequisites/">prerequisites</a>.</p>
+</div>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
+<p><strong>1. Clone the <code>citrineos-core</code> repository onto your local machine:</strong></p>
+<pre><code>git clone https://github.com/citrineos/citrineos-core
 </code></pre>
-<h2 id="via-subscription">Via Subscription<a class="headerlink" href="#via-subscription" title="Permanent link">#</a></h2>
-<p>You can use CitrineOS's Data API to subscribe to OCPP messages. Below is the <code>cURL</code> command that will subscribe the 
-specified URL to all OCPP messages and connection events for charger <code>cp001</code>:</p>
-<pre><code>curl --request POST 'localhost:8080/data/ocpprouter/subscription' \
---header 'Content-Type: application/json' \
---data '{
-  "ocppConnectionName": "cp001",
-  "onConnect": true,
-  "onClose": true,
-  "onMessage": true,
-  "sentMessage": true,
-  "url": "&lt;the url that will receive the messages&gt;"
-}'
+<p><strong>2. Install all workspace dependencies from the root directory:</strong></p>
+<pre><code>pnpm install
+</code></pre>
+<p><strong>3. Build all packages from the root directory:</strong></p>
+<pre><code>pnpm build
+</code></pre>
+<h2 id="running-with-docker">Running with Docker<a class="headerlink" href="#running-with-docker" title="Permanent link">#</a></h2>
+<p>In the repository root, you can execute one of the following commands to spin up a complete CitrineOS environment in Docker:</p>
+<pre><code>pnpm citrine            # ocpp-server + operator UI from published ghcr.io images
+pnpm citrine --local    # ocpp-server + operator UI from local source instead of pulling
+pnpm citrine --solo     # ocpp-server only (no operator UI)
+</code></pre>
+<p>If you want to run OCPI with the remaining stack:</p>
+<pre><code>pnpm citrine --ocpi     # also run the OCPI server from published ghcr.io images
+</code></pre>
+<p>Note the flags combine freely:</p>
+<pre><code>pnpm citrine --local --ocpi
+</code></pre>
+<p>Once running, quickly verify the connection to the server by using <code>wscat</code> to send an <code>BootNotification</code> by doing the
+following:</p>
+<p>Connect to the server:</p>
+<pre><code>wscat -c ws://localhost:8081/{STATION_ID} -s ocpp2.0.1
+</code></pre>
+<p>Enter the following <code>BootNotification</code>:</p>
+<pre><code>[2, "15106be4-57ca-11ee-8c99-0242ac120003", "BootNotification", {"reason": "PowerUp", "chargingStation": {"model": "SingleSocketCharger", "vendorName": "VendorX"}}]
+</code></pre>
+<p>You should receive a response indicating the boot was accepted, which confirms the app is working:</p>
+<pre><code>[
+    3,
+    "15106be4-57ca-11ee-8c99-0242ac120003",
+    {
+        "currentTime": "2023-10-18T12:00:00.000Z",
+        "interval": 60,
+        "status": "Accepted"
+    }
+]
+</code></pre>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">#</a></h3>
+<p>More information can be found <a href="https://github.com/citrineos/citrineos-core#information-on-docker-setup">here</a>. You can access the following services at the specified URLs:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OCPP HTTP Server</strong></td>
+<td><a href="http://localhost:8080">http://localhost:8080</a></td>
+<td>See <a href="http://localhost:8080/docs">localhost:8080/docs</a> for full details.</td>
+</tr>
+<tr>
+<td><strong>OCPP WebSocket Server (Unsecured)</strong></td>
+<td><a href="ws://localhost:8081">ws://localhost:8081</a></td>
+<td>OCPP WebSocket Server running security profile 0. Supports all protocols (1.6, 2.0.1, 2.1).</td>
+</tr>
+<tr>
+<td><strong>OCPP WebSocket Server (Secured)</strong></td>
+<td><a href="wss://localhost:8082">wss://localhost:8082</a></td>
+<td>OCPP 2.0.1 WebSocket Server running security profile 1. Supports all protocols (1.6, 2.0.1, 2.1).</td>
+</tr>
+<tr>
+<td><strong>Postgres Database</strong></td>
+<td><a href="postgressql://citrine:citrine@localhost:5432">postgressql://citrine:citrine@localhost:5432</a></td>
+<td><a href="https://www.postgresql.org">Postgres Database</a> pre-seeded with OCPP schemas. The database is named <code>citrine</code>. <b>Please note:</b> Docker compose automaitcally enables Postgis in Postgres which is required.</td>
+</tr>
+<tr>
+<td><strong>GraphQL Engine</strong></td>
+<td><a href="http:///localhost:8090">http://localhost:8090</a></td>
+<td>The Hasura GraphQL engine to support GraphQL operations against the database. You can view the console at <a href="http://localhost:8090/console">http://localhost:8090/console</a>.</td>
+</tr>
+<tr>
+<td><strong>RabbitMQ</strong></td>
+<td><a href="amqp://guest:guest@localhost:5672">amqp://guest:guest@localhost:5672</a></td>
+<td><a href="http://rabbitmq.com">RabbitMQ</a> message bus.</td>
+</tr>
+<tr>
+<td><strong>Operator UI</strong></td>
+<td><a href="http://localhost:3000">http://localhost:3000</a></td>
+<td>Web-based Operator interface for CitrineOS.</td>
+</tr>
+<tr>
+<td><strong>OCPI HTTP Server</strong></td>
+<td><a href="http://localhost:8085">http://localhost:8085</a></td>
+<td>See <a href="http://localhost:8085/docs">localhost:8085/docs</a> for full details (if the <code>--ocpi</code> flag was used).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stopping-docker">Stopping Docker<a class="headerlink" href="#stopping-docker" title="Permanent link">#</a></h3>
+<p>If you want to take down the containers:</p>
+<pre><code>pnpm citrine down       # stop the stack (pass the same flags you started it with)
 </code></pre>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 3, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 24, 2026</span>
 </span>
 </aside>
 <form class="md-feedback" hidden="" name="feedback">
@@ -463,7 +563,7 @@ specified URL to all OCPP messages and connection events for charger <code>cp001
               
                 
               
-              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+Viewing%20OCPP%20Logs+-+/guides/viewing-ocpp-logs/" rel="noopener" target="_blank">a new issue</a>.
+              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+Running%20CitrineOS+-+/getting-started/running-citrineos/" rel="noopener" target="_blank">a new issue</a>.
             </div>
 </div>
 </div>

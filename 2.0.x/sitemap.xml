@@ -17,6 +17,10 @@
          <lastmod>2026-09-04</lastmod>
     </url>
     <url>
+         <loc>https://citrineos.github.io/2.0.x/version-1-to-2/</loc>
+         <lastmod>2026-09-04</lastmod>
+    </url>
+    <url>
          <loc>https://citrineos.github.io/2.0.x/apis/core-api/</loc>
          <lastmod>2026-09-04</lastmod>
     </url>
@@ -37,15 +41,15 @@
          <lastmod>2026-09-04</lastmod>
     </url>
     <url>
-         <loc>https://citrineos.github.io/2.0.x/getting-started/getting-started/</loc>
-         <lastmod>2026-09-04</lastmod>
-    </url>
-    <url>
          <loc>https://citrineos.github.io/2.0.x/getting-started/making-changes/</loc>
          <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://citrineos.github.io/2.0.x/getting-started/prerequisites/</loc>
+         <lastmod>2026-09-04</lastmod>
+    </url>
+    <url>
+         <loc>https://citrineos.github.io/2.0.x/getting-started/running-citrineos/</loc>
          <lastmod>2026-09-04</lastmod>
     </url>
     <url>
