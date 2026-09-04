@@ -2,158 +2,271 @@
 title: Configuration
 ---
 
-# Configuring CitrineOS
+# Introduction
+CitrineOS uses environment variables represented by the Zod schema in `packages/types/src/config/types.ts`
+to define its behavior. This document describes the structure of this object, how to access and modify it, and 
+provides low-level details about each available configuration.
 
-## Introduction
-### Purpose
-CitrineOS uses a configuration object, defined in the code as SystemConfig, to define its behavior. This document describes the structure of this object, how to access and modify it, and the meaning of each key-value pair.
+## Scope
+The configuration object controls the information needed for the specific technologies that fill a role in the application (
+database, queue, cache, etc.) as well as optional OCPP features and certain values which can be different from network 
+to network (heartbeat interval, message timeout, etc.).
 
-### Scope
-The configuration object controls the host and port of all servers in the application as well as optional OCPP features and certain values which can be different from network to network (heartbeat interval, message timeout, etc). Where specific technologies can fill a role in CitrineOS, such as RabbitMQ for the message broker, the configuration object contains the information needed for those technologies.
+# Websocket Servers
 
-### Audience
-This is a low-level document for engineers interested in learning more about how to use CitrineOS.
+Setting up websocket servers doesn't happen from environment variables, but rather through the `websocket-servers.json`
+file. You may change what file CitrineOS reads websocket servers from by setting `CITRINEOS_WEBSOCKETSERVERCONFIGFILE`.
 
-## Configuration Overview
+## Websocket Server Configurations
 
-### Configuration Management
-By default, CitrineOS uses a typescript file to store system configuration, such as the files in [Server/src/config](https://github.com/citrineos/citrineos-core/tree/main/Server/src/config).
+| Field | Type | Required | Default | What it does                                                                                                                                                                                                            |
+| --- | --- | --- | --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id` | string | Yes | — | Identifies this server. Must be unique across the array; used as the key for the server's certificate manager and stored on the `ServerNetworkProfile` row.                                                             |
+| `host` | string | Yes | — | Bind address for this websocket listener.                                                                                                                                                                               |
+| `port` | integer >= 1 | Yes | — | Port for this listener. Each entry is its own HTTP/HTTPS server, so ports must not collide.                                                                                                                             |
+| `protocols` | array of `ocpp1.6` / `ocpp2.0.1` / `ocpp2.1` | Yes | — | The OCPP subprotocols this listener will negotiate. A station offering none of them is rejected at upgrade.                                                                                                             |
+| `securityProfile` | integer 0–3 | Yes | — | OCPP security profile. 0 = plain ws, no auth; 1 = ws + HTTP Basic; 2 = TLS + Basic; 3 = mTLS (client cert). Drives whether an `http` or `https` server is created, and whether client certs are requested and verified. |
+| `tenantId` | positive integer | One of | — | Pins the whole listener to a single tenant. Mutually exclusive with `dynamicTenantResolution` — exactly one must be set.                                                                                                |
+| `dynamicTenantResolution` | boolean | One of | `false` | Resolves the tenant per connection from the request path segment, matched against `Tenant.tenantWebsocketServerPath`, instead of pinning one tenant to the listener.                                                    |
+| `pingInterval` | integer >= 1 | No | `60` | Seconds between websocket pings (jitter applied on the first). Also sets the connection's cache TTL at `pingInterval × 3`, so it doubles as the liveness timeout.                                                       |
+| `allowUnknownChargingStations` | boolean | No | `false` | Lets a station with no matching DB row connect and be provisioned ad hoc. Development and testing only — **do not use in production!!**                                                                                 |
+| `ignoreAuthenticationHeaders` | boolean | No | `false` | Skips the HTTP Basic auth filter that security profiles 1 and 2 would otherwise enforce. An escape hatch for stations that cannot send credentials; it removes the authentication the profile implies.                  |
+| `forceProtocol` | `ocpp1.6` / `ocpp2.0.1` / `ocpp2.1` | No | — | Pins negotiation to one version instead of picking from the station's offered list. If the station or this server does not support it, the upgrade fails with an explicit error.                                        |
+| `tlsKeyFilePath` | string | Profiles 2, 3 | — | Server private key.                                                                                                                                                                                                     |
+| `tlsCertificateChainFilePath` | string | Profiles 2, 3 | — | Server certificate chain, served via SNI for any profile above 1.                                                                                                                                                       |
+| `mtlsCertificateAuthorityKeyFilePath` | string | Profile 3 | — | CA key for mTLS client-certificate handling.                                                                                                                                                                            |
+| `rootCACertificateFilePath` | string | No | — | Root CA used as the TLS `ca` bundle to verify client certificates. Only read when `securityProfile > 2`.                                                                                                                |
 
-Environment variables can also be used. They will override the fields in the typescript file when the application starts up. Prefix the variables with 'CITRINEOS', then separate each component of the path to the variable in camel case. Example: CITRINEOS_DATA_SEQUELIZE_USERNAME will override systemConfig.data.sequelize.username with its value.
+# Environment Variables
 
-Each module also supports GET and PUT for systemConfig in order to change it while CitrineOS is running. Not all values currently support being changed after application start-up. For example, adding a websocket server to the list after start-up does not currently create a new websocket server.
+You won't need to set anything if you are happy with the default values found in the Zod schema `packages/types/src/config/types.ts`.
+Otherwise, follow the sections below to learn how to set the values you need.
 
----
+## Setting values
 
-# System Configuration
+To set an environment variable, prefix it with CITRINEOS_ and append the path to the field, uppercased, with one 
+underscore per level, not per word. A camelCase field name stays one segment:
 
-- Env: The environment setting (e.g., development, production).
-- Log Level: The verbosity level of the logging.
-- Max Call Length Seconds: Maximum duration in seconds for a call.
-- Max Caching Seconds: Maximum duration in seconds for caching data.
+    logLevel                        →  CITRINEOS_LOGLEVEL
+    database.host                   →  CITRINEOS_DATABASE_HOST
+    timeouts.maxCallLengthSeconds   →  CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS
+    fileAccess.local.defaultFilePath →  CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH
 
-## Central System
-- Host: The hostname for the central system.
-- Port: The port number for the central system.
+Matching is case-insensitive. Values are parsed as JSON when possible and used as a raw string otherwise, so numbers and 
+booleans need no special handling, and an empty object switches a whole optional block on with its defaults:
 
-## Modules
+    CITRINEOS_LOGLEVEL: '1'
+    CITRINEOS_OCPP_AUTOACCEPT: 'false'
+    CITRINEOS_INTEGRATIONS_V2GCA: '{}' # opt in to the Hubject test PKI
 
-### Certificates
-- Endpoint Prefix: The URL prefix for certificate endpoints.
-- Host: The host where the certificate services are running.
-- Port: The port number for accessing certificate services.
+## Top level
 
-### Configuration
-- Heartbeat Interval: The interval in seconds for sending heartbeat messages.
-- Boot Retry Interval: Time interval in seconds before retrying a failed boot process.
-- Unknown Charger Status: Default status for chargers not recognized by the system.
-- Get Base Report On Pending: Boolean flag to get a base report if the status is pending.
-- Boot With Rejected Variables: Boolean flag to attempt booting with rejected variables.
-- Auto Accept: Automatically accept configurations if this is set.
-- Endpoint Prefix: The endpoint URL prefix for configuration modules.
-- Host: Hostname for the configuration service.
-- Port: Port number for the configuration service.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_ENV` | `development` \| `production` | `development` | Runtime mode; affects log formatting. |
+| `CITRINEOS_HOST` | string | `0.0.0.0` | HTTP bind address for the server. |
+| `CITRINEOS_PORT` | integer > 0 | `8080` | HTTP port for the server. |
+| `CITRINEOS_LOGLEVEL` | integer 0–6 | `2` | Log verbosity; `2` is debug. |
+| `CITRINEOS_WEBSOCKETSERVERCONFIGFILE` | string | `websocket-servers.json` | Path (relative to the `fileAccess` root) of the JSON file listing the websocket servers this instance hosts. |
 
-### EVDriver
-- Endpoint Prefix: The endpoint prefix for EV driver communications.
-- Host: The host where the EV driver module is running.
-- Port: The port for EV driver communications.
+## `DATABASE`
 
-### Monitoring
-- Endpoint Prefix: The endpoint prefix for monitoring services.
-- Host: The hostname for the monitoring service.
-- Port: The port number for monitoring services.
+The `DATABASE` block is optional — every field has a default, so an unset database still resolves to a local Postgres.
 
-### Reporting
-- Endpoint Prefix: The endpoint prefix used for reporting services.
-- Host: The hostname for the reporting service.
-- Port: The port number for reporting services.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_DATABASE_HOST` | string | `localhost` | Database host. |
+| `CITRINEOS_DATABASE_PORT` | integer > 0 | `5432` | Database port. |
+| `CITRINEOS_DATABASE_DATABASE` | string | `citrine` | Database name. Note the doubled segment — the field is `database.database`. |
+| `CITRINEOS_DATABASE_DIALECT` | string | `postgres` | Sequelize dialect. |
+| `CITRINEOS_DATABASE_USERNAME` | string | `citrine` | Database user. |
+| `CITRINEOS_DATABASE_PASSWORD` | string | `citrine` | Database password. |
+| `CITRINEOS_DATABASE_SYNC` | boolean | `false` | Sync models to the schema on boot. |
+| `CITRINEOS_DATABASE_ALTER` | boolean | `false` | Alter existing tables to match models when syncing. |
+| `CITRINEOS_DATABASE_FORCE` | boolean | `false` | Drop and recreate tables when syncing. Destructive. |
+| `CITRINEOS_DATABASE_MAXRETRIES` | integer > 0 | `3` | Connection attempts before giving up at startup. |
+| `CITRINEOS_DATABASE_RETRYDELAY` | integer > 0 | `1000` | Milliseconds between connection attempts. |
 
-### SmartCharging
-- Endpoint Prefix: The endpoint prefix for smart charging services.
-- Host: The hostname for smart charging services.
-- Port: The port number for smart charging services.
+### `DATABASE_POOL` — optional
 
-### Transactions
-- Endpoint Prefix: The endpoint prefix for transaction services.
-- Host: The hostname for transaction services.
-- Port: The port number for transaction services.
-- Cost Updated Interval: The interval in seconds for updating the cost information.
-- Send Cost Updated On Meter Value: Whether to send cost updates with meter readings.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_DATABASE_POOL_MAX` | integer > 0 | unset | Maximum pooled connections. |
+| `CITRINEOS_DATABASE_POOL_MIN` | integer >= 0 | unset | Minimum pooled connections held open. |
+| `CITRINEOS_DATABASE_POOL_ACQUIRE` | integer > 0 | unset | Milliseconds to wait for a connection before erroring. |
+| `CITRINEOS_DATABASE_POOL_IDLE` | integer > 0 | unset | Milliseconds a connection may sit idle before release. |
 
-## Data
+### `DATABASE_SSL` — optional
 
-### Sequelize
-- Host: The hostname for the Sequelize database.
-- Port: The port number for the Sequelize database.
-- Database: The name of the database used.
-- Dialect: The type of SQL dialect used (e.g., PostgreSQL, MySQL).
-- Username: The username of the account CitrineOS will use to access the database.
-- Password: The password of the account CitrineOS will use to access the database.
-- Storage: The storage option for Sequelize.
-- Sync: Whether to synchronize the database schema automatically.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_DATABASE_SSL_REQUIRE` | boolean | unset | Require a TLS connection to the database. |
+| `CITRINEOS_DATABASE_SSL_REJECTUNAUTHORIZED` | boolean | unset | Verify the server certificate. Set `false` only for self-signed setups. |
+| `CITRINEOS_DATABASE_SSL_CA` | string | unset | CA certificate used to verify the database server. |
 
-## Util
+## `CACHE`
 
-### Cache
-- Memory: Whether in-memory caching is used.
-#### Redis
-- Host: The hostname for the Redis server.
-- Port: The port number for the Redis server.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_CACHE_TYPE` | `memory` \| `redis` | `memory` | Cache backend. `memory` is per-process, so multi-instance deployments want `redis`. |
+| `CITRINEOS_CACHE_URL` | string | — | Required when type is `redis`. Must start with `redis://` or `rediss://`. |
 
-### Message Broker
+## `MESSAGEBROKER_AMQP`
 
-#### Pubsub
-- Topic Prefix: The prefix for topics in Pub/Sub messaging.
-- Topic Name: The name of the topic that CitrineOS will use.
-- Service Path: Path of the Google Pub/Sub instance. 
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_MESSAGEBROKER_AMQP_URL` | string | `amqp://guest:guest@localhost:5672` | AMQP connection URL. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_EXCHANGE` | string | `citrineos` | Exchange modules publish to and subscribe from. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_INSTANCEIDENTIFIER` | string | unset | Identifies this instance on the broker; useful when several instances share an exchange. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_MAXRECONNECTDELAYSECONDS` | integer >= 1 | `30` | Ceiling on the reconnect backoff. |
 
-#### Kafka
-- Topic Prefix: The prefix for topics.
-- Topic Name: The name of the topic that CitrineOS will use.
-- Brokers: A list of Kafka brokers.
-- SASL:
-  - Mechanism: The SASL mechanism used for authentication.
-  - Username: The username for SASL authentication.
-  - Password: The password for SASL authentication.
+## `FILEACCESS`
 
-#### AMQP
-- URL: The URL for accessing AMQP services.
-- Exchange: The exchange used in AMQP messaging.
+Storage the server reads its runtime files through — the websocket servers file, TLS material, the ACME account key, RBAC rules. 
 
-### Swagger
-- Path: The URL path for accessing Swagger documentation.
-- Logo Path: The path to the logo used in Swagger documentation.
-- Expose Data: Whether to expose data in Swagger documentation.
-- Expose Message: Whether to expose messaging in Swagger documentation.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_FILEACCESS_TYPE` | `local` \| `s3` \| `gcp` | `local` | Selects the storage backend. |
 
-### Network Connection
+### When `FILEACCESS_TYPE` is `local`
 
-#### Websocket Servers
-- Id: Unique identifier for the WebSocket server.
-- Host: The hostname for the WebSocket server.
-- Port: The port number for the WebSocket server.
-- Ping Interval: The interval in seconds between pings to keep the connection alive.
-- Protocol: The communication protocol used.
-- Security Profile: The security profile level.
-- Allow Unknown Charging Stations: Whether to allow connections from unknown charging stations.
-- Tls Key File Path: File path to the public key used for tls.
-- Tls Certificate Chain File Path: File path to the server certificate chain for tls.
-- mTls Certificate Authority Key File Path: File path to the CA public key for mtls.
-- Root CA Certificate File Path: File path to the CA root certificate for mtls.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH` | string | `src/assets` from the block default (`data` if you set `local` yourself without it) | Root directory, resolved from the **process working directory** — which differs between pnpm (`apps/ocpp-server`) and Docker (repo root). |
 
-### Certificate Authority
+### When `FILEACCESS_TYPE` is `s3`
 
-#### V2G CA
-- Name: The name of the V2G certificate authority.
-##### Hubject
-- Base URL: The base URL for the Hubject V2G services.
-- Token URL: The URL for obtaining a token from Hubject.
-- ISO Version: The ISO standard version supported by Hubject.
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_FILEACCESS_S3_REGION` | string | unset | AWS region. |
+| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL, e.g. for MinIO. |
+| `CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME` | string | `citrineos-s3-bucket` | Bucket used when a key carries no bucket of its own. |
+| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by MinIO and most S3-compatible servers. |
+| `CITRINEOS_FILEACCESS_S3_ACCESSKEYID` | string | unset | Access key. The AWS SDK's own `AWS_*` variables also work. |
+| `CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY` | string | unset | Secret key. |
 
-#### Charging Station CA
-- Name: The name of the charging station certificate authority.
-##### Acme
-- Env: The environment setting for Acme services (e.g., staging, production).
-- Account Key File Path: The file path for the account key.
-- Email: The contact email associated with the CA.
+### When `FILEACCESS_TYPE` is `gcp`
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_FILEACCESS_GCP_PROJECTID` | string | — | Required. GCP project ID. |
+| `CITRINEOS_FILEACCESS_GCP_DEFAULTBUCKETNAME` | string | `citrineos-s3-bucket` | Bucket name. |
+| `CITRINEOS_FILEACCESS_GCP_CREDENTIALS` | JSON object | unset | Service account credentials inline. If unset, Application Default Credentials are used. |
+
+## `AUTH`
+
+Guards the HTTP API. At least one of `oidc` or `localBypass` must be active; the block defaults to `localBypass: true` for local development.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_AUTH_LOCALBYPASS` | boolean | `true` (from the block default) | Skips authentication entirely. Development only. |
+| `CITRINEOS_AUTH_OIDC_JWKSURI` | string | — | Required within the `oidc` block. Where the signing keys are fetched from. |
+| `CITRINEOS_AUTH_OIDC_ISSUER` | string | — | Required. Expected `iss` claim. |
+| `CITRINEOS_AUTH_OIDC_AUDIENCE` | string | — | Required. Expected `aud` claim. |
+| `CITRINEOS_AUTH_OIDC_CACHETIMESECONDS` | integer >= 1 | unset | How long fetched JWKS keys are cached. |
+| `CITRINEOS_AUTH_OIDC_RATELIMIT` | boolean | `true` | Rate-limits JWKS fetches. |
+
+## `OIDCCLIENT` — optional
+
+Credentials the server uses as an OIDC *client* when calling out. All four are required if the block is set.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_OIDCCLIENT_TOKENURL` | string | — | Token endpoint. |
+| `CITRINEOS_OIDCCLIENT_CLIENTID` | string | — | Client ID. |
+| `CITRINEOS_OIDCCLIENT_CLIENTSECRET` | string | — | Client secret. |
+| `CITRINEOS_OIDCCLIENT_AUDIENCE` | string | — | Audience requested in the token. |
+
+## `INTEGRATIONS`
+
+Both CAs are opt-in and off by default, but zero-config once enabled — `'{}'` is enough to accept every default.
+
+### `INTEGRATIONS_V2GCA`
+
+For Plug & Charge PKI.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_INTEGRATIONS_V2GCA` | JSON object | unset | Set to `'{}'` to enable with the Hubject test PKI. |
+| `CITRINEOS_INTEGRATIONS_V2GCA_NAME` | `hubject` | `hubject` | Provider. Hubject is the only implementation. |
+| `CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_BASEURL` | string | Hubject test base URL | API base URL. |
+| `CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_TOKENURL` | string | Hubject test token URL | Where the bearer token is obtained. |
+| `CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTID` | string | `YOUR_CLIENT_ID` | Client ID — the default is a placeholder, so real use requires setting it. |
+| `CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTSECRET` | string | `YOUR_CLIENT_SECRET` | Client secret — likewise a placeholder. |
+
+### `INTEGRATIONS_CHARGINGSTATIONCA`
+
+For station certificates via ACME.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA` | JSON object | unset | Set to `'{}'` to enable ACME against the Let's Encrypt staging directory. |
+| `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_NAME` | `acme` | `acme` | Provider. ACME is the only implementation. |
+| `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ENV` | `staging` \| `production` | `staging` | Which ACME directory to use. `staging` issues untrusted certs but has generous rate limits. |
+| `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH` | string | `certificates/acme_account_key.pem` | ACME account key, resolved against the `fileAccess` root. |
+| `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL` | string (email) | `test@citrineos.com` | Contact address registered with the ACME account. |
+
+## `RBAC` — optional
+
+Set `CITRINEOS_RBAC='{}'` to enable with defaults.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_RBAC_RULESDIR` | string | unset | Directory holding the rules file. |
+| `CITRINEOS_RBAC_RULESFILENAME` | string | `rbac-rules.json` | Rules file mapping tenant → URL pattern → HTTP method → required roles. |
+
+## `SWAGGER`
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_SWAGGER_ENABLED` | boolean | `true` | Serves the API docs. Set `false` in production if you do not want them exposed. |
+| `CITRINEOS_SWAGGER_PATH` | string | `/docs` | Mount path for the docs UI. |
+| `CITRINEOS_SWAGGER_LOGOPATH` | string | `src/assets/logo.png` | Logo shown in the docs. Resolved from the process working directory, **not** from `fileAccess`. |
+| `CITRINEOS_SWAGGER_EXPOSEDATA` | boolean | `true` | Includes response data schemas in the docs. |
+| `CITRINEOS_SWAGGER_EXPOSEMESSAGE` | boolean | `true` | Includes message schemas in the docs. |
+
+## `TIMEOUTS`
+
+`TIMEOUTS_MAXCACHINGSECONDS` must be greater than or equal to `TIMEOUTS_MAXCALLLENGTHSECONDS`, or startup fails.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS` | integer >= 1 | `20` | How long an OCPP call may remain outstanding before it is considered timed out. |
+| `CITRINEOS_TIMEOUTS_MAXCACHINGSECONDS` | integer >= 1 | `30` | How long call state is cached. Cannot be lower than `maxCallLengthSeconds`. |
+| `CITRINEOS_TIMEOUTS_STALECALLMAXAGESECONDS` | integer >= 1 | unset | Age past which a pending call is discarded as stale. |
+| `CITRINEOS_TIMEOUTS_SHUTDOWNGRACEPERIODSECONDS` | integer >= 1 | `30` | How long shutdown waits for in-flight work before forcing exit. |
+| `CITRINEOS_TIMEOUTS_REALTIMEAUTHDEFAULTTIMEOUTSECONDS` | integer >= 1 | `15` | How long a real-time authorization request waits for a decision. |
+| `CITRINEOS_TIMEOUTS_NOTREADYTHRESHOLDSECONDS` | integer >= 1 | `60` | How long the instance may be unhealthy before it reports not-ready. |
+
+## `OCPP`
+
+These apply to every OCPP version — there is no per-protocol split.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_OCPP_HEARTBEATINTERVAL` | integer >= 1 | `60` | Heartbeat interval in seconds sent to stations on boot. |
+| `CITRINEOS_OCPP_BOOTRETRYINTERVAL` | integer >= 1 | `15` | Retry interval in seconds sent when a boot is Pending or Rejected. |
+| `CITRINEOS_OCPP_UNKNOWNCHARGERSTATUS` | `Accepted` \| `Pending` \| `Rejected` | `Accepted` | Boot status returned to a station with no `BootConfig` row. |
+| `CITRINEOS_OCPP_GETBASEREPORTONPENDING` | boolean | `true` | Requests a base report from stations left in Pending. |
+| `CITRINEOS_OCPP_BOOTWITHREJECTEDVARIABLES` | boolean | `false` | Allows a boot to proceed even when some variables were rejected. |
+| `CITRINEOS_OCPP_AUTOACCEPT` | boolean | `true` | Promotes boot status automatically. When `false`, a station stays where it is until something changes it explicitly. |
+
+## `TRANSACTIONS`
+
+Exactly one of `TRANSACTIONS_COSTUPDATEDINTERVAL` or `TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE` must be set — setting both, 
+or neither, fails startup.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_TRANSACTIONS_COSTUPDATEDINTERVAL` | integer >= 1 | `60` (from the block default) | Sends a cost update on a fixed interval, in seconds. |
+| `CITRINEOS_TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE` | boolean | unset | Sends a cost update on each meter value instead of on an interval. |
+| `CITRINEOS_TRANSACTIONS_RECEIPTBASEURL` | string (URL) | unset | Base URL used to build receipt links for completed transactions. |
+| `CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_PUBLICKEYFILEID` | string | — | Required within the block. File ID of the public key used to verify signed meter values. |
+| `CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_SIGNINGMETHOD` | `RSASSA-PKCS1-v1_5` \| `ECDSA` \| `SECP192R1` | — | Required within the block. Signature algorithm to verify against. |
+| `CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_REJECTUNSUPPORTEDSIGNEDMETERVALUES` | boolean | `false` | Rejects signed meter values that do not match the configured method rather than accepting them unverified. |
+
+## `EVDRIVER`
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_EVDRIVER_ENABLEGETCHARGINGPROFILESONSTARTTRANSACTION` | boolean | `false` | Requests the station's charging profiles when a transaction starts. |

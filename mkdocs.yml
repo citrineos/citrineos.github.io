@@ -4,13 +4,14 @@ nav:
   - roadmap.md
   - references.md
   - faqs.md
+  - version-1-to-2.md
   - Getting Started:
       - getting-started/prerequisites.md
-      - getting-started/getting-started.md
+      - getting-started/running-citrineos.md
       - getting-started/testing-with-everest.md
   - Core Concepts:
       - core-concepts/architecture.md
-# TODO once system config is refactored     - core-concepts/configuration.md
+      - core-concepts/configuration.md
 # TODO once folder restructure is finished     - core-concepts/data-model.md
   - Guides:
       - guides/connecting-a-charger.md

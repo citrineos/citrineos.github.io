@@ -8,7 +8,7 @@ You can view application logs either via Docker or the console of wherever Citri
 
 Below is an example of an OCPP log as found in the console:
 
-    2026-07-15 19:19:24.993	DEBUG /packages/core/dist/src/util/queue/rabbit-mq/sender.js:85	CitrineOS Logger:RabbitMqSender	Publishing to citrineos: {
+    2026-07-15 19:19:24.993	DEBUG /packages/ocpp/dist/src/util/queue/rabbit-mq/sender.js:85	CitrineOS Logger:RabbitMqSender	Publishing to citrineos: {
       origin: 'cs',
       eventGroup: 'router',
       action: 'StatusNotification',
