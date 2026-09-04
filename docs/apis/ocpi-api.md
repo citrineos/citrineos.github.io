@@ -12,4 +12,4 @@ Authorization: Token <your-Base64-encoded-token>
 ```
 
 # API
-<swagger-ui src="/assets/ocpi-swagger.json"/>
+<swagger-ui src="../../assets/ocpi-swagger.json"/>

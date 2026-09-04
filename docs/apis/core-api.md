@@ -30,4 +30,4 @@ Authorization: Bearer <your-token>
 ```
 
 # API
-<swagger-ui src="/assets/core-swagger.json"/>
+<swagger-ui src="../../assets/core-swagger.json"/>
