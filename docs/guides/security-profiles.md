@@ -88,7 +88,7 @@ Ensure that CitrineOS is running and your charger is currently connected to Citr
 config (its `id` in `config.json`). Passing it more than once (e.g.
 `serverId=2&serverId=3`) regenerates the same chain for multiple servers at once. This is recommended if you plan to test security profile 3 as well:
 
-    curl --location 'http://localhost:8080/data/ocpprouter/certificateChain?tenant=1&serverId=2&serverId=3' \
+    curl --location 'http://localhost:8080/ocpprouter/certificateChain?tenant=1&serverId=2&serverId=3' \
         --header 'Authorization: Bearer <your token, can be dummy if local>' \
         --header 'Content-Type: application/json' \
         --data '{
