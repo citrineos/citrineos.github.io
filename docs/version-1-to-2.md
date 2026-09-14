@@ -37,7 +37,7 @@ message received).
 
 Configurations for CitrineOS used to come from three places: 
 
-1. the `SystemConfig` in src/config/envs/{local,docker}.ts (selected by APP_ENV)
+1. The `SystemConfig` in src/config/envs/{local,docker}.ts (selected by APP_ENV)
 2. A persisted config.json in file storage
 3. BOOTSTRAP_CITRINEOS_* / CITRINEOS_* env vars
 
@@ -62,7 +62,20 @@ In general, this is how you migrate to the new environment variables if you alre
 5. Per-module OCPP action lists, per-module host/port, modules.tenant.ocppRouterBaseUrl, and ocpiServer (OCPI is its own app)
    were all completely removed as configs.
 
-For more information on the changes and how to migrate, go over to the main repository: https://github.com/citrineos/citrineos-core#migrating-from-the-old-configuration
+For more information on the changes and help on migrating your configuration, go over to the main repository: https://github.com/citrineos/citrineos-core#migrating-from-the-old-configuration
+
+# PNPM
+
+CitrineOS now uses `pnpm`, so any commands that you currently run should be prefixed with `pnpm`.
+
+## Running CitrineOS
+
+The command `pnpm citrine` was added to make it easier to run CitrineOS. You can check what flags are available using
+``pnpm citrine --help``
+
+# Dependency Injection (via Awilix)
+
+To support testability and module organization, CitrineOS now uses `Awilix` for dependency injection.
 
 # Monorepo
 
@@ -70,7 +83,7 @@ The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo conta
 
 1. Core (OCPP)
 2. OCPI
-3Operator UI
+3. Operator UI
 
 ## Folder Structure
 
@@ -93,9 +106,6 @@ The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo conta
                                            |-- pnpm-workspace.yaml      
                                            |-- pnpm-lock.yaml
 
-### Types
-
-OCPP message models were moved to a standalone package `types` so consumers can depend on the schemas without pulling in `base`.
 
 ### DAL
 Data access layer-related classes (such as Sequelize repository and models) were moved to a standalone package `dal`
@@ -106,6 +116,16 @@ so the data access layer can be imported without pulling in `base` or `core`.
 CitrineOS is migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
 the release of version 2.0.0, so you can track the progress in `packages/ocpp/src/dal/layers/drizzle`. If you want
 to try the already-migrated repositories, you can enable it by setting `CITRINEOS_USE_DRIZZLE` to "true".
+
+### Types
+
+OCPP message models were moved to a standalone package `types` so consumers can depend on the schemas without pulling in `base`.
+
+### OCPI
+
+OCPI-related modules, handlers, APIs and transports were all moved to the dedicated `ocpi` folder. It should no longer
+rely on the `ocpp` folder and instead uses the `base`, `dal` , and `types` dependencies for whatever it shares with
+the other modules.
 
 ### Handlers
 
@@ -123,15 +143,7 @@ own files, organized by protocol and module. You can find the new module in `pac
 Any filenames that were created and not necessary for a library's config were renamed to be in kebab case. This means
 filenames-now-look-like-this.
 
-# PNPM
+## OCPP Router sends to Messages Module
 
-CitrineOS now uses `pnpm`, so any commands that you currently run should be prefixed with `pnpm`.
-
-## Running CitrineOS
-
-The command `pnpm citrine` was added to make it easier to run CitrineOS. You can check what flags are available using 
-``pnpm citrine --help``
-
-# Dependency Injection (via Awilix)
-
-To support testability and module organization, CitrineOS now uses `Awilix` for dependency injection.
+To offload some of the business logic out of the "hot path" of the router, a new module called "Messages" was created to 
+handle such logic. You can read more about its purpose and architecture [here](https://github.com/citrineos/citrineos-core/blob/main/packages/ocpp/src/modules/messages/README.md).
