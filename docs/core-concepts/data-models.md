@@ -350,12 +350,12 @@ erDiagram
 
 # Pure OCPP 1.6 vs 2.x models
 
-#### **1.6-only** 
+## **1.6-only** 
 - `ChangeConfiguration`
 - `Connector`
 - `StartTransaction`
 - `StopTransaction`
-#### **2.x-only** 
+## **2.x-only** 
 - `ChargingNeeds`
 - `Component`
 - `EventData`
@@ -372,8 +372,8 @@ erDiagram
 - `VariableCharacteristics`
 - `VariableMonitoring`
 - `VariableMonitoringStatus`
-- `VariableStatus`.
-#### **Shared** 
+- `VariableStatus`
+## **Shared** 
 - `Authorization`
 - `Boot`
 - `ChargingProfile`
@@ -383,4 +383,4 @@ erDiagram
 - `OCPPMessage`
 - `Reservation`
 - `StatusNotification`
-- `Transaction`.
+- `Transaction`

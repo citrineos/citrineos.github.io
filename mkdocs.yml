@@ -99,6 +99,12 @@ plugins:
 # Load Mermaid.js manually for compatibility
 extra_javascript:
   - assets/javascripts/mermaid.min.js
+  # Re-render mermaid diagrams and re-apply the zoom lightbox on every
+  # navigation.instant page swap (see file for why this is needed).
+  - assets/javascripts/mermaid-instant-nav.js
+  # Re-apply glightbox's privacy-mode href fix-up on every navigation.instant
+  # page swap (see file for why this is needed).
+  - assets/javascripts/glightbox-instant-nav.js
 
 markdown_extensions:
   - toc:
