@@ -12,7 +12,7 @@ nav:
   - Core Concepts:
       - core-concepts/architecture.md
       - core-concepts/configuration.md
-# TODO once folder restructure is finished     - core-concepts/data-model.md
+      - core-concepts/data-models.md
   - Guides:
       - guides/connecting-a-charger.md
       - guides/security-profiles.md
