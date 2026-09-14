@@ -86,6 +86,9 @@ The `DATABASE` block is optional — every field has a default, so an unset data
 | `CITRINEOS_DATABASE_FORCE` | boolean | `false` | Drop and recreate tables when syncing. Destructive. |
 | `CITRINEOS_DATABASE_MAXRETRIES` | integer > 0 | `3` | Connection attempts before giving up at startup. |
 | `CITRINEOS_DATABASE_RETRYDELAY` | integer > 0 | `1000` | Milliseconds between connection attempts. |
+| `CITRINEOS_SCHEMA` | string | `public` | The database schema, defaults to public. |
+| `CITRINEOS_VALIDATESCHEMA` | boolean | `true` | If true, verifies at startup that the schema in the code and the database match.  |
+| `CITRINEOS_VALIDATESCHEMASEVERITY` | `error` \| `warn` | `error` | If `error`, will block the application from running upon schema validation if there are differences. If `warn`, will not stop startup. |
 
 ### `DATABASE_POOL` — optional
 
