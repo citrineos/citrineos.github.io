@@ -93,8 +93,13 @@ plugins:
   - git-revision-date-localized # add created date to page
   - swagger-ui-tag:
       supportedSubmitMethods: []
-#  - minify:
-#      minify_html: true
+  - glightbox
+  - mermaid-zoom
+
+# Load Mermaid.js manually for compatibility
+extra_javascript:
+  - assets/javascripts/mermaid.min.js
+
 markdown_extensions:
   - toc:
       permalink: "#"
@@ -106,7 +111,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - attr_list
   - md_in_html
 
