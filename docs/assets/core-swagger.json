@@ -3,7 +3,7 @@
   "info": {
     "title": "CitrineOS Central System API",
     "description": "Central System API for OCPP 2.0.1 messaging.",
-    "version": "2.0.0-beta3"
+    "version": "2.0.0"
   },
   "components": {
     "securitySchemes": {
@@ -4475,52 +4475,6 @@
         ],
         "title": "ocpp2.1-SetChargingProfileRequest"
       },
-      "ocpp2.0.1-ClearedChargingLimitRequest": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "customData": {
-            "$ref": "#/components/schemas/CustomDataType"
-          },
-          "chargingLimitSource": {
-            "$ref": "#/components/schemas/ChargingLimitSourceEnumType"
-          },
-          "evseId": {
-            "description": "EVSE Identifier.\r\n",
-            "type": "integer",
-            "minimum": -2147483648,
-            "maximum": 2147483647
-          }
-        },
-        "required": [
-          "chargingLimitSource"
-        ],
-        "title": "ocpp2.0.1-ClearedChargingLimitRequest"
-      },
-      "ocpp2.1-ClearedChargingLimitRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "chargingLimitSource": {
-            "description": "Source of the charging limit. Allowed values defined in Appendix as ChargingLimitSourceEnumStringType.\r\n",
-            "type": "string",
-            "maxLength": 20
-          },
-          "evseId": {
-            "description": "EVSE Identifier.\r\n",
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2147483647
-          },
-          "customData": {
-            "$ref": "#/components/schemas/CustomDataType"
-          }
-        },
-        "required": [
-          "chargingLimitSource"
-        ],
-        "title": "ocpp2.1-ClearedChargingLimitRequest"
-      },
       "ocpp2.0.1-GetCompositeScheduleRequest": {
         "type": "object",
         "additionalProperties": true,
@@ -6406,18 +6360,6 @@
             "required": false
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Default Response"
-          }
-        },
-        "tags": [
-          "Commands"
-        ]
-      }
-    },
-    "/commands/test": {
-      "post": {
         "responses": {
           "200": {
             "description": "Default Response"
@@ -12508,138 +12450,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ocpp2.1-SetChargingProfileRequest"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              ]
-            },
-            "in": "query",
-            "name": "identifier",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "number",
-              "default": 1
-            },
-            "in": "query",
-            "name": "tenantId",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "callbackUrl",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageConfirmationSchemaArray"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Smartcharging"
-        ]
-      }
-    },
-    "/ocpp/2.0.1/smartcharging/clearedChargingLimit": {
-      "post": {
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ocpp2.0.1-ClearedChargingLimitRequest"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              ]
-            },
-            "in": "query",
-            "name": "identifier",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "number",
-              "default": 1
-            },
-            "in": "query",
-            "name": "tenantId",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "callbackUrl",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageConfirmationSchemaArray"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Smartcharging"
-        ]
-      }
-    },
-    "/ocpp/2.1/smartcharging/clearedChargingLimit": {
-      "post": {
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ocpp2.1-ClearedChargingLimitRequest"
               }
             }
           }
