@@ -94,7 +94,7 @@ and check the `Get Base Report On Pending` option. This will cause the next boot
 that has status `Pending`, then CitrineOS will send a `GetBaseReportRequest`, triggering a series of `NotifyReportRequest` messages. 
 After the full report has been sent, the next attempted boot by the charger will be `Accepted`.
 
-The `Boot` table has CRUD endpoints via REST API, of which the docs can be found [here](/apis/core-api) or running locally at [http://localhost:8080/docs](http://localhost:8080/docs).
+The `Boot` table has CRUD endpoints via REST API, of which the docs can be found [here](../../apis/core-api) or running locally at [http://localhost:8080/docs](http://localhost:8080/docs).
 Here is an example request for charger `cp001`:
 
     curl --location --request PUT 'http://localhost:8080/data/configuration/boot?ocppConnectionName=cp001&tenantId=1' \

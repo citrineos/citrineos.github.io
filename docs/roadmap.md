@@ -7,25 +7,17 @@ title: Roadmap
 - **Version**: 2.0.0
 - **Highlights**: Monorepo encompassing Core OCPP logic, Operator UI, and OCPI.
 
----
-
 # Next Release
 
 TBD.
 
----
-
 # Future Plans
 Full OCPP 2.1 support, OCPI 3.0 support, OpenADR support - CitrineOS as a Virtual End Node
 
+# Contributing
 
----
-
-# Contribution
-
-We're always looking for contributors to help us improve **CitrineOS**. If you're interested, please check out our [CONTRIBUTING.md](https://github.com/citrineos/citrineos/blob/main/CONTRIBUTING.md) guide for more details.
-
----
+We welcome contributions from developers and enthusiasts who share our passion for clean energy and sustainable transportation
+and are looking to help us improve **CitrineOS**. If you're interested, please refer to our [contribution guidelines](https://github.com/citrineos/citrineos/blob/main/CONTRIBUTING.md).
 
 # Feedback and Suggestions
 
