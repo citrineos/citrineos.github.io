@@ -209,6 +209,12 @@ For station certificates via ACME.
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH` | string | `certificates/acme_account_key.pem` | ACME account key, resolved against the `fileAccess` root. |
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL` | string (email) | `test@citrineos.com` | Contact address registered with the ACME account. |
 
+### `INTEGRATIONS_OCSP`
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_INTEGRATIONS_OCSP_ALLOWRESPONDERHOSTS` | array of string | unset | Hosts the CSMS is permitted to reach for OCSP. Empty means no restriction. |
+
 ## `RBAC` — optional
 
 Set `CITRINEOS_RBAC='{}'` to enable with defaults.
