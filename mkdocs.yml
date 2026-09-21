@@ -8,6 +8,7 @@ nav:
   - Getting Started:
       - getting-started/prerequisites.md
       - getting-started/running-citrineos.md
+      - getting-started/running-ocpi.md
       - getting-started/testing-with-everest.md
   - Core Concepts:
       - core-concepts/architecture.md
