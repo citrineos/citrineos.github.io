@@ -142,9 +142,9 @@ Storage the server reads its runtime files through — the websocket servers fil
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `CITRINEOS_FILEACCESS_S3_REGION` | string | unset | AWS region. |
-| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL, e.g. for MinIO. |
+| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL. |
 | `CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME` | string | `citrineos-s3-bucket` | Bucket used when a key carries no bucket of its own. |
-| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by MinIO and most S3-compatible servers. |
+| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by most S3-compatible servers. |
 | `CITRINEOS_FILEACCESS_S3_ACCESSKEYID` | string | unset | Access key. The AWS SDK's own `AWS_*` variables also work. |
 | `CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY` | string | unset | Secret key. |
 
@@ -208,6 +208,12 @@ For station certificates via ACME.
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ENV` | `staging` \| `production` | `staging` | Which ACME directory to use. `staging` issues untrusted certs but has generous rate limits. |
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH` | string | `certificates/acme_account_key.pem` | ACME account key, resolved against the `fileAccess` root. |
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL` | string (email) | `test@citrineos.com` | Contact address registered with the ACME account. |
+
+### `INTEGRATIONS_OCSP`
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_INTEGRATIONS_OCSP_ALLOWRESPONDERHOSTS` | array of string | unset | Hosts the CSMS is permitted to reach for OCSP. Empty means no restriction. |
 
 ## `RBAC` — optional
 

@@ -24,7 +24,7 @@ Below is a diagram to introduce you to Citrine's high-level architecture:
        ┌─────┴─────────┐                    ┌─────────────┐            │
        ▼               ▼                    │ File Storage│            ▼
     ┌─────────────┐ ┌─────────────┐         │ (S3 / GCS / │      ┌─────────────┐
-    │ Message     │ │ PostgreSQL  │         │  MinIO)     │      │ PostgreSQL  │
+    │ Message     │ │ PostgreSQL  │         │  local)     │      │ PostgreSQL  │
     │ Broker      │ │ (PostGIS)   │         └─────────────┘      │ (PostGIS)   │
     │ (RabbitMQ)  │ │ Persistence │                              │ (same DB)   │
     └─────────────┘ └─────────────┘                              └─────────────┘
