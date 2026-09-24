@@ -142,9 +142,9 @@ Storage the server reads its runtime files through — the websocket servers fil
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `CITRINEOS_FILEACCESS_S3_REGION` | string | unset | AWS region. |
-| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL, e.g. for MinIO. |
+| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL. |
 | `CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME` | string | `citrineos-s3-bucket` | Bucket used when a key carries no bucket of its own. |
-| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by MinIO and most S3-compatible servers. |
+| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by most S3-compatible servers. |
 | `CITRINEOS_FILEACCESS_S3_ACCESSKEYID` | string | unset | Access key. The AWS SDK's own `AWS_*` variables also work. |
 | `CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY` | string | unset | Secret key. |
 
