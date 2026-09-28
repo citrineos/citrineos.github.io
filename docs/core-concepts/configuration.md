@@ -130,9 +130,9 @@ To configure each respective RabbitMQ implementation's prefetch count.
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_ROUTER` | integer >= 0 | 100 | OCPP Router's RabbitMQ prefetch count. |
-| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULE` | integer >= 0 | 10 | CitrineOS Module's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULE` | integer >= 0 | 10 | CitrineOS Modules' RabbitMQ prefetch count. |
 | `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGES` | integer >= 0 | 50 | Messages Module's RabbitMQ prefetch count. |
-| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGESDEADLETTER` | integer >= 0 | 10 | Messages Module's Dead Letter Exchange's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGESDEADLETTER` | integer >= 0 | 10 | Messages Module's Dead Letter's RabbitMQ prefetch count. |
 
 ## `FILEACCESS`
 
