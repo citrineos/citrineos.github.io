@@ -123,6 +123,17 @@ The `DATABASE` block is optional — every field has a default, so an unset data
 | `CITRINEOS_MESSAGEBROKER_AMQP_INSTANCEIDENTIFIER` | string | unset | Identifies this instance on the broker; useful when several instances share an exchange. |
 | `CITRINEOS_MESSAGEBROKER_AMQP_MAXRECONNECTDELAYSECONDS` | integer >= 1 | `30` | Ceiling on the reconnect backoff. |
 
+### `MESSAGEBROKER_AMQP_PREFETCH`
+
+To configure each respective RabbitMQ implementation's prefetch count.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_ROUTER` | integer >= 0 | 100 | OCPP Router's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULE` | integer >= 0 | 10 | CitrineOS Module's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGES` | integer >= 0 | 50 | Messages Module's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGESDEADLETTER` | integer >= 0 | 10 | Messages Module's Dead Letter Exchange's RabbitMQ prefetch count. |
+
 ## `FILEACCESS`
 
 Storage the server reads its runtime files through — the websocket servers file, TLS material, the ACME account key, RBAC rules. 
