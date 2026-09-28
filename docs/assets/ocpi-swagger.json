@@ -6957,12 +6957,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "X-Request-ID",
             "required": true,
             "schema": {}
@@ -7010,12 +7004,6 @@
       "get": {
         "operationId": "VersionsModuleApi.getVersionDetails",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "X-Request-ID",
@@ -7073,12 +7061,6 @@
       "get": {
         "operationId": "ChargingProfilesModuleApi.getActiveChargingProfile",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -7181,12 +7163,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -7277,12 +7253,6 @@
       "put": {
         "operationId": "ChargingProfilesModuleApi.updateChargingProfile",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -7381,12 +7351,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -7478,12 +7442,6 @@
       "get": {
         "operationId": "SessionsModuleApi.getSessions",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -7579,12 +7537,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -7676,12 +7628,6 @@
       "get": {
         "operationId": "TokensModuleApi.getTokens",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -7811,12 +7757,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -7942,12 +7882,6 @@
       "patch": {
         "operationId": "TokensModuleApi.patchToken",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -8104,12 +8038,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "X-Request-ID",
             "required": true,
             "schema": {}
@@ -8179,12 +8107,6 @@
       "post": {
         "operationId": "CredentialsModuleApi.postCredentials",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "X-Request-ID",
@@ -8268,12 +8190,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "X-Request-ID",
             "required": true,
             "schema": {}
@@ -8353,12 +8269,6 @@
       "delete": {
         "operationId": "CredentialsModuleApi.deleteCredentials",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "X-Request-ID",
@@ -8691,12 +8601,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -8942,12 +8846,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -9127,12 +9025,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "in": "header",
             "name": "OCPI-from-country-code",
             "required": true,
             "schema": {}
@@ -9224,12 +9116,6 @@
       "get": {
         "operationId": "LocationsModuleApi.getLocationById",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -9372,12 +9258,6 @@
       "get": {
         "operationId": "LocationsModuleApi.getEvseById",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
@@ -9531,12 +9411,6 @@
       "get": {
         "operationId": "LocationsModuleApi.getConnectorById",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {}
-          },
           {
             "in": "header",
             "name": "OCPI-from-country-code",
