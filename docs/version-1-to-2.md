@@ -77,6 +77,127 @@ This is not a breaking change if you haven't made changes to the OCPP Router. To
 of the "hot path" of the router, a new module called "Messages" was created to handle such logic. You can read more about 
 its purpose and architecture [here](https://github.com/citrineos/citrineos-core/blob/main/packages/ocpp/src/modules/messages/README.md).
 
+## [API] Endpoint Paths
+
+All Data APIs annotated with `@AsDataEndpoint` were moved into their own module `Api` and endpoints declared into their
+own files, organized by protocol and module. You can find the new module in `packages/ocpp/src/apis`. If you rely on
+specific API paths, see below:
+
+/// details |  Data / Command Endpoints
+    type: info
+
+In 1.x, these were `@AsDataEndpoint` routes under `/data/<module>/<namespace>`. In 2.x, they're registered in `packages/ocpp/src/apis/register.ts` under `/commands`, `/ocpprouter`, `/permissions`, `/dev` or `/evdriver`.
+
+| 1.x | 2.x | Status |
+|---|---|---|
+| `PUT /data/configuration/boot` | `PUT /commands/bootConfig` | Moved |
+| `GET /data/configuration/boot` | `GET /commands/bootConfig` | Moved |
+| `DELETE /data/configuration/boot` | `DELETE /commands/bootConfig` | Moved |
+| `POST /data/configuration/password` | `POST /commands/setStationPassword` | Moved |
+| `GET /data/configuration/serverNetworkProfile` | `GET /commands/stationNetworkProfile` | Moved |
+| `DELETE /data/configuration/serverNetworkProfile` | `DELETE /commands/stationNetworkProfile` | Moved |
+| `GET /data/evdriver/localListVersion` | `GET /commands/localListVersion` | Moved |
+| `PUT /data/monitoring/variableAttribute` | `PUT /commands/provisionStationVariables` | Moved |
+| `GET /data/monitoring/variableAttribute` | `GET /commands/stationVariables` | Moved |
+| `DELETE /data/monitoring/variableAttribute` | `DELETE /commands/stationVariables` | Moved |
+| `GET /data/transactions/transaction` | `GET /commands/transaction` | Moved |
+| `PUT /data/transactions/tariff` | `PUT /commands/tariff` | Moved |
+| `GET /data/transactions/tariff` | `GET /commands/tariff` | Moved |
+| `DELETE /data/transactions/tariff` | `DELETE /commands/tariff` | Moved |
+| `PUT /data/certificates/rootCertificate` | `PUT /commands/installRootCertificate` | Moved |
+| `POST /data/certificates/uploadExistingCertificate` | `POST /commands/uploadExistingCertificate` | Moved |
+| `POST /data/certificates/regenerateExistingCertificate` | `POST /commands/regenerateCertificate` | Moved |
+| `POST /data/certificates/certificateChain` | `POST /ocpprouter/certificateChain` | Moved |
+| `PUT /data/certificates/tlsCertificates` | — | **Removed** |
+| `POST /data/ocpprouter/tlsReload` | `POST /ocpprouter/tlsReload` | Moved |
+| `POST /data/ocpprouter/subscription` | `POST /ocpprouter/subscription` | Moved |
+| `GET /data/ocpprouter/subscription` | `GET /ocpprouter/subscription` | Moved |
+| `DELETE /data/ocpprouter/subscription` | `DELETE /ocpprouter/subscription` | Moved |
+| `PUT /data/ocpprouter/websocketMapping` | `PUT /ocpprouter/websocketMapping` | Moved |
+| `DELETE /data/ocpprouter/websocketMapping` | `DELETE /ocpprouter/websocketMapping` | Moved |
+| `DELETE /data/ocpprouter/connection` | `DELETE /ocpprouter/connection` | Moved |
+| `GET /data/ocpprouter/websocket` | — | **Removed** |
+| `POST /data/ocpprouter/websocket` | — | **Removed** |
+| `DELETE /data/ocpprouter/websocket` | — | **Removed** |
+| — | `POST /evdriver/webpayment/initiate` | **New** |
+| — | `GET /permissions/` | **New** |
+| — | `GET /permissions/user` | **New** |
+| — | `POST /dev/token` | **New** (only when `auth.mode = localDev`) |
+| — | `GET /dev/roles` | **New** (only when `auth.mode = localDev`) |
+///
+
+/// details |  OCPP Message Endpoints
+    type: info
+
+These have the same pattern in both versions: `POST /ocpp/<version>/<module>/<action>`. In 1.x, they were `@AsMessageEndpoint` methods in each module's `MessageApi`. In 2.x, they're listed in `packages/ocpp/src/apis/ocpp/<version>/<module>.ts`.
+
+`{2.0.1|2.1}` means the route is registered for both versions. In 2.x, a version gets the route only if that version has a request schema for the action.
+
+| 1.x | 2.x | Status |
+|---|---|---|
+| `POST /ocpp/1.6/configuration/changeAvailability` | `POST /ocpp/1.6/configuration/changeAvailability` | Unchanged |
+| `POST /ocpp/1.6/configuration/changeConfiguration` | `POST /ocpp/1.6/configuration/changeConfiguration` | Unchanged |
+| `POST /ocpp/1.6/configuration/dataTransfer` | `POST /ocpp/1.6/configuration/dataTransfer` | Unchanged |
+| `POST /ocpp/1.6/configuration/getConfiguration` | `POST /ocpp/1.6/configuration/getConfiguration` | Unchanged |
+| `POST /ocpp/1.6/configuration/reset` | `POST /ocpp/1.6/configuration/reset` | Unchanged |
+| `POST /ocpp/1.6/configuration/signedUpdateFirmware` | `POST /ocpp/1.6/configuration/signedUpdateFirmware` | Unchanged |
+| `POST /ocpp/1.6/configuration/triggerMessage` | `POST /ocpp/1.6/configuration/triggerMessage` | Unchanged |
+| `POST /ocpp/1.6/configuration/updateFirmware` | `POST /ocpp/1.6/configuration/updateFirmware` | Unchanged |
+| `POST /ocpp/1.6/evdriver/clearCache` | `POST /ocpp/1.6/evdriver/clearCache` | Unchanged |
+| — | `POST /ocpp/1.6/evdriver/getLocalListVersion` | **New** |
+| `POST /ocpp/1.6/evdriver/remoteStartTransaction` | `POST /ocpp/1.6/evdriver/remoteStartTransaction` | Unchanged |
+| `POST /ocpp/1.6/evdriver/remoteStopTransaction` | `POST /ocpp/1.6/evdriver/remoteStopTransaction` | Unchanged |
+| — | `POST /ocpp/1.6/evdriver/sendLocalList` | **New** |
+| `POST /ocpp/1.6/evdriver/unlockConnector` | `POST /ocpp/1.6/evdriver/unlockConnector` | Unchanged |
+| `POST /ocpp/1.6/reporting/getDiagnostics` | `POST /ocpp/1.6/reporting/getDiagnostics` | Unchanged |
+| `POST /ocpp/1.6/smartcharging/clearChargingProfile` | `POST /ocpp/1.6/smartcharging/clearChargingProfile` | Unchanged |
+| `POST /ocpp/1.6/smartcharging/getCompositeSchedule` | `POST /ocpp/1.6/smartcharging/getCompositeSchedule` | Unchanged |
+| `POST /ocpp/1.6/smartcharging/setChargingProfile` | `POST /ocpp/1.6/smartcharging/setChargingProfile` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/certificates/certificateSigned` | `POST /ocpp/{2.0.1\|2.1}/certificates/certificateSigned` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/certificates/deleteCertificate` | `POST /ocpp/{2.0.1\|2.1}/certificates/deleteCertificate` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/certificates/getInstalledCertificateIds` | `POST /ocpp/{2.0.1\|2.1}/certificates/getInstalledCertificateIds` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/certificates/installCertificate` | `POST /ocpp/{2.0.1\|2.1}/certificates/installCertificate` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/changeAvailability` | `POST /ocpp/{2.0.1\|2.1}/configuration/changeAvailability` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/clearDisplayMessage` | `POST /ocpp/{2.0.1\|2.1}/configuration/clearDisplayMessage` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/dataTransfer` | `POST /ocpp/{2.0.1\|2.1}/configuration/dataTransfer` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/getDisplayMessages` | `POST /ocpp/{2.0.1\|2.1}/configuration/getDisplayMessages` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/publishFirmware` | `POST /ocpp/{2.0.1\|2.1}/configuration/publishFirmware` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/reset` | `POST /ocpp/{2.0.1\|2.1}/configuration/reset` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/setDisplayMessage` | `POST /ocpp/{2.0.1\|2.1}/configuration/setDisplayMessage` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/setNetworkProfile` | `POST /ocpp/{2.0.1\|2.1}/configuration/setNetworkProfile` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/triggerMessage` | `POST /ocpp/{2.0.1\|2.1}/configuration/triggerMessage` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/unpublishFirmware` | `POST /ocpp/{2.0.1\|2.1}/configuration/unpublishFirmware` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/configuration/updateFirmware` | `POST /ocpp/{2.0.1\|2.1}/configuration/updateFirmware` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/cancelReservation` | `POST /ocpp/{2.0.1\|2.1}/evdriver/cancelReservation` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/clearCache` | `POST /ocpp/{2.0.1\|2.1}/evdriver/clearCache` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/getLocalListVersion` | `POST /ocpp/{2.0.1\|2.1}/evdriver/getLocalListVersion` | Unchanged |
+| — | `POST /ocpp/2.1/evdriver/notifyWebPaymentStarted` | **New** |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/requestStartTransaction` | `POST /ocpp/{2.0.1\|2.1}/evdriver/requestStartTransaction` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/requestStopTransaction` | `POST /ocpp/{2.0.1\|2.1}/evdriver/requestStopTransaction` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/reserveNow` | `POST /ocpp/{2.0.1\|2.1}/evdriver/reserveNow` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/sendLocalList` | `POST /ocpp/{2.0.1\|2.1}/evdriver/sendLocalList` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/evdriver/unlockConnector` | `POST /ocpp/{2.0.1\|2.1}/evdriver/unlockConnector` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/clearVariableMonitoring` | `POST /ocpp/{2.0.1\|2.1}/monitoring/clearVariableMonitoring` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/getVariables` | `POST /ocpp/{2.0.1\|2.1}/monitoring/getVariables` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringBase` | `POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringBase` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringLevel` | `POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringLevel` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/setVariableMonitoring` | `POST /ocpp/{2.0.1\|2.1}/monitoring/setVariableMonitoring` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/monitoring/setVariables` | `POST /ocpp/{2.0.1\|2.1}/monitoring/setVariables` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/reporting/customerInformation` | `POST /ocpp/{2.0.1\|2.1}/reporting/customerInformation` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/reporting/getBaseReport` | `POST /ocpp/{2.0.1\|2.1}/reporting/getBaseReport` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/reporting/getLog` | `POST /ocpp/{2.0.1\|2.1}/reporting/getLog` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/reporting/getMonitoringReport` | `POST /ocpp/{2.0.1\|2.1}/reporting/getMonitoringReport` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/reporting/getReport` | `POST /ocpp/{2.0.1\|2.1}/reporting/getReport` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/smartcharging/clearChargingProfile` | `POST /ocpp/{2.0.1\|2.1}/smartcharging/clearChargingProfile` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/smartcharging/clearedChargingLimit` | — | **Removed** |
+| `POST /ocpp/{2.0.1\|2.1}/smartcharging/getChargingProfiles` | `POST /ocpp/{2.0.1\|2.1}/smartcharging/getChargingProfiles` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/smartcharging/getCompositeSchedule` | `POST /ocpp/{2.0.1\|2.1}/smartcharging/getCompositeSchedule` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/smartcharging/setChargingProfile` | `POST /ocpp/{2.0.1\|2.1}/smartcharging/setChargingProfile` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/transactions/costUpdated` | `POST /ocpp/{2.0.1\|2.1}/transactions/costUpdated` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/transactions/getTransactionStatus` | `POST /ocpp/{2.0.1\|2.1}/transactions/getTransactionStatus` | Unchanged |
+| `POST /ocpp/{2.0.1\|2.1}/transactions/setDefaultTariff` | `POST /ocpp/{2.0.1\|2.1}/transactions/setDefaultTariff` | Unchanged |
+///
+
 # PNPM
 
 CitrineOS now uses `pnpm`, so any commands that you currently run should be prefixed with `pnpm`.
@@ -154,11 +275,6 @@ the other modules.
 All module handlers decorated with `@AsHandler` were moved out of their respective `module.ts` files and separated into
 their own handlers decorated with `@AsRequestHandler` or `@AsResponseHandler`, organized by protocol and request/response
 type. You can find the handlers in `packages/ocpp/src/handlers`.
-
-### APIs
-
-All Data APIs annotated with `@AsDataEndpoint` were moved into their own module `Api` and endpoints declared into their
-own files, organized by protocol and module. You can find the new module in `packages/ocpp/src/apis`.
 
 ## Filenames in Kebab Case
 
