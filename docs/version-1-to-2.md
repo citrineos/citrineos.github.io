@@ -21,17 +21,28 @@ If you have skipped the migration due to existing data, as warned above, you wil
 referencing `stationId` as the Charging Station's string value `ocppConnectionName` are updated to reference the proper
 Charging Station `id` serial integer column.
 
-You can find an example of how to craft the necessary SQL in the migration file `apps/ocpp-server/migrations/20260427000000-rename-charging-station-columns.ts`.
+You can find an example of how to craft the necessary SQL in the migration file `apps/ocpp-server/db/migrations/20260427000000-rename-charging-station-columns.ts`.
 
 Note that if you are on version 1.9.x, you can follow the example of the migration above, as it runs against the
 `stationPkId` column. If you are on a version prior to 1.9.x, the column to migrate will be `stationId`.
 
-## [DATABASE] Additional OCPPMessage Columns
+### OCPP Connection Name in endpoints
+
+Any query parameters previously referencing stationId now use ocppConnectionName instead. You can see the updated API 
+definitions [here](../apis/core-api).
+
+### Station ID foreign key
+
+In addition to the rename, any relevant tables where they need to refer back to a charging station nows reference the 
+charging station by the **generated database id** stored in the column `stationId`, rather than using `ocppConnectionName`,
+to ensure the data is properly linked together.
+
+## [DATABASE] Additional OCPPMessage columns
 
 This is not a breaking change if you're not reliant on a particular OCPPMessage structure. OCPPMessage deprecated the
-`state` and `message` columns in favor of `type`, `payload`, and `raw`. `state` was replaced by `type` because the latter
-stores the actual OCPP Message Type. `message` was replaced by `payload` (the parsed payload) and `raw` (the raw OCPP
-message received).
+`state` and `message` columns (though they are still written to for backwards compatability) in favor of `type`, `payload`, 
+and `raw`. `state` was replaced by `type` because the latter stores the actual OCPP Message Type. `message` was replaced 
+by `payload` (the parsed payload) and `raw` (the raw OCPP message received).
 
 ## [DATABASE] Table Partitions
 
@@ -211,6 +222,12 @@ The command `pnpm citrine` was added to make it easier to run CitrineOS. You can
 
 To support testability and module organization, CitrineOS now uses `Awilix` for dependency injection.
 
+# RabbitMQ Dead-Letter Queue
+
+Dead-lettering was added to RabbitMQ. The exchange is called `<exchange>.dlx` while the queue is called `<exchange>.dlq`
+with `x-citrineos-dead-letter-*` headers. See related configurations for RabbitMQ at `DATABASE` -> `schema`, `validateSchema`, and
+`validateSchemaSeverity` in [configurations](../core-concepts/configuration)).
+
 # Monorepo
 
 The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo containing the following modules:
@@ -248,8 +265,9 @@ so the data access layer can be imported without pulling in `base` or `core`.
 #### Drizzle
 
 CitrineOS is migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
-the release of version 2.0.0, so you can track the progress in `packages/ocpp/src/dal/layers/drizzle`. If you want
-to try the already-migrated repositories, you can enable it by setting `CITRINEOS_USE_DRIZZLE` to "true".
+the release of version 2.0.0, so you can track the progress in `packages/dal/src/repositories/drizzle`, and the table 
+schemas are in `packages/dal/src/db/drizzle`. If you want to try the already-migrated repositories, you can enable it by 
+setting `CITRINEOS_USE_DRIZZLE` to "true".
 
 #### Schema Validation
 
@@ -257,8 +275,8 @@ In order to align the data models with the database entities, a new schema valid
 CitrineOS starting to ensure that the shapes in the code and database match each other. There is a validator for 
 Sequelize and Drizzle, though once Drizzle is fully in use, the Sequelize validator will go away.
 
-You can configure how the schema validation runs using configurations (see `DATABASE` -> `schema`, `validateSchema`, and `validateSchemaSeverity`
-in [configurations](../core-concepts/configuration))
+You can configure how the schema validation runs using configurations (see `DATABASE` -> `schema`, `validateSchema`, and 
+`validateSchemaSeverity` in [configurations](../core-concepts/configuration)).
 
 ### Types
 
@@ -268,7 +286,7 @@ OCPP message models were moved to a standalone package `types` so consumers can 
 
 OCPI-related modules, handlers, APIs and transports were all moved to the dedicated `ocpi` folder. It should no longer
 rely on the `ocpp` folder and instead uses the `base`, `dal` , and `types` dependencies for whatever it shares with
-the other modules.
+the other modules. The package.json package name for `ocpi-server` has been updated to be `ocpi-server`.
 
 ### Handlers
 
