@@ -8,15 +8,22 @@ hide:
 
 ## Our Mission
 
-With CitrineOS, our mission is to drive the transformation of the EV charging landscape, making it more attainable, equitable, and diverse than ever before. For over a decade, our parent company, S44, has been at the forefront of EV charging software, powering automotive OEMs and leading EV network operators. Now, through CitrineOS, we are taking a giant leap forward in advancing the adoption of electric vehicles and diversifying the EV charging infrastructure worldwide.
+With CitrineOS, we want to drive the transformation of the EV charging landscape, making it more attainable, 
+equitable, and diverse than ever before. For over a decade, S44, the initial author of CitrineOS, has been at the forefront of EV 
+charging software, powering automotive OEMs and leading EV network operators. Now, through CitrineOS, we are taking a 
+giant leap forward in advancing the adoption of electric vehicles and diversifying the EV charging infrastructure worldwide.
 
 ## Who We Are
 
-CitrineOS, created by S44, is the brainchild of a dedicated team with deep expertise in EV charging technology. We understand the critical role that reliable back-end software plays in the world of EV charging. Our commitment to innovation and inclusivity drives us to make our solutions accessible to everyone.
+CitrineOS is the brainchild of a dedicated team with deep expertise in EV charging technology. We understand the critical 
+role that reliable back-end software plays in the world of EV charging. Our commitment to innovation and inclusivity drives 
+us to make our solutions accessible to everyone.
 
 ## What We Offer
 
-CitrineOS is more than just software; it's a catalyst for change. We are proud to offer our Open Charge Point Protocol (OCPP) 1.6 and 2.x open-source software on GitHub. This groundbreaking platform empowers a wide range of stakeholders, from passionate EV enthusiasts to the most prominent charge point operators, fleet managers, and automotive manufacturers.
+CitrineOS is more than just software; it's a catalyst for change. We are proud to offer our Open Charge Point Protocol (OCPP) 
+1.6 and 2.x open-source software on GitHub. This groundbreaking platform empowers a wide range of stakeholders, 
+from passionate EV enthusiasts to the most prominent charge point operators, fleet managers, and automotive manufacturers.
 
 ## With CitrineOS, you can:
 

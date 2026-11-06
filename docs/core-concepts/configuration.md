@@ -86,9 +86,9 @@ The `DATABASE` block is optional — every field has a default, so an unset data
 | `CITRINEOS_DATABASE_FORCE` | boolean | `false` | Drop and recreate tables when syncing. Destructive. |
 | `CITRINEOS_DATABASE_MAXRETRIES` | integer > 0 | `3` | Connection attempts before giving up at startup. |
 | `CITRINEOS_DATABASE_RETRYDELAY` | integer > 0 | `1000` | Milliseconds between connection attempts. |
-| `CITRINEOS_SCHEMA` | string | `public` | The database schema, defaults to public. |
-| `CITRINEOS_VALIDATESCHEMA` | boolean | `true` | If true, verifies at startup that the schema in the code and the database match.  |
-| `CITRINEOS_VALIDATESCHEMASEVERITY` | `error` \| `warn` | `error` | If `error`, will block the application from running upon schema validation if there are differences. If `warn`, will not stop startup. |
+| `CITRINEOS_DATABASE_SCHEMA` | string | `public` | The database schema, defaults to public. |
+| `CITRINEOS_DATABASE_VALIDATESCHEMA` | boolean | `true` | If true, verifies at startup that the schema in the code and the database match.  |
+| `CITRINEOS_DATABASE_VALIDATESCHEMASEVERITY` | `error` \| `warn` | `error` | If `error`, will block the application from running upon schema validation if there are differences. If `warn`, will not stop startup. |
 
 ### `DATABASE_POOL` — optional
 
@@ -122,6 +122,21 @@ The `DATABASE` block is optional — every field has a default, so an unset data
 | `CITRINEOS_MESSAGEBROKER_AMQP_EXCHANGE` | string | `citrineos` | Exchange modules publish to and subscribe from. |
 | `CITRINEOS_MESSAGEBROKER_AMQP_INSTANCEIDENTIFIER` | string | unset | Identifies this instance on the broker; useful when several instances share an exchange. |
 | `CITRINEOS_MESSAGEBROKER_AMQP_MAXRECONNECTDELAYSECONDS` | integer >= 1 | `30` | Ceiling on the reconnect backoff. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULESTALE` | integer ≥ 0 | `1` | Prefetch for a module's **catch-up queue**, which takes Calls that outlived `maxCallLengthSeconds` before a module got to them. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_REEMITMAXRETRYSECONDS` | integer ≥ 1 | `300` | How long the router keeps re-emitting a message for a station that no router instance currently holds before dead-lettering it as unroutable. Retries back off, and stop early if the Call goes stale. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_DEADLETTERQUEUE_MAXLENGTH` | integer ≥ 1 | `100000` | Max message count on the dead-letter queue (`<exchange>.dlq`). |
+| `CITRINEOS_MESSAGEBROKER_AMQP_DEADLETTERQUEUE_MAXLENGTHBYTES` | integer ≥ 1 | `536870912` (512 MiB) | Max total size of the dead-letter queue. |
+
+### `MESSAGEBROKER_AMQP_PREFETCH`
+
+To configure each respective RabbitMQ implementation's prefetch count.
+
+| Variable | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_ROUTER` | integer >= 0 | 100 | OCPP Router's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULE` | integer >= 0 | 10 | CitrineOS Modules' RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGES` | integer >= 0 | 50 | Messages Module's RabbitMQ prefetch count. |
+| `CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGESDEADLETTER` | integer >= 0 | 10 | Messages Module's Dead Letter's RabbitMQ prefetch count. |
 
 ## `FILEACCESS`
 
@@ -142,9 +157,9 @@ Storage the server reads its runtime files through — the websocket servers fil
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `CITRINEOS_FILEACCESS_S3_REGION` | string | unset | AWS region. |
-| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL, e.g. for MinIO. |
+| `CITRINEOS_FILEACCESS_S3_ENDPOINT` | string | unset | Custom endpoint URL. |
 | `CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME` | string | `citrineos-s3-bucket` | Bucket used when a key carries no bucket of its own. |
-| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by MinIO and most S3-compatible servers. |
+| `CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE` | boolean | `true` | Path-style addressing, required by most S3-compatible servers. |
 | `CITRINEOS_FILEACCESS_S3_ACCESSKEYID` | string | unset | Access key. The AWS SDK's own `AWS_*` variables also work. |
 | `CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY` | string | unset | Secret key. |
 
@@ -158,16 +173,21 @@ Storage the server reads its runtime files through — the websocket servers fil
 
 ## `AUTH`
 
-Guards the HTTP API. At least one of `oidc` or `localBypass` must be active; the block defaults to `localBypass: true` for local development.
+Guards the HTTP API.
 
 | Variable | Type | Default | What it does |
-| --- | --- | --- | --- |
-| `CITRINEOS_AUTH_LOCALBYPASS` | boolean | `true` (from the block default) | Skips authentication entirely. Development only. |
-| `CITRINEOS_AUTH_OIDC_JWKSURI` | string | — | Required within the `oidc` block. Where the signing keys are fetched from. |
-| `CITRINEOS_AUTH_OIDC_ISSUER` | string | — | Required. Expected `iss` claim. |
-| `CITRINEOS_AUTH_OIDC_AUDIENCE` | string | — | Required. Expected `aud` claim. |
-| `CITRINEOS_AUTH_OIDC_CACHETIMESECONDS` | integer >= 1 | unset | How long fetched JWKS keys are cached. |
-| `CITRINEOS_AUTH_OIDC_RATELIMIT` | boolean | `true` | Rate-limits JWKS fetches. |
+|---|---|---|---|
+| `CITRINEOS_AUTH_MODE` | `jwt` \| `localDev` \| `localBypass` | **`localDev`** | How API callers are authenticated. `localDev` *enforces* auth using tokens the server mints itself (`POST /dev/token`); `localBypass` accepts every request. |
+| `CITRINEOS_AUTH_JWT_JWKSURI` | string | — | Required when mode is `jwt`. |
+| `CITRINEOS_AUTH_JWT_ISSUER` | string | — | Required when mode is `jwt`. Must equal the token's `iss` exactly. |
+| `CITRINEOS_AUTH_JWT_AUDIENCE` | string | unset | **Optional** (the doc says required). If unset, any token from the issuer is accepted, and a warning is logged at startup. |
+| `CITRINEOS_AUTH_JWT_ROLESCLAIM` | string (dotted path) | `roles` | Where roles are read from in the token, e.g. `resource_access.<client>.roles`. |
+| `CITRINEOS_AUTH_JWT_TENANTCLAIM` | string (dotted path) | `tenant_id` | Where the tenant id is read from in the token. |
+| `CITRINEOS_AUTH_JWT_CACHETIMESECONDS` | integer ≥ 1 | unset | JWKS key cache time. |
+| `CITRINEOS_AUTH_JWT_RATELIMIT` | boolean | `true` | Rate-limits JWKS fetches. |
+| `CITRINEOS_AUTH_LOCALDEV_ROLES` | string[] | `["admin"]` | Roles put in a `/dev/token` token when the request names none. |
+| `CITRINEOS_AUTH_LOCALDEV_TOKENTTLSECONDS` | integer ≥ 1 | `43200` (12h) | Lifetime of minted dev tokens. |
+| `CITRINEOS_AUTH_LOCALBYPASS_ROLES` | string[] | `["admin"]` | Roles every request is treated as having in `localBypass` mode. |
 
 ## `OIDCCLIENT` — optional
 
@@ -179,6 +199,14 @@ Credentials the server uses as an OIDC *client* when calling out. All four are r
 | `CITRINEOS_OIDCCLIENT_CLIENTID` | string | — | Client ID. |
 | `CITRINEOS_OIDCCLIENT_CLIENTSECRET` | string | — | Client secret. |
 | `CITRINEOS_OIDCCLIENT_AUDIENCE` | string | — | Audience requested in the token. |
+
+## `ROLES`
+
+| Variable | Type | Default | What it does |
+|---|---|---|---|
+| `CITRINEOS_ROLES_SEEDFILE` | string | `roles-seed.json` | Role definitions file, resolved against the `fileAccess` root. Format: `{ "<role>": { "resources": {...}, "permissions": [...] } }`. |
+| `CITRINEOS_ROLES_REFRESHINTERVALSECONDS` | integer ≥ 1 | `60` | How often the file is re-read. Changes need no restart. A failed re-read keeps the last good policy. A failed *first* load is fatal under `jwt` and `localDev`. |
+| `CITRINEOS_ROLES_COMMON` | string[] | `["permissions.user.get"]` | Permissions granted to every authenticated caller. |
 
 ## `INTEGRATIONS`
 
@@ -209,14 +237,11 @@ For station certificates via ACME.
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH` | string | `certificates/acme_account_key.pem` | ACME account key, resolved against the `fileAccess` root. |
 | `CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL` | string (email) | `test@citrineos.com` | Contact address registered with the ACME account. |
 
-## `RBAC` — optional
-
-Set `CITRINEOS_RBAC='{}'` to enable with defaults.
+### `INTEGRATIONS_OCSP`
 
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `CITRINEOS_RBAC_RULESDIR` | string | unset | Directory holding the rules file. |
-| `CITRINEOS_RBAC_RULESFILENAME` | string | `rbac-rules.json` | Rules file mapping tenant → URL pattern → HTTP method → required roles. |
+| `CITRINEOS_INTEGRATIONS_OCSP_ALLOWEDRESPONDERHOSTS` | array of string | unset | Hosts the CSMS is permitted to reach for OCSP. Empty means no restriction. |
 
 ## `SWAGGER`
 
@@ -225,7 +250,6 @@ Set `CITRINEOS_RBAC='{}'` to enable with defaults.
 | `CITRINEOS_SWAGGER_ENABLED` | boolean | `true` | Serves the API docs. Set `false` in production if you do not want them exposed. |
 | `CITRINEOS_SWAGGER_PATH` | string | `/docs` | Mount path for the docs UI. |
 | `CITRINEOS_SWAGGER_LOGOPATH` | string | `src/assets/logo.png` | Logo shown in the docs. Resolved from the process working directory, **not** from `fileAccess`. |
-| `CITRINEOS_SWAGGER_EXPOSEDATA` | boolean | `true` | Includes response data schemas in the docs. |
 | `CITRINEOS_SWAGGER_EXPOSEMESSAGE` | boolean | `true` | Includes message schemas in the docs. |
 
 ## `TIMEOUTS`
@@ -236,10 +260,27 @@ Set `CITRINEOS_RBAC='{}'` to enable with defaults.
 | --- | --- | --- | --- |
 | `CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS` | integer >= 1 | `20` | How long an OCPP call may remain outstanding before it is considered timed out. |
 | `CITRINEOS_TIMEOUTS_MAXCACHINGSECONDS` | integer >= 1 | `30` | How long call state is cached. Cannot be lower than `maxCallLengthSeconds`. |
-| `CITRINEOS_TIMEOUTS_STALECALLMAXAGESECONDS` | integer >= 1 | unset | Age past which a pending call is discarded as stale. |
+| `CITRINEOS_TIMEOUTS_STALECALLMAXAGESECONDS` | integer ≥ 0 | `40` | Age past which a pending call is discarded as stale. |
 | `CITRINEOS_TIMEOUTS_SHUTDOWNGRACEPERIODSECONDS` | integer >= 1 | `30` | How long shutdown waits for in-flight work before forcing exit. |
 | `CITRINEOS_TIMEOUTS_REALTIMEAUTHDEFAULTTIMEOUTSECONDS` | integer >= 1 | `15` | How long a real-time authorization request waits for a decision. |
+| `CITRINEOS_TIMEOUTS_REALTIMEAUTHREQUESTTIMEOUTSECONDS` | integer ≥ 1 | `10` | HTTP timeout on the outbound request to the real-time authorization endpoint. This is different from `REALTIMEAUTHDEFAULTTIMEOUTSECONDS`, which is the authorizer's own wait for a decision. |
 | `CITRINEOS_TIMEOUTS_NOTREADYTHRESHOLDSECONDS` | integer >= 1 | `60` | How long the instance may be unhealthy before it reports not-ready. |
+
+## `LOGREDACTION`
+
+| Variable | Type | Default | What it does |
+|---|---|---|---|
+| `CITRINEOS_LOGREDACTION_KEYS` | string[] | `["password"]` | Property names censored at any depth, case-insensitively. |
+| `CITRINEOS_LOGREDACTION_PATHS` | string[] | `[]` | Dotted paths to censor; `*` matches one segment. |
+| `CITRINEOS_LOGREDACTION_PATTERNS` | string[] (regex) | `[]` | Regexes applied globally to logged strings. Invalid regexes fail startup. |
+| `CITRINEOS_LOGREDACTION_PLACEHOLDER` | string | `[***]` | Replacement text. |
+| `CITRINEOS_LOGREDACTION_REDACTKEYCODES` | boolean | `true` | Redacts OCPP `KeyCode` idTokens, per OCPP 2.x C04.FR.04. |
+
+## `CALIFORNIAPRICING`
+
+| Variable | Type | Default | What it does |
+|---|---|---|---|
+| `CITRINEOS_CALIFORNIAPRICING_ENABLED` | boolean | `false` | Registers the California Pricing module (OCPP 1.6). When `false`, `APP_NAME=californiapricing` isn't available. |
 
 ## `OCPP`
 
@@ -253,6 +294,7 @@ These apply to every OCPP version — there is no per-protocol split.
 | `CITRINEOS_OCPP_GETBASEREPORTONPENDING` | boolean | `true` | Requests a base report from stations left in Pending. |
 | `CITRINEOS_OCPP_BOOTWITHREJECTEDVARIABLES` | boolean | `false` | Allows a boot to proceed even when some variables were rejected. |
 | `CITRINEOS_OCPP_AUTOACCEPT` | boolean | `true` | Promotes boot status automatically. When `false`, a station stays where it is until something changes it explicitly. |
+| `CITRINEOS_OCPP_MAXPENDINGCALLSPERSTATION` | integer ≥ 1 | `5` | OCPP allows one outstanding CSMS Call per station; extra Calls queue behind it. Past this many queued, a new Call is **dead-lettered** (reason `Overflow`) instead of queued. |
 
 ## `TRANSACTIONS`
 
@@ -273,3 +315,32 @@ or neither, fails startup.
 | Variable | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `CITRINEOS_EVDRIVER_ENABLEGETCHARGINGPROFILESONSTARTTRANSACTION` | boolean | `false` | Requests the station's charging profiles when a transaction starts. |
+
+
+## `NETWORKALERTS`
+
+These are system-wide defaults. Per-tenant overrides live in the `NetworkAlertConfigs` table and are layered on top,
+and each tenant's resolved config is cached for one sweep interval. Severities are `Critical` | `Warning` | `Info`.
+
+| Variable | Type | Default | What it does |
+|---|---|---|---|
+| `CITRINEOS_NETWORKALERTS_SWEEPINTERVALSECONDS` | integer ≥ 1 | `30` | How often the sweeper evaluates time-based rules. Also the per-tenant config cache TTL. |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_ENABLED` | boolean | `true` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_DISCONNECTSEVERITY` | severity | `Info` | Alert raised on each disconnect. |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_COUNT` | integer > 0 | `5` | Disconnects within the window that trigger an alert. |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_WINDOWSECONDS` | integer > 0 | `3600` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_SEVERITY` | severity | `Warning` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_OFFLINETOOLONG_SECONDS` | integer > 0 | `900` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_OFFLINETOOLONG_SEVERITY` | severity | `Critical` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_MISSEDHEARTBEATS` | integer > 0 | `2` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_CONNECTORSTATUS_ENABLED` | boolean | `true` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_CONNECTORSTATUS_RULES_SEVERITYBYSTATUS` | JSON map status → severity | `{"Unavailable":"Warning","Faulted":"Critical"}` | Set as one JSON value, since it's a record. |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_ENABLED` | boolean | `true` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_CALLERROR` | severity | `Warning` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_TIMEOUT` | severity | `Warning` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_SENDFAILED` | severity | `Info` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_SLOW` | severity | `Warning` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_CRITICALACTIONS` | string[] | `["TransactionEvent","StartTransaction","StopTransaction"]` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SLOWTHRESHOLDMS` | integer > 0 | `5000` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SLOWSAMPLESIZE` | integer > 0 | `10` | |
+| `CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_QUIETPERIODSECONDS` | integer > 0 | `1800` | |
