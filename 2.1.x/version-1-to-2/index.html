@@ -1,0 +1,1578 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description">
+<link href="https://citrineos.github.io/2.1.x/version-1-to-2/" rel="canonical">
+<link href="../faqs/" rel="prev">
+<link href="../getting-started/prerequisites/" rel="next">
+<link href="../assets/img/favicon.ico" rel="icon">
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator">
+<title>CitrineOS 1.x to 2.x - CitrineOS</title>
+<link href="../assets/stylesheets/main.0253249f.min.css" rel="stylesheet">
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet">
+
+<link href="../assets/external/fonts.googleapis.com/css.9e07dd4c.css" rel="stylesheet">
+<style>:root{--md-text-font:"False";--md-code-font:"Roboto Mono"}</style>
+<link href="../assets/stylesheets/extra.css" rel="stylesheet">
+<link href="../assets/mermaid-zoom.css?v=1794853068" rel="stylesheet">
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-JVZY6NS6JV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-JVZY6NS6JV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-JVZY6NS6JV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+<script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+<body data-md-color-accent="indigo" data-md-color-primary="custom" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox">
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox">
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#breaking-changes">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
+<!-- Determine classes -->
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<!-- Link to home -->
+<a aria-label="CitrineOS" class="md-header__button md-logo" data-md-component="logo" href=".." title="CitrineOS">
+<img alt="logo" src="../assets/img/Icon.svg">
+</a>
+<!-- Button to open drawer -->
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<!-- Header title -->
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CitrineOS
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              CitrineOS 1.x to 2.x
+            
+          </span>
+</div>
+</div>
+</div>
+<!-- Color palette toggle -->
+<!-- User preference: color palette -->
+<!-- Site language selector -->
+<!-- Button to open search modal -->
+<label class="md-header__button md-icon" for="__search">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<!-- Search interface -->
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text">
+<label class="md-search__icon md-icon" for="__search">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Repository information -->
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/citrineos/citrineos-core" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<!-- Discord -->
+<div class="md-header__button md-icon">
+<!-- Automatically set rel=me for Mastodon -->
+<!-- Compute title and render link -->
+<a href="https://discord.gg/kkUxF7pRU7" rel="noopener" target="_blank" title="Join Discord">
+<svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"></path></svg>
+</a>
+</div>
+</nav>
+<!-- Navigation tabs (sticky) -->
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CitrineOS" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CitrineOS">
+<img alt="logo" src="../assets/img/Icon.svg">
+</a>
+    CitrineOS
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/citrineos/citrineos-core" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    About
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../roadmap/">
+<span class="md-ellipsis">
+    Roadmap
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../references/">
+<span class="md-ellipsis">
+    References
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../faqs/">
+<span class="md-ellipsis">
+    FAQs (Frequently Asked Questions)
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox">
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    CitrineOS 1.x to 2.x
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    CitrineOS 1.x to 2.x
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#breaking-changes">
+<span class="md-ellipsis">
+      Breaking Changes
+    </span>
+</a>
+<nav aria-label="Breaking Changes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-station-id-ocpp-connection-name">
+<span class="md-ellipsis">
+      [DATABASE] Station ID -&gt; OCPP Connection Name
+    </span>
+</a>
+<nav aria-label="[DATABASE] Station ID -&gt; OCPP Connection Name" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp-connection-name-in-endpoints">
+<span class="md-ellipsis">
+      OCPP Connection Name in endpoints
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#station-id-foreign-key">
+<span class="md-ellipsis">
+      Station ID foreign key
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-additional-ocppmessage-columns">
+<span class="md-ellipsis">
+      [DATABASE] Additional OCPPMessage columns
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-table-partitions">
+<span class="md-ellipsis">
+      [DATABASE] Table Partitions
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-system-configuration-is-no-longer-persisted">
+<span class="md-ellipsis">
+      [CONFIGURATION] System Configuration is no longer persisted
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#router-ocpp-router-sends-to-messages-module">
+<span class="md-ellipsis">
+      [ROUTER] OCPP Router sends to Messages Module
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api-endpoint-paths">
+<span class="md-ellipsis">
+      [API] Endpoint Paths
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pnpm">
+<span class="md-ellipsis">
+      PNPM
+    </span>
+</a>
+<nav aria-label="PNPM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-citrineos">
+<span class="md-ellipsis">
+      Running CitrineOS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dependency-injection-via-awilix">
+<span class="md-ellipsis">
+      Dependency Injection (via Awilix)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rabbitmq-dead-letter-queue">
+<span class="md-ellipsis">
+      RabbitMQ Dead-Letter Queue
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monorepo">
+<span class="md-ellipsis">
+      Monorepo
+    </span>
+</a>
+<nav aria-label="Monorepo" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#folder-structure">
+<span class="md-ellipsis">
+      Folder Structure
+    </span>
+</a>
+<nav aria-label="Folder Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dal">
+<span class="md-ellipsis">
+      DAL
+    </span>
+</a>
+<nav aria-label="DAL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizzle">
+<span class="md-ellipsis">
+      Drizzle
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-validation">
+<span class="md-ellipsis">
+      Schema Validation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#types">
+<span class="md-ellipsis">
+      Types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpi">
+<span class="md-ellipsis">
+      OCPI
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#handlers">
+<span class="md-ellipsis">
+      Handlers
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filenames-in-kebab-case">
+<span class="md-ellipsis">
+      Filenames in Kebab Case
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox">
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    Getting Started
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/prerequisites/">
+<span class="md-ellipsis">
+    Prerequisites
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/running-citrineos/">
+<span class="md-ellipsis">
+    Running CitrineOS
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/running-ocpi/">
+<span class="md-ellipsis">
+    Running OCPI
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/testing-with-everest/">
+<span class="md-ellipsis">
+    Testing with EVerest
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    Core Concepts
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            Core Concepts
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../core-concepts/architecture/">
+<span class="md-ellipsis">
+    Architecture
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../core-concepts/configuration/">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../core-concepts/data-models/">
+<span class="md-ellipsis">
+    Data Models
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox">
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-ellipsis">
+    Guides
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/connecting-a-charger/">
+<span class="md-ellipsis">
+    Connecting a Charger
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/security-profiles/">
+<span class="md-ellipsis">
+    Security Profiles
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/adding-id-tokens/">
+<span class="md-ellipsis">
+    Adding ID Tokens
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../guides/viewing-ocpp-logs/">
+<span class="md-ellipsis">
+    Viewing OCPP Logs
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_9" type="checkbox">
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+<span class="md-ellipsis">
+    APIs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+            APIs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../apis/core-api/">
+<span class="md-ellipsis">
+    Core REST API
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../apis/ocpi-api/">
+<span class="md-ellipsis">
+    OCPI REST API
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#breaking-changes">
+<span class="md-ellipsis">
+      Breaking Changes
+    </span>
+</a>
+<nav aria-label="Breaking Changes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-station-id-ocpp-connection-name">
+<span class="md-ellipsis">
+      [DATABASE] Station ID -&gt; OCPP Connection Name
+    </span>
+</a>
+<nav aria-label="[DATABASE] Station ID -&gt; OCPP Connection Name" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp-connection-name-in-endpoints">
+<span class="md-ellipsis">
+      OCPP Connection Name in endpoints
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#station-id-foreign-key">
+<span class="md-ellipsis">
+      Station ID foreign key
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-additional-ocppmessage-columns">
+<span class="md-ellipsis">
+      [DATABASE] Additional OCPPMessage columns
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database-table-partitions">
+<span class="md-ellipsis">
+      [DATABASE] Table Partitions
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-system-configuration-is-no-longer-persisted">
+<span class="md-ellipsis">
+      [CONFIGURATION] System Configuration is no longer persisted
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#router-ocpp-router-sends-to-messages-module">
+<span class="md-ellipsis">
+      [ROUTER] OCPP Router sends to Messages Module
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api-endpoint-paths">
+<span class="md-ellipsis">
+      [API] Endpoint Paths
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pnpm">
+<span class="md-ellipsis">
+      PNPM
+    </span>
+</a>
+<nav aria-label="PNPM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-citrineos">
+<span class="md-ellipsis">
+      Running CitrineOS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dependency-injection-via-awilix">
+<span class="md-ellipsis">
+      Dependency Injection (via Awilix)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rabbitmq-dead-letter-queue">
+<span class="md-ellipsis">
+      RabbitMQ Dead-Letter Queue
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monorepo">
+<span class="md-ellipsis">
+      Monorepo
+    </span>
+</a>
+<nav aria-label="Monorepo" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#folder-structure">
+<span class="md-ellipsis">
+      Folder Structure
+    </span>
+</a>
+<nav aria-label="Folder Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dal">
+<span class="md-ellipsis">
+      DAL
+    </span>
+</a>
+<nav aria-label="DAL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizzle">
+<span class="md-ellipsis">
+      Drizzle
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-validation">
+<span class="md-ellipsis">
+      Schema Validation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#types">
+<span class="md-ellipsis">
+      Types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpi">
+<span class="md-ellipsis">
+      OCPI
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#handlers">
+<span class="md-ellipsis">
+      Handlers
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filenames-in-kebab-case">
+<span class="md-ellipsis">
+      Filenames in Kebab Case
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1>CitrineOS 1.x to 2.x</h1>
+<div class="admonition warning">
+<p class="admonition-title">Prior to upgrading to version 2.x, if you have existing data, do not run the Sequelize migrations as they may cause data loss.</p>
+<p>You can turn off the migrations by setting the DB_STRATEGY to "none" in the docker-compose or entrypoint.sh.</p>
+</div>
+<h2 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">#</a></h2>
+<h3 id="database-station-id-ocpp-connection-name">[DATABASE] Station ID -&gt; OCPP Connection Name<a class="headerlink" href="#database-station-id-ocpp-connection-name" title="Permanent link">#</a></h3>
+<p>Charging Station "human-readable" identifiers are now stored in the <code>ocppConnectionName</code> column, while the <code>id</code> column
+became the dedicated database serial integer identifier. As a result, every related entity to Charging Stations had to
+be updated so that their <code>stationId</code> references the Charging Station's <code>id</code> integer column, rather than the
+<code>ocppConnectionName</code> string column. All related indexes were also updated to reflect this change.</p>
+<p>If you have skipped the migration due to existing data, as warned above, you will need to ensure that all tables
+referencing <code>stationId</code> as the Charging Station's string value <code>ocppConnectionName</code> are updated to reference the proper
+Charging Station <code>id</code> serial integer column.</p>
+<p>You can find an example of how to craft the necessary SQL in the migration file <code>apps/ocpp-server/db/migrations/20260427000000-rename-charging-station-columns.ts</code>.</p>
+<p>Note that if you are on version 1.9.x, you can follow the example of the migration above, as it runs against the
+<code>stationPkId</code> column. If you are on a version prior to 1.9.x, the column to migrate will be <code>stationId</code>.</p>
+<h4 id="ocpp-connection-name-in-endpoints">OCPP Connection Name in endpoints<a class="headerlink" href="#ocpp-connection-name-in-endpoints" title="Permanent link">#</a></h4>
+<p>Any query parameters previously referencing stationId now use ocppConnectionName instead. You can see the updated API 
+definitions <a href="../apis/core-api">here</a>.</p>
+<h4 id="station-id-foreign-key">Station ID foreign key<a class="headerlink" href="#station-id-foreign-key" title="Permanent link">#</a></h4>
+<p>In addition to the rename, any relevant tables where they need to refer back to a charging station nows reference the 
+charging station by the <strong>generated database id</strong> stored in the column <code>stationId</code>, rather than using <code>ocppConnectionName</code>,
+to ensure the data is properly linked together.</p>
+<h3 id="database-additional-ocppmessage-columns">[DATABASE] Additional OCPPMessage columns<a class="headerlink" href="#database-additional-ocppmessage-columns" title="Permanent link">#</a></h3>
+<p>This is not a breaking change if you're not reliant on a particular OCPPMessage structure. OCPPMessage deprecated the
+<code>state</code> and <code>message</code> columns (though they are still written to for backwards compatability) in favor of <code>type</code>, <code>payload</code>, 
+and <code>raw</code>. <code>state</code> was replaced by <code>type</code> because the latter stores the actual OCPP Message Type. <code>message</code> was replaced 
+by <code>payload</code> (the parsed payload) and <code>raw</code> (the raw OCPP message received).</p>
+<h3 id="database-table-partitions">[DATABASE] Table Partitions<a class="headerlink" href="#database-table-partitions" title="Permanent link">#</a></h3>
+<p>The <code>OCPPMessages</code> and <code>Transactions</code> tables now use PostgreSQL Table Partitioning to manage their data loads. <code>OCPPMessages</code>
+uses a one-week partition, while <code>Transactions</code> uses a one-month partitions. You can read more about the partitioning
+<a href="https://github.com/citrineos/citrineos-core/blob/main/apps/ocpp-server/README.md#table-partitioning">here</a>.</p>
+<h3 id="configuration-system-configuration-is-no-longer-persisted">[CONFIGURATION] System Configuration is no longer persisted<a class="headerlink" href="#configuration-system-configuration-is-no-longer-persisted" title="Permanent link">#</a></h3>
+<p>Configurations for CitrineOS used to come from three places: </p>
+<ol>
+<li>The <code>SystemConfig</code> in src/config/envs/{local,docker}.ts (selected by APP_ENV)</li>
+<li>A persisted <code>config.json</code> in file storage</li>
+<li><code>BOOTSTRAP_CITRINEOS_*</code> / <code>CITRINEOS_*</code> env vars</li>
+</ol>
+<p>In 2.x configurations are now determined via non-persisted environment variables, represented by the Zod schema in 
+<code>packages/types/src/config/types.ts</code>. Therefore, your old config.json settings will not be picked up; you will have 
+to port them to environment variables manually. Additionally, websocket configurations were moved into their own file
+called <code>websocket-servers.json</code>.</p>
+<p>In general, this is how you migrate to the new environment variables if you already had an old environment:</p>
+<ol>
+<li>Delete your persisted config.json. The Zod schema defaults are the old local-dev values.</li>
+<li>Rename your environment variables. Use one underscore per level, not per word, drop the BOOTSTRAP_ prefix, and always 
+   prefix with <code>CITRINEOS_</code>. For example, <code>timeouts.maxCallLengthSeconds</code> becomes <code>CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS</code>. 
+   Unknown vars now log a warning at startup instead of silently doing nothing.</li>
+<li>Move util.networkConnection.websocketServers into websocket-servers.json. The field names are the same, but
+   the validation is stricter: id/host/port/protocols/securityProfile required, unique ids, exactly one of tenantId or 
+   dynamicTenantResolution.</li>
+<li><code>util</code> and <code>modules</code> configs were flattened. Everything moves up a level and is keyed by what it configures, not 
+   which module reads it (<code>modules.transactions.costUpdatedInterval</code> becomes <code>transactions.costUpdatedInterval</code>). 
+   The three per-protocol boot blocks collapse into one shared ocpp block — so 1.6 and 2.0.1 chargers can no longer be 
+   booted differently via config.</li>
+<li>Per-module OCPP action lists, per-module host/port, modules.tenant.ocppRouterBaseUrl, and ocpiServer (OCPI is its own app)
+   were all completely removed as configs.</li>
+</ol>
+<p>For more information on the changes and help on migrating your configuration, you can check [here]
+(https://github.com/citrineos/citrineos-core#migrating-from-the-old-configuration).</p>
+<h3 id="router-ocpp-router-sends-to-messages-module">[ROUTER] OCPP Router sends to Messages Module<a class="headerlink" href="#router-ocpp-router-sends-to-messages-module" title="Permanent link">#</a></h3>
+<p>This is not a breaking change if you haven't made changes to the OCPP Router. To offload some of the business logic out 
+of the "hot path" of the router, a new module called "Messages" was created to handle such logic. You can read more about 
+its purpose and architecture <a href="https://github.com/citrineos/citrineos-core/blob/main/packages/ocpp/src/modules/messages/README.md">here</a>.</p>
+<h3 id="api-endpoint-paths">[API] Endpoint Paths<a class="headerlink" href="#api-endpoint-paths" title="Permanent link">#</a></h3>
+<p>All Data APIs annotated with <code>@AsDataEndpoint</code> were moved into their own module <code>Api</code> and endpoints declared into their
+own files, organized by protocol and module. You can find the new module in <code>packages/ocpp/src/apis</code>. If you rely on
+specific API paths, see below:</p>
+<details class="info">
+<summary>Data / Command Endpoints</summary>
+<p>In 1.x, these were <code>@AsDataEndpoint</code> routes under <code>/data/&lt;module&gt;/&lt;namespace&gt;</code>. In 2.x, they're registered in <code>packages/ocpp/src/apis/register.ts</code> under <code>/commands</code>, <code>/ocpprouter</code>, <code>/permissions</code>, <code>/dev</code> or <code>/evdriver</code>.</p>
+<table>
+<thead>
+<tr>
+<th>1.x</th>
+<th>2.x</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PUT /data/configuration/boot</code></td>
+<td><code>PUT /commands/bootConfig</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/configuration/boot</code></td>
+<td><code>GET /commands/bootConfig</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/configuration/boot</code></td>
+<td><code>DELETE /commands/bootConfig</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>POST /data/configuration/password</code></td>
+<td><code>POST /commands/setStationPassword</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/configuration/serverNetworkProfile</code></td>
+<td><code>GET /commands/stationNetworkProfile</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/configuration/serverNetworkProfile</code></td>
+<td><code>DELETE /commands/stationNetworkProfile</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/evdriver/localListVersion</code></td>
+<td><code>GET /commands/localListVersion</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>PUT /data/monitoring/variableAttribute</code></td>
+<td><code>PUT /commands/provisionStationVariables</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/monitoring/variableAttribute</code></td>
+<td><code>GET /commands/stationVariables</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/monitoring/variableAttribute</code></td>
+<td><code>DELETE /commands/stationVariables</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/transactions/transaction</code></td>
+<td><code>GET /commands/transaction</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>PUT /data/transactions/tariff</code></td>
+<td><code>PUT /commands/tariff</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/transactions/tariff</code></td>
+<td><code>GET /commands/tariff</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/transactions/tariff</code></td>
+<td><code>DELETE /commands/tariff</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>PUT /data/certificates/rootCertificate</code></td>
+<td><code>PUT /commands/installRootCertificate</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>POST /data/certificates/uploadExistingCertificate</code></td>
+<td><code>POST /commands/uploadExistingCertificate</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>POST /data/certificates/regenerateExistingCertificate</code></td>
+<td><code>POST /commands/regenerateCertificate</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>POST /data/certificates/certificateChain</code></td>
+<td><code>POST /ocpprouter/certificateChain</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>PUT /data/certificates/tlsCertificates</code></td>
+<td>—</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr>
+<td><code>POST /data/ocpprouter/tlsReload</code></td>
+<td><code>POST /ocpprouter/tlsReload</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>POST /data/ocpprouter/subscription</code></td>
+<td><code>POST /ocpprouter/subscription</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/ocpprouter/subscription</code></td>
+<td><code>GET /ocpprouter/subscription</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/ocpprouter/subscription</code></td>
+<td><code>DELETE /ocpprouter/subscription</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>PUT /data/ocpprouter/websocketMapping</code></td>
+<td><code>PUT /ocpprouter/websocketMapping</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/ocpprouter/websocketMapping</code></td>
+<td><code>DELETE /ocpprouter/websocketMapping</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>DELETE /data/ocpprouter/connection</code></td>
+<td><code>DELETE /ocpprouter/connection</code></td>
+<td>Moved</td>
+</tr>
+<tr>
+<td><code>GET /data/ocpprouter/websocket</code></td>
+<td>—</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr>
+<td><code>POST /data/ocpprouter/websocket</code></td>
+<td>—</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr>
+<td><code>DELETE /data/ocpprouter/websocket</code></td>
+<td>—</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>POST /evdriver/webpayment/initiate</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>GET /permissions/</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>GET /permissions/user</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>POST /dev/token</code></td>
+<td><strong>New</strong> (only when <code>auth.mode = localDev</code>)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>GET /dev/roles</code></td>
+<td><strong>New</strong> (only when <code>auth.mode = localDev</code>)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info">
+<summary>OCPP Message Endpoints</summary>
+<p>These have the same pattern in both versions: <code>POST /ocpp/&lt;version&gt;/&lt;module&gt;/&lt;action&gt;</code>. In 1.x, they were <code>@AsMessageEndpoint</code> methods in each module's <code>MessageApi</code>. In 2.x, they're listed in <code>packages/ocpp/src/apis/ocpp/&lt;version&gt;/&lt;module&gt;.ts</code>.</p>
+<p><code>{2.0.1|2.1}</code> means the route is registered for both versions. In 2.x, a version gets the route only if that version has a request schema for the action.</p>
+<table>
+<thead>
+<tr>
+<th>1.x</th>
+<th>2.x</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/changeAvailability</code></td>
+<td><code>POST /ocpp/1.6/configuration/changeAvailability</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/changeConfiguration</code></td>
+<td><code>POST /ocpp/1.6/configuration/changeConfiguration</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/dataTransfer</code></td>
+<td><code>POST /ocpp/1.6/configuration/dataTransfer</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/getConfiguration</code></td>
+<td><code>POST /ocpp/1.6/configuration/getConfiguration</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/reset</code></td>
+<td><code>POST /ocpp/1.6/configuration/reset</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/signedUpdateFirmware</code></td>
+<td><code>POST /ocpp/1.6/configuration/signedUpdateFirmware</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/triggerMessage</code></td>
+<td><code>POST /ocpp/1.6/configuration/triggerMessage</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/configuration/updateFirmware</code></td>
+<td><code>POST /ocpp/1.6/configuration/updateFirmware</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/evdriver/clearCache</code></td>
+<td><code>POST /ocpp/1.6/evdriver/clearCache</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>POST /ocpp/1.6/evdriver/getLocalListVersion</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/evdriver/remoteStartTransaction</code></td>
+<td><code>POST /ocpp/1.6/evdriver/remoteStartTransaction</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/evdriver/remoteStopTransaction</code></td>
+<td><code>POST /ocpp/1.6/evdriver/remoteStopTransaction</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>POST /ocpp/1.6/evdriver/sendLocalList</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/evdriver/unlockConnector</code></td>
+<td><code>POST /ocpp/1.6/evdriver/unlockConnector</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/reporting/getDiagnostics</code></td>
+<td><code>POST /ocpp/1.6/reporting/getDiagnostics</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/smartcharging/clearChargingProfile</code></td>
+<td><code>POST /ocpp/1.6/smartcharging/clearChargingProfile</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/smartcharging/getCompositeSchedule</code></td>
+<td><code>POST /ocpp/1.6/smartcharging/getCompositeSchedule</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/1.6/smartcharging/setChargingProfile</code></td>
+<td><code>POST /ocpp/1.6/smartcharging/setChargingProfile</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/certificateSigned</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/certificateSigned</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/deleteCertificate</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/deleteCertificate</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/getInstalledCertificateIds</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/getInstalledCertificateIds</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/installCertificate</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/certificates/installCertificate</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/changeAvailability</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/changeAvailability</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/clearDisplayMessage</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/clearDisplayMessage</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/dataTransfer</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/dataTransfer</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/getDisplayMessages</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/getDisplayMessages</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/publishFirmware</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/publishFirmware</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/reset</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/reset</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/setDisplayMessage</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/setDisplayMessage</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/setNetworkProfile</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/setNetworkProfile</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/triggerMessage</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/triggerMessage</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/unpublishFirmware</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/unpublishFirmware</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/updateFirmware</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/configuration/updateFirmware</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/cancelReservation</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/cancelReservation</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/clearCache</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/clearCache</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/getLocalListVersion</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/getLocalListVersion</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>POST /ocpp/2.1/evdriver/notifyWebPaymentStarted</code></td>
+<td><strong>New</strong></td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/requestStartTransaction</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/requestStartTransaction</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/requestStopTransaction</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/requestStopTransaction</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/reserveNow</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/reserveNow</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/sendLocalList</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/sendLocalList</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/unlockConnector</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/evdriver/unlockConnector</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/clearVariableMonitoring</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/clearVariableMonitoring</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/getVariables</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/getVariables</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringBase</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringBase</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringLevel</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setMonitoringLevel</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setVariableMonitoring</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setVariableMonitoring</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setVariables</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/monitoring/setVariables</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/customerInformation</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/customerInformation</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getBaseReport</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getBaseReport</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getLog</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getLog</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getMonitoringReport</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getMonitoringReport</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getReport</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/reporting/getReport</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/clearChargingProfile</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/clearChargingProfile</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/clearedChargingLimit</code></td>
+<td>—</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/getChargingProfiles</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/getChargingProfiles</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/getCompositeSchedule</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/getCompositeSchedule</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/setChargingProfile</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/smartcharging/setChargingProfile</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/costUpdated</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/costUpdated</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/getTransactionStatus</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/getTransactionStatus</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/setDefaultTariff</code></td>
+<td><code>POST /ocpp/{2.0.1\|2.1}/transactions/setDefaultTariff</code></td>
+<td>Unchanged</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="pnpm">PNPM<a class="headerlink" href="#pnpm" title="Permanent link">#</a></h2>
+<p>CitrineOS now uses <code>pnpm</code>, so any commands that you currently run should be prefixed with <code>pnpm</code>.</p>
+<h3 id="running-citrineos">Running CitrineOS<a class="headerlink" href="#running-citrineos" title="Permanent link">#</a></h3>
+<p>The command <code>pnpm citrine</code> was added to make it easier to run CitrineOS. You can check what flags are available using
+<code>pnpm citrine --help</code></p>
+<h2 id="dependency-injection-via-awilix">Dependency Injection (via Awilix)<a class="headerlink" href="#dependency-injection-via-awilix" title="Permanent link">#</a></h2>
+<p>To support testability and module organization, CitrineOS now uses <code>Awilix</code> for dependency injection.</p>
+<h2 id="rabbitmq-dead-letter-queue">RabbitMQ Dead-Letter Queue<a class="headerlink" href="#rabbitmq-dead-letter-queue" title="Permanent link">#</a></h2>
+<p>Dead-lettering was added to RabbitMQ. The exchange is called <code>&lt;exchange&gt;.dlx</code> while the queue is called <code>&lt;exchange&gt;.dlq</code>
+with <code>x-citrineos-dead-letter-*</code> headers. See related configurations for RabbitMQ at <code>DATABASE</code> -&gt; <code>schema</code>, <code>validateSchema</code>, and
+<code>validateSchemaSeverity</code> in <a href="../core-concepts/configuration">configurations</a>).</p>
+<h2 id="monorepo">Monorepo<a class="headerlink" href="#monorepo" title="Permanent link">#</a></h2>
+<p>The biggest change between 1.x and 2.x is that CitrineOS is now a monorepo containing the following modules:</p>
+<ol>
+<li>Core (OCPP)</li>
+<li>OCPI</li>
+<li>Operator UI</li>
+</ol>
+<h3 id="folder-structure">Folder Structure<a class="headerlink" href="#folder-structure" title="Permanent link">#</a></h3>
+<pre><code>1.x                                    2.x
+-------------------------------        -------------------------------
+|-- 00_Base/                           |-- packages/
+|-- 01_Data/                           |   |-- base/                [NEW] 00_Base
+|-- 02_Util/                           |   |-- dal/                 [NEW] 01_Data, data access layer
+|-- 03_Modules/                        |   |-- ocpi/                [NEW] previously in citrineos-ocpi
+|-- Server/                            |   |-- ocpp/                [NEW] combination of 02_Util and 03_Modules
+|-- migrations/                        |   |-- types/               [NEW] split out of base
+|-- db.sync.ts                         |-- apps/
+|-- db.force-sync.ts                   |   |-- mock-msp/            [NEW]
+|-- entrypoint.sh                      |   |-- ocpi-server/         [NEW] previously in citrineos-ocpi
+|-- .sequelizerc                       |   |-- ocpp-server/         [NEW] previously Server
+|-- package-lock.json                  |   |-- operator-ui/         [NEW] previously in citrineos-operator-ui
+                                       |-- scripts/                 [NEW]
+                                       |-- docker-compose.yml       [NEW]
+                                       |-- docker-compose.local.yml [NEW]
+                                       |-- pnpm-workspace.yaml      
+                                       |-- pnpm-lock.yaml
+</code></pre>
+<h4 id="dal">DAL<a class="headerlink" href="#dal" title="Permanent link">#</a></h4>
+<p>Data access layer-related classes (such as Sequelize repository and models) were moved to a standalone package <code>dal</code>
+so the data access layer can be imported without pulling in <code>base</code> or <code>core</code>.</p>
+<h5 id="drizzle">Drizzle<a class="headerlink" href="#drizzle" title="Permanent link">#</a></h5>
+<p>CitrineOS is migrating away from Sequelize towards Drizzle. This work is ongoing and will not be completed by
+the release of version 2.0.0, so you can track the progress in <code>packages/dal/src/repositories/drizzle</code>, and the table 
+schemas are in <code>packages/dal/src/db/drizzle</code>. If you want to try the already-migrated repositories, you can enable it by 
+setting <code>CITRINEOS_USE_DRIZZLE</code> to "true".</p>
+<h5 id="schema-validation">Schema Validation<a class="headerlink" href="#schema-validation" title="Permanent link">#</a></h5>
+<p>In order to align the data models with the database entities, a new schema validator was introduced to run prior to
+CitrineOS starting to ensure that the shapes in the code and database match each other. There is a validator for 
+Sequelize and Drizzle, though once Drizzle is fully in use, the Sequelize validator will go away.</p>
+<p>You can configure how the schema validation runs using configurations (see <code>DATABASE</code> -&gt; <code>schema</code>, <code>validateSchema</code>, and 
+<code>validateSchemaSeverity</code> in <a href="../core-concepts/configuration">configurations</a>).</p>
+<h4 id="types">Types<a class="headerlink" href="#types" title="Permanent link">#</a></h4>
+<p>OCPP message models were moved to a standalone package <code>types</code> so consumers can depend on the schemas without pulling in <code>base</code>.</p>
+<h4 id="ocpi">OCPI<a class="headerlink" href="#ocpi" title="Permanent link">#</a></h4>
+<p>OCPI-related modules, handlers, APIs and transports were all moved to the dedicated <code>ocpi</code> folder. It should no longer
+rely on the <code>ocpp</code> folder and instead uses the <code>base</code>, <code>dal</code> , and <code>types</code> dependencies for whatever it shares with
+the other modules. The package.json package name for <code>ocpi-server</code> has been updated to be <code>ocpi-server</code>.</p>
+<h4 id="handlers">Handlers<a class="headerlink" href="#handlers" title="Permanent link">#</a></h4>
+<p>All module handlers decorated with <code>@AsHandler</code> were moved out of their respective <code>module.ts</code> files and separated into
+their own handlers decorated with <code>@AsRequestHandler</code> or <code>@AsResponseHandler</code>, organized by protocol and request/response
+type. You can find the handlers in <code>packages/ocpp/src/handlers</code>.</p>
+<h3 id="filenames-in-kebab-case">Filenames in Kebab Case<a class="headerlink" href="#filenames-in-kebab-case" title="Permanent link">#</a></h3>
+<p>Any filenames that were created and not necessary for a library's config were renamed to be in kebab case. This means
+filenames-now-look-like-this.</p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 5, 2026</span>
+</span>
+</aside>
+<form class="md-feedback" hidden="" name="feedback">
+<fieldset>
+<legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+<div class="md-feedback__inner">
+<div class="md-feedback__list">
+<button class="md-feedback__icon md-icon" data-md-value="1" title="This page was helpful" type="submit">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"></path></svg>
+</button>
+<button class="md-feedback__icon md-icon" data-md-value="0" title="This page could be improved" type="submit">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 15V3h4v12zM15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3zm0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97z"></path></svg>
+</button>
+</div>
+<div class="md-feedback__note">
+<div data-md-value="1" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+<div data-md-value="0" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+CitrineOS%201.x%20to%202.x+-+/version-1-to-2/" rel="noopener" target="_blank">a new issue</a>.
+            </div>
+</div>
+</div>
+</fieldset>
+</form>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      CitrineOS a Series of LF Projects, LLC For web site terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://discord.gg/kkUxF7pRU7" rel="noopener" target="_blank" title="Join Discord">
+<svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox">
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="analytics" type="checkbox">
+<span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+</li>
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox">
+<span class="task-list-indicator"></span>
+          GitHub
+        </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "toc.follow", "navigation.top", "search.suggest", "navigation.expand", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../assets/javascripts/mermaid.min.js"></script>
+<script src="../assets/javascripts/mermaid-instant-nav.js"></script>
+<script src="../assets/javascripts/glightbox-instant-nav.js"></script>
+<script src="../assets/mermaid-zoom.js?v=1794853068"></script>
+<script>document$.subscribe(() => {
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        
+            const dark_scheme_name = "slate"
+            
+            window.scheme = document.body.getAttribute("data-md-color-scheme")
+            const options = {
+                attributeFilter: ['data-md-color-scheme'],
+            };
+            function color_scheme_callback(mutations) {
+                for (let mutation of mutations) {
+                    if (mutation.attributeName === "data-md-color-scheme") {
+                        scheme = document.body.getAttribute("data-md-color-scheme")
+                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        for(var i = 0; i < iframe_list.length; i++) {
+                            var ele = iframe_list.item(i);
+                            if (ele) {
+                                if (scheme === dark_scheme_name) {
+                                    ele.contentWindow.enable_dark_mode();
+                                } else {
+                                    ele.contentWindow.disable_dark_mode();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            observer = new MutationObserver(color_scheme_callback);
+            observer.observe(document.body, options);
+            })</script>
+<script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

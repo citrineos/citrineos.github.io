@@ -1,0 +1,2365 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta content="Create your charging network in minutes, with CitrineOS. A series of open source software components that enable rapid deployment of EV charging infrastructure." name="description">
+<link href="https://citrineos.github.io/2.1.x/core-concepts/configuration/" rel="canonical">
+<link href="../architecture/" rel="prev">
+<link href="../data-models/" rel="next">
+<link href="../../assets/img/favicon.ico" rel="icon">
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.45" name="generator">
+<title>Configuration - CitrineOS</title>
+<link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet">
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet">
+
+<link href="../../assets/external/fonts.googleapis.com/css.9e07dd4c.css" rel="stylesheet">
+<style>:root{--md-text-font:"False";--md-code-font:"Roboto Mono"}</style>
+<link href="../../assets/stylesheets/extra.css" rel="stylesheet">
+<link href="../../assets/mermaid-zoom.css?v=1794853068" rel="stylesheet">
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-JVZY6NS6JV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-JVZY6NS6JV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-JVZY6NS6JV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+<script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+<body data-md-color-accent="indigo" data-md-color-primary="custom" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox">
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox">
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#introduction">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
+<!-- Determine classes -->
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<!-- Link to home -->
+<a aria-label="CitrineOS" class="md-header__button md-logo" data-md-component="logo" href="../.." title="CitrineOS">
+<img alt="logo" src="../../assets/img/Icon.svg">
+</a>
+<!-- Button to open drawer -->
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<!-- Header title -->
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CitrineOS
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+</div>
+</div>
+</div>
+<!-- Color palette toggle -->
+<!-- User preference: color palette -->
+<!-- Site language selector -->
+<!-- Button to open search modal -->
+<label class="md-header__button md-icon" for="__search">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<!-- Search interface -->
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text">
+<label class="md-search__icon md-icon" for="__search">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Repository information -->
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/citrineos/citrineos-core" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<!-- Discord -->
+<div class="md-header__button md-icon">
+<!-- Automatically set rel=me for Mastodon -->
+<!-- Compute title and render link -->
+<a href="https://discord.gg/kkUxF7pRU7" rel="noopener" target="_blank" title="Join Discord">
+<svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"></path></svg>
+</a>
+</div>
+</nav>
+<!-- Navigation tabs (sticky) -->
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CitrineOS" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="CitrineOS">
+<img alt="logo" src="../../assets/img/Icon.svg">
+</a>
+    CitrineOS
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/citrineos/citrineos-core" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    About
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../roadmap/">
+<span class="md-ellipsis">
+    Roadmap
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../references/">
+<span class="md-ellipsis">
+    References
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../faqs/">
+<span class="md-ellipsis">
+    FAQs (Frequently Asked Questions)
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../version-1-to-2/">
+<span class="md-ellipsis">
+    CitrineOS 1.x to 2.x
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox">
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    Getting Started
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../getting-started/prerequisites/">
+<span class="md-ellipsis">
+    Prerequisites
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../getting-started/running-citrineos/">
+<span class="md-ellipsis">
+    Running CitrineOS
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../getting-started/running-ocpi/">
+<span class="md-ellipsis">
+    Running OCPI
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../getting-started/testing-with-everest/">
+<span class="md-ellipsis">
+    Testing with EVerest
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    Core Concepts
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            Core Concepts
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../architecture/">
+<span class="md-ellipsis">
+    Architecture
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox">
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Configuration
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction">
+<span class="md-ellipsis">
+      Introduction
+    </span>
+</a>
+<nav aria-label="Introduction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope">
+<span class="md-ellipsis">
+      Scope
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-servers">
+<span class="md-ellipsis">
+      Websocket Servers
+    </span>
+</a>
+<nav aria-label="Websocket Servers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-server-configurations">
+<span class="md-ellipsis">
+      Websocket Server Configurations
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environment-variables">
+<span class="md-ellipsis">
+      Environment Variables
+    </span>
+</a>
+<nav aria-label="Environment Variables" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setting-values">
+<span class="md-ellipsis">
+      Setting values
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#top-level">
+<span class="md-ellipsis">
+      Top level
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database">
+<span class="md-ellipsis">
+      DATABASE
+    </span>
+</a>
+<nav aria-label="DATABASE" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_pool-optional">
+<span class="md-ellipsis">
+      DATABASE_POOL — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_ssl-optional">
+<span class="md-ellipsis">
+      DATABASE_SSL — optional
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache">
+<span class="md-ellipsis">
+      CACHE
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP
+    </span>
+</a>
+<nav aria-label="MESSAGEBROKER_AMQP" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp_prefetch">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP_PREFETCH
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fileaccess">
+<span class="md-ellipsis">
+      FILEACCESS
+    </span>
+</a>
+<nav aria-label="FILEACCESS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-local">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is local
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-s3">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is s3
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-gcp">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is gcp
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auth">
+<span class="md-ellipsis">
+      AUTH
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oidcclient-optional">
+<span class="md-ellipsis">
+      OIDCCLIENT — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#roles">
+<span class="md-ellipsis">
+      ROLES
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations">
+<span class="md-ellipsis">
+      INTEGRATIONS
+    </span>
+</a>
+<nav aria-label="INTEGRATIONS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_v2gca">
+<span class="md-ellipsis">
+      INTEGRATIONS_V2GCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_chargingstationca">
+<span class="md-ellipsis">
+      INTEGRATIONS_CHARGINGSTATIONCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_ocsp">
+<span class="md-ellipsis">
+      INTEGRATIONS_OCSP
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swagger">
+<span class="md-ellipsis">
+      SWAGGER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timeouts">
+<span class="md-ellipsis">
+      TIMEOUTS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logredaction">
+<span class="md-ellipsis">
+      LOGREDACTION
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#californiapricing">
+<span class="md-ellipsis">
+      CALIFORNIAPRICING
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp">
+<span class="md-ellipsis">
+      OCPP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transactions">
+<span class="md-ellipsis">
+      TRANSACTIONS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evdriver">
+<span class="md-ellipsis">
+      EVDRIVER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#networkalerts">
+<span class="md-ellipsis">
+      NETWORKALERTS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../data-models/">
+<span class="md-ellipsis">
+    Data Models
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox">
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-ellipsis">
+    Guides
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../guides/connecting-a-charger/">
+<span class="md-ellipsis">
+    Connecting a Charger
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../guides/security-profiles/">
+<span class="md-ellipsis">
+    Security Profiles
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../guides/adding-id-tokens/">
+<span class="md-ellipsis">
+    Adding ID Tokens
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../guides/viewing-ocpp-logs/">
+<span class="md-ellipsis">
+    Viewing OCPP Logs
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_9" type="checkbox">
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+<span class="md-ellipsis">
+    APIs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+            APIs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../apis/core-api/">
+<span class="md-ellipsis">
+    Core REST API
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../apis/ocpi-api/">
+<span class="md-ellipsis">
+    OCPI REST API
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction">
+<span class="md-ellipsis">
+      Introduction
+    </span>
+</a>
+<nav aria-label="Introduction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope">
+<span class="md-ellipsis">
+      Scope
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-servers">
+<span class="md-ellipsis">
+      Websocket Servers
+    </span>
+</a>
+<nav aria-label="Websocket Servers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#websocket-server-configurations">
+<span class="md-ellipsis">
+      Websocket Server Configurations
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environment-variables">
+<span class="md-ellipsis">
+      Environment Variables
+    </span>
+</a>
+<nav aria-label="Environment Variables" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setting-values">
+<span class="md-ellipsis">
+      Setting values
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#top-level">
+<span class="md-ellipsis">
+      Top level
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database">
+<span class="md-ellipsis">
+      DATABASE
+    </span>
+</a>
+<nav aria-label="DATABASE" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_pool-optional">
+<span class="md-ellipsis">
+      DATABASE_POOL — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#database_ssl-optional">
+<span class="md-ellipsis">
+      DATABASE_SSL — optional
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache">
+<span class="md-ellipsis">
+      CACHE
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP
+    </span>
+</a>
+<nav aria-label="MESSAGEBROKER_AMQP" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#messagebroker_amqp_prefetch">
+<span class="md-ellipsis">
+      MESSAGEBROKER_AMQP_PREFETCH
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fileaccess">
+<span class="md-ellipsis">
+      FILEACCESS
+    </span>
+</a>
+<nav aria-label="FILEACCESS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-local">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is local
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-s3">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is s3
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#when-fileaccess_type-is-gcp">
+<span class="md-ellipsis">
+      When FILEACCESS_TYPE is gcp
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auth">
+<span class="md-ellipsis">
+      AUTH
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oidcclient-optional">
+<span class="md-ellipsis">
+      OIDCCLIENT — optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#roles">
+<span class="md-ellipsis">
+      ROLES
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations">
+<span class="md-ellipsis">
+      INTEGRATIONS
+    </span>
+</a>
+<nav aria-label="INTEGRATIONS" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_v2gca">
+<span class="md-ellipsis">
+      INTEGRATIONS_V2GCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_chargingstationca">
+<span class="md-ellipsis">
+      INTEGRATIONS_CHARGINGSTATIONCA
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrations_ocsp">
+<span class="md-ellipsis">
+      INTEGRATIONS_OCSP
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swagger">
+<span class="md-ellipsis">
+      SWAGGER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timeouts">
+<span class="md-ellipsis">
+      TIMEOUTS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logredaction">
+<span class="md-ellipsis">
+      LOGREDACTION
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#californiapricing">
+<span class="md-ellipsis">
+      CALIFORNIAPRICING
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ocpp">
+<span class="md-ellipsis">
+      OCPP
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transactions">
+<span class="md-ellipsis">
+      TRANSACTIONS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evdriver">
+<span class="md-ellipsis">
+      EVDRIVER
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#networkalerts">
+<span class="md-ellipsis">
+      NETWORKALERTS
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1>Configuration</h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>CitrineOS uses environment variables represented by the Zod schema in <code>packages/types/src/config/types.ts</code>
+to define its behavior. This document describes the structure of this object, how to access and modify it, and 
+provides low-level details about each available configuration.</p>
+<h3 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">#</a></h3>
+<p>The configuration object controls the information needed for the specific technologies that fill a role in the application (
+database, queue, cache, etc.) as well as optional OCPP features and certain values which can be different from network 
+to network (heartbeat interval, message timeout, etc.).</p>
+<h2 id="websocket-servers">Websocket Servers<a class="headerlink" href="#websocket-servers" title="Permanent link">#</a></h2>
+<p>Setting up websocket servers doesn't happen from environment variables, but rather through the <code>websocket-servers.json</code>
+file. You may change what file CitrineOS reads websocket servers from by setting <code>CITRINEOS_WEBSOCKETSERVERCONFIGFILE</code>.</p>
+<h3 id="websocket-server-configurations">Websocket Server Configurations<a class="headerlink" href="#websocket-server-configurations" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>—</td>
+<td>Identifies this server. Must be unique across the array; used as the key for the server's certificate manager and stored on the <code>ServerNetworkProfile</code> row.</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>—</td>
+<td>Bind address for this websocket listener.</td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td>integer &gt;= 1</td>
+<td>Yes</td>
+<td>—</td>
+<td>Port for this listener. Each entry is its own HTTP/HTTPS server, so ports must not collide.</td>
+</tr>
+<tr>
+<td><code>protocols</code></td>
+<td>array of <code>ocpp1.6</code> / <code>ocpp2.0.1</code> / <code>ocpp2.1</code></td>
+<td>Yes</td>
+<td>—</td>
+<td>The OCPP subprotocols this listener will negotiate. A station offering none of them is rejected at upgrade.</td>
+</tr>
+<tr>
+<td><code>securityProfile</code></td>
+<td>integer 0–3</td>
+<td>Yes</td>
+<td>—</td>
+<td>OCPP security profile. 0 = plain ws, no auth; 1 = ws + HTTP Basic; 2 = TLS + Basic; 3 = mTLS (client cert). Drives whether an <code>http</code> or <code>https</code> server is created, and whether client certs are requested and verified.</td>
+</tr>
+<tr>
+<td><code>tenantId</code></td>
+<td>positive integer</td>
+<td>One of</td>
+<td>—</td>
+<td>Pins the whole listener to a single tenant. Mutually exclusive with <code>dynamicTenantResolution</code> — exactly one must be set.</td>
+</tr>
+<tr>
+<td><code>dynamicTenantResolution</code></td>
+<td>boolean</td>
+<td>One of</td>
+<td><code>false</code></td>
+<td>Resolves the tenant per connection from the request path segment, matched against <code>Tenant.tenantWebsocketServerPath</code>, instead of pinning one tenant to the listener.</td>
+</tr>
+<tr>
+<td><code>pingInterval</code></td>
+<td>integer &gt;= 1</td>
+<td>No</td>
+<td><code>60</code></td>
+<td>Seconds between websocket pings (jitter applied on the first). Also sets the connection's cache TTL at <code>pingInterval × 3</code>, so it doubles as the liveness timeout.</td>
+</tr>
+<tr>
+<td><code>allowUnknownChargingStations</code></td>
+<td>boolean</td>
+<td>No</td>
+<td><code>false</code></td>
+<td>Lets a station with no matching DB row connect and be provisioned ad hoc. Development and testing only — <strong>do not use in production!!</strong></td>
+</tr>
+<tr>
+<td><code>ignoreAuthenticationHeaders</code></td>
+<td>boolean</td>
+<td>No</td>
+<td><code>false</code></td>
+<td>Skips the HTTP Basic auth filter that security profiles 1 and 2 would otherwise enforce. An escape hatch for stations that cannot send credentials; it removes the authentication the profile implies.</td>
+</tr>
+<tr>
+<td><code>forceProtocol</code></td>
+<td><code>ocpp1.6</code> / <code>ocpp2.0.1</code> / <code>ocpp2.1</code></td>
+<td>No</td>
+<td>—</td>
+<td>Pins negotiation to one version instead of picking from the station's offered list. If the station or this server does not support it, the upgrade fails with an explicit error.</td>
+</tr>
+<tr>
+<td><code>tlsKeyFilePath</code></td>
+<td>string</td>
+<td>Profiles 2, 3</td>
+<td>—</td>
+<td>Server private key.</td>
+</tr>
+<tr>
+<td><code>tlsCertificateChainFilePath</code></td>
+<td>string</td>
+<td>Profiles 2, 3</td>
+<td>—</td>
+<td>Server certificate chain, served via SNI for any profile above 1.</td>
+</tr>
+<tr>
+<td><code>mtlsCertificateAuthorityKeyFilePath</code></td>
+<td>string</td>
+<td>Profile 3</td>
+<td>—</td>
+<td>CA key for mTLS client-certificate handling.</td>
+</tr>
+<tr>
+<td><code>rootCACertificateFilePath</code></td>
+<td>string</td>
+<td>No</td>
+<td>—</td>
+<td>Root CA used as the TLS <code>ca</code> bundle to verify client certificates. Only read when <code>securityProfile &gt; 2</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">#</a></h2>
+<p>You won't need to set anything if you are happy with the default values found in the Zod schema <code>packages/types/src/config/types.ts</code>.
+Otherwise, follow the sections below to learn how to set the values you need.</p>
+<h3 id="setting-values">Setting values<a class="headerlink" href="#setting-values" title="Permanent link">#</a></h3>
+<p>To set an environment variable, prefix it with CITRINEOS_ and append the path to the field, uppercased, with one 
+underscore per level, not per word. A camelCase field name stays one segment:</p>
+<pre><code>logLevel                        →  CITRINEOS_LOGLEVEL
+database.host                   →  CITRINEOS_DATABASE_HOST
+timeouts.maxCallLengthSeconds   →  CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS
+fileAccess.local.defaultFilePath →  CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH
+</code></pre>
+<p>Matching is case-insensitive. Values are parsed as JSON when possible and used as a raw string otherwise, so numbers and 
+booleans need no special handling, and an empty object switches a whole optional block on with its defaults:</p>
+<pre><code>CITRINEOS_LOGLEVEL: '1'
+CITRINEOS_OCPP_AUTOACCEPT: 'false'
+CITRINEOS_INTEGRATIONS_V2GCA: '{}' # opt in to the Hubject test PKI
+</code></pre>
+<h3 id="top-level">Top level<a class="headerlink" href="#top-level" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_ENV</code></td>
+<td><code>development</code> | <code>production</code></td>
+<td><code>development</code></td>
+<td>Runtime mode; affects log formatting.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_HOST</code></td>
+<td>string</td>
+<td><code>0.0.0.0</code></td>
+<td>HTTP bind address for the server.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_PORT</code></td>
+<td>integer &gt; 0</td>
+<td><code>8080</code></td>
+<td>HTTP port for the server.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGLEVEL</code></td>
+<td>integer 0–6</td>
+<td><code>2</code></td>
+<td>Log verbosity; <code>2</code> is debug.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_WEBSOCKETSERVERCONFIGFILE</code></td>
+<td>string</td>
+<td><code>websocket-servers.json</code></td>
+<td>Path (relative to the <code>fileAccess</code> root) of the JSON file listing the websocket servers this instance hosts.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="database"><code>DATABASE</code><a class="headerlink" href="#database" title="Permanent link">#</a></h3>
+<p>The <code>DATABASE</code> block is optional — every field has a default, so an unset database still resolves to a local Postgres.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_HOST</code></td>
+<td>string</td>
+<td><code>localhost</code></td>
+<td>Database host.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_PORT</code></td>
+<td>integer &gt; 0</td>
+<td><code>5432</code></td>
+<td>Database port.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_DATABASE</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database name. Note the doubled segment — the field is <code>database.database</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_DIALECT</code></td>
+<td>string</td>
+<td><code>postgres</code></td>
+<td>Sequelize dialect.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_USERNAME</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database user.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_PASSWORD</code></td>
+<td>string</td>
+<td><code>citrine</code></td>
+<td>Database password.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SYNC</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Sync models to the schema on boot.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_ALTER</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Alter existing tables to match models when syncing.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_FORCE</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Drop and recreate tables when syncing. Destructive.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_MAXRETRIES</code></td>
+<td>integer &gt; 0</td>
+<td><code>3</code></td>
+<td>Connection attempts before giving up at startup.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_RETRYDELAY</code></td>
+<td>integer &gt; 0</td>
+<td><code>1000</code></td>
+<td>Milliseconds between connection attempts.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SCHEMA</code></td>
+<td>string</td>
+<td><code>public</code></td>
+<td>The database schema, defaults to public.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_VALIDATESCHEMA</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>If true, verifies at startup that the schema in the code and the database match.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_VALIDATESCHEMASEVERITY</code></td>
+<td><code>error</code> | <code>warn</code></td>
+<td><code>error</code></td>
+<td>If <code>error</code>, will block the application from running upon schema validation if there are differences. If <code>warn</code>, will not stop startup.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="database_pool-optional"><code>DATABASE_POOL</code> — optional<a class="headerlink" href="#database_pool-optional" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_MAX</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Maximum pooled connections.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_MIN</code></td>
+<td>integer &gt;= 0</td>
+<td>unset</td>
+<td>Minimum pooled connections held open.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_ACQUIRE</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Milliseconds to wait for a connection before erroring.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_POOL_IDLE</code></td>
+<td>integer &gt; 0</td>
+<td>unset</td>
+<td>Milliseconds a connection may sit idle before release.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="database_ssl-optional"><code>DATABASE_SSL</code> — optional<a class="headerlink" href="#database_ssl-optional" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_REQUIRE</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Require a TLS connection to the database.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_REJECTUNAUTHORIZED</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Verify the server certificate. Set <code>false</code> only for self-signed setups.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_DATABASE_SSL_CA</code></td>
+<td>string</td>
+<td>unset</td>
+<td>CA certificate used to verify the database server.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cache"><code>CACHE</code><a class="headerlink" href="#cache" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_CACHE_TYPE</code></td>
+<td><code>memory</code> | <code>redis</code></td>
+<td><code>memory</code></td>
+<td>Cache backend. <code>memory</code> is per-process, so multi-instance deployments want <code>redis</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_CACHE_URL</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required when type is <code>redis</code>. Must start with <code>redis://</code> or <code>rediss://</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="messagebroker_amqp"><code>MESSAGEBROKER_AMQP</code><a class="headerlink" href="#messagebroker_amqp" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_URL</code></td>
+<td>string</td>
+<td><code>amqp://guest:guest@localhost:5672</code></td>
+<td>AMQP connection URL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_EXCHANGE</code></td>
+<td>string</td>
+<td><code>citrineos</code></td>
+<td>Exchange modules publish to and subscribe from.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_INSTANCEIDENTIFIER</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Identifies this instance on the broker; useful when several instances share an exchange.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_MAXRECONNECTDELAYSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>Ceiling on the reconnect backoff.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULESTALE</code></td>
+<td>integer ≥ 0</td>
+<td><code>1</code></td>
+<td>Prefetch for a module's <strong>catch-up queue</strong>, which takes Calls that outlived <code>maxCallLengthSeconds</code> before a module got to them.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_REEMITMAXRETRYSECONDS</code></td>
+<td>integer ≥ 1</td>
+<td><code>300</code></td>
+<td>How long the router keeps re-emitting a message for a station that no router instance currently holds before dead-lettering it as unroutable. Retries back off, and stop early if the Call goes stale.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_DEADLETTERQUEUE_MAXLENGTH</code></td>
+<td>integer ≥ 1</td>
+<td><code>100000</code></td>
+<td>Max message count on the dead-letter queue (<code>&lt;exchange&gt;.dlq</code>).</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_DEADLETTERQUEUE_MAXLENGTHBYTES</code></td>
+<td>integer ≥ 1</td>
+<td><code>536870912</code> (512 MiB)</td>
+<td>Max total size of the dead-letter queue.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="messagebroker_amqp_prefetch"><code>MESSAGEBROKER_AMQP_PREFETCH</code><a class="headerlink" href="#messagebroker_amqp_prefetch" title="Permanent link">#</a></h4>
+<p>To configure each respective RabbitMQ implementation's prefetch count.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_ROUTER</code></td>
+<td>integer &gt;= 0</td>
+<td>100</td>
+<td>OCPP Router's RabbitMQ prefetch count.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MODULE</code></td>
+<td>integer &gt;= 0</td>
+<td>10</td>
+<td>CitrineOS Modules' RabbitMQ prefetch count.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGES</code></td>
+<td>integer &gt;= 0</td>
+<td>50</td>
+<td>Messages Module's RabbitMQ prefetch count.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_MESSAGEBROKER_AMQP_PREFETCH_MESSAGESDEADLETTER</code></td>
+<td>integer &gt;= 0</td>
+<td>10</td>
+<td>Messages Module's Dead Letter's RabbitMQ prefetch count.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fileaccess"><code>FILEACCESS</code><a class="headerlink" href="#fileaccess" title="Permanent link">#</a></h3>
+<p>Storage the server reads its runtime files through — the websocket servers file, TLS material, the ACME account key, RBAC rules. </p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_TYPE</code></td>
+<td><code>local</code> | <code>s3</code> | <code>gcp</code></td>
+<td><code>local</code></td>
+<td>Selects the storage backend.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-local">When <code>FILEACCESS_TYPE</code> is <code>local</code><a class="headerlink" href="#when-fileaccess_type-is-local" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_LOCAL_DEFAULTFILEPATH</code></td>
+<td>string</td>
+<td><code>src/assets</code> from the block default (<code>data</code> if you set <code>local</code> yourself without it)</td>
+<td>Root directory, resolved from the <strong>process working directory</strong> — which differs between pnpm (<code>apps/ocpp-server</code>) and Docker (repo root).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-s3">When <code>FILEACCESS_TYPE</code> is <code>s3</code><a class="headerlink" href="#when-fileaccess_type-is-s3" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_REGION</code></td>
+<td>string</td>
+<td>unset</td>
+<td>AWS region.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_ENDPOINT</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Custom endpoint URL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_DEFAULTBUCKETNAME</code></td>
+<td>string</td>
+<td><code>citrineos-s3-bucket</code></td>
+<td>Bucket used when a key carries no bucket of its own.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_S3FORCEPATHSTYLE</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Path-style addressing, required by most S3-compatible servers.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_ACCESSKEYID</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Access key. The AWS SDK's own <code>AWS_*</code> variables also work.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_S3_SECRETACCESSKEY</code></td>
+<td>string</td>
+<td>unset</td>
+<td>Secret key.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="when-fileaccess_type-is-gcp">When <code>FILEACCESS_TYPE</code> is <code>gcp</code><a class="headerlink" href="#when-fileaccess_type-is-gcp" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_PROJECTID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required. GCP project ID.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_DEFAULTBUCKETNAME</code></td>
+<td>string</td>
+<td><code>citrineos-s3-bucket</code></td>
+<td>Bucket name.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_FILEACCESS_GCP_CREDENTIALS</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Service account credentials inline. If unset, Application Default Credentials are used.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auth"><code>AUTH</code><a class="headerlink" href="#auth" title="Permanent link">#</a></h3>
+<p>Guards the HTTP API.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_AUTH_MODE</code></td>
+<td><code>jwt</code> | <code>localDev</code> | <code>localBypass</code></td>
+<td><strong><code>localDev</code></strong></td>
+<td>How API callers are authenticated. <code>localDev</code> <em>enforces</em> auth using tokens the server mints itself (<code>POST /dev/token</code>); <code>localBypass</code> accepts every request.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_JWKSURI</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required when mode is <code>jwt</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_ISSUER</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required when mode is <code>jwt</code>. Must equal the token's <code>iss</code> exactly.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_AUDIENCE</code></td>
+<td>string</td>
+<td>unset</td>
+<td><strong>Optional</strong> (the doc says required). If unset, any token from the issuer is accepted, and a warning is logged at startup.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_ROLESCLAIM</code></td>
+<td>string (dotted path)</td>
+<td><code>roles</code></td>
+<td>Where roles are read from in the token, e.g. <code>resource_access.&lt;client&gt;.roles</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_TENANTCLAIM</code></td>
+<td>string (dotted path)</td>
+<td><code>tenant_id</code></td>
+<td>Where the tenant id is read from in the token.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_CACHETIMESECONDS</code></td>
+<td>integer ≥ 1</td>
+<td>unset</td>
+<td>JWKS key cache time.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_JWT_RATELIMIT</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Rate-limits JWKS fetches.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_LOCALDEV_ROLES</code></td>
+<td>string[]</td>
+<td><code>["admin"]</code></td>
+<td>Roles put in a <code>/dev/token</code> token when the request names none.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_LOCALDEV_TOKENTTLSECONDS</code></td>
+<td>integer ≥ 1</td>
+<td><code>43200</code> (12h)</td>
+<td>Lifetime of minted dev tokens.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_AUTH_LOCALBYPASS_ROLES</code></td>
+<td>string[]</td>
+<td><code>["admin"]</code></td>
+<td>Roles every request is treated as having in <code>localBypass</code> mode.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oidcclient-optional"><code>OIDCCLIENT</code> — optional<a class="headerlink" href="#oidcclient-optional" title="Permanent link">#</a></h3>
+<p>Credentials the server uses as an OIDC <em>client</em> when calling out. All four are required if the block is set.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_TOKENURL</code></td>
+<td>string</td>
+<td>—</td>
+<td>Token endpoint.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_CLIENTID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Client ID.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_CLIENTSECRET</code></td>
+<td>string</td>
+<td>—</td>
+<td>Client secret.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OIDCCLIENT_AUDIENCE</code></td>
+<td>string</td>
+<td>—</td>
+<td>Audience requested in the token.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="roles"><code>ROLES</code><a class="headerlink" href="#roles" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_ROLES_SEEDFILE</code></td>
+<td>string</td>
+<td><code>roles-seed.json</code></td>
+<td>Role definitions file, resolved against the <code>fileAccess</code> root. Format: <code>{ "&lt;role&gt;": { "resources": {...}, "permissions": [...] } }</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_ROLES_REFRESHINTERVALSECONDS</code></td>
+<td>integer ≥ 1</td>
+<td><code>60</code></td>
+<td>How often the file is re-read. Changes need no restart. A failed re-read keeps the last good policy. A failed <em>first</em> load is fatal under <code>jwt</code> and <code>localDev</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_ROLES_COMMON</code></td>
+<td>string[]</td>
+<td><code>["permissions.user.get"]</code></td>
+<td>Permissions granted to every authenticated caller.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="integrations"><code>INTEGRATIONS</code><a class="headerlink" href="#integrations" title="Permanent link">#</a></h3>
+<p>Both CAs are opt-in and off by default, but zero-config once enabled — <code>'{}'</code> is enough to accept every default.</p>
+<h4 id="integrations_v2gca"><code>INTEGRATIONS_V2GCA</code><a class="headerlink" href="#integrations_v2gca" title="Permanent link">#</a></h4>
+<p>For Plug &amp; Charge PKI.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Set to <code>'{}'</code> to enable with the Hubject test PKI.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_NAME</code></td>
+<td><code>hubject</code></td>
+<td><code>hubject</code></td>
+<td>Provider. Hubject is the only implementation.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_BASEURL</code></td>
+<td>string</td>
+<td>Hubject test base URL</td>
+<td>API base URL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_TOKENURL</code></td>
+<td>string</td>
+<td>Hubject test token URL</td>
+<td>Where the bearer token is obtained.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTID</code></td>
+<td>string</td>
+<td><code>YOUR_CLIENT_ID</code></td>
+<td>Client ID — the default is a placeholder, so real use requires setting it.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_V2GCA_HUBJECT_CLIENTSECRET</code></td>
+<td>string</td>
+<td><code>YOUR_CLIENT_SECRET</code></td>
+<td>Client secret — likewise a placeholder.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="integrations_chargingstationca"><code>INTEGRATIONS_CHARGINGSTATIONCA</code><a class="headerlink" href="#integrations_chargingstationca" title="Permanent link">#</a></h4>
+<p>For station certificates via ACME.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA</code></td>
+<td>JSON object</td>
+<td>unset</td>
+<td>Set to <code>'{}'</code> to enable ACME against the Let's Encrypt staging directory.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_NAME</code></td>
+<td><code>acme</code></td>
+<td><code>acme</code></td>
+<td>Provider. ACME is the only implementation.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ENV</code></td>
+<td><code>staging</code> | <code>production</code></td>
+<td><code>staging</code></td>
+<td>Which ACME directory to use. <code>staging</code> issues untrusted certs but has generous rate limits.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_ACCOUNTKEYFILEPATH</code></td>
+<td>string</td>
+<td><code>certificates/acme_account_key.pem</code></td>
+<td>ACME account key, resolved against the <code>fileAccess</code> root.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_CHARGINGSTATIONCA_ACME_EMAIL</code></td>
+<td>string (email)</td>
+<td><code>test@citrineos.com</code></td>
+<td>Contact address registered with the ACME account.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="integrations_ocsp"><code>INTEGRATIONS_OCSP</code><a class="headerlink" href="#integrations_ocsp" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_INTEGRATIONS_OCSP_ALLOWEDRESPONDERHOSTS</code></td>
+<td>array of string</td>
+<td>unset</td>
+<td>Hosts the CSMS is permitted to reach for OCSP. Empty means no restriction.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="swagger"><code>SWAGGER</code><a class="headerlink" href="#swagger" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_SWAGGER_ENABLED</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Serves the API docs. Set <code>false</code> in production if you do not want them exposed.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_PATH</code></td>
+<td>string</td>
+<td><code>/docs</code></td>
+<td>Mount path for the docs UI.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_LOGOPATH</code></td>
+<td>string</td>
+<td><code>src/assets/logo.png</code></td>
+<td>Logo shown in the docs. Resolved from the process working directory, <strong>not</strong> from <code>fileAccess</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_SWAGGER_EXPOSEMESSAGE</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Includes message schemas in the docs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timeouts"><code>TIMEOUTS</code><a class="headerlink" href="#timeouts" title="Permanent link">#</a></h3>
+<p><code>TIMEOUTS_MAXCACHINGSECONDS</code> must be greater than or equal to <code>TIMEOUTS_MAXCALLLENGTHSECONDS</code>, or startup fails.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_MAXCALLLENGTHSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>20</code></td>
+<td>How long an OCPP call may remain outstanding before it is considered timed out.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_MAXCACHINGSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>How long call state is cached. Cannot be lower than <code>maxCallLengthSeconds</code>.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_STALECALLMAXAGESECONDS</code></td>
+<td>integer ≥ 0</td>
+<td><code>40</code></td>
+<td>Age past which a pending call is discarded as stale.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_SHUTDOWNGRACEPERIODSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>30</code></td>
+<td>How long shutdown waits for in-flight work before forcing exit.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_REALTIMEAUTHDEFAULTTIMEOUTSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>15</code></td>
+<td>How long a real-time authorization request waits for a decision.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_REALTIMEAUTHREQUESTTIMEOUTSECONDS</code></td>
+<td>integer ≥ 1</td>
+<td><code>10</code></td>
+<td>HTTP timeout on the outbound request to the real-time authorization endpoint. This is different from <code>REALTIMEAUTHDEFAULTTIMEOUTSECONDS</code>, which is the authorizer's own wait for a decision.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TIMEOUTS_NOTREADYTHRESHOLDSECONDS</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code></td>
+<td>How long the instance may be unhealthy before it reports not-ready.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logredaction"><code>LOGREDACTION</code><a class="headerlink" href="#logredaction" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_LOGREDACTION_KEYS</code></td>
+<td>string[]</td>
+<td><code>["password"]</code></td>
+<td>Property names censored at any depth, case-insensitively.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGREDACTION_PATHS</code></td>
+<td>string[]</td>
+<td><code>[]</code></td>
+<td>Dotted paths to censor; <code>*</code> matches one segment.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGREDACTION_PATTERNS</code></td>
+<td>string[] (regex)</td>
+<td><code>[]</code></td>
+<td>Regexes applied globally to logged strings. Invalid regexes fail startup.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGREDACTION_PLACEHOLDER</code></td>
+<td>string</td>
+<td><code>[***]</code></td>
+<td>Replacement text.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_LOGREDACTION_REDACTKEYCODES</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Redacts OCPP <code>KeyCode</code> idTokens, per OCPP 2.x C04.FR.04.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="californiapricing"><code>CALIFORNIAPRICING</code><a class="headerlink" href="#californiapricing" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_CALIFORNIAPRICING_ENABLED</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Registers the California Pricing module (OCPP 1.6). When <code>false</code>, <code>APP_NAME=californiapricing</code> isn't available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ocpp"><code>OCPP</code><a class="headerlink" href="#ocpp" title="Permanent link">#</a></h3>
+<p>These apply to every OCPP version — there is no per-protocol split.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_OCPP_HEARTBEATINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code></td>
+<td>Heartbeat interval in seconds sent to stations on boot.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_BOOTRETRYINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>15</code></td>
+<td>Retry interval in seconds sent when a boot is Pending or Rejected.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_UNKNOWNCHARGERSTATUS</code></td>
+<td><code>Accepted</code> | <code>Pending</code> | <code>Rejected</code></td>
+<td><code>Accepted</code></td>
+<td>Boot status returned to a station with no <code>BootConfig</code> row.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_GETBASEREPORTONPENDING</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Requests a base report from stations left in Pending.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_BOOTWITHREJECTEDVARIABLES</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Allows a boot to proceed even when some variables were rejected.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_AUTOACCEPT</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Promotes boot status automatically. When <code>false</code>, a station stays where it is until something changes it explicitly.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_OCPP_MAXPENDINGCALLSPERSTATION</code></td>
+<td>integer ≥ 1</td>
+<td><code>5</code></td>
+<td>OCPP allows one outstanding CSMS Call per station; extra Calls queue behind it. Past this many queued, a new Call is <strong>dead-lettered</strong> (reason <code>Overflow</code>) instead of queued.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transactions"><code>TRANSACTIONS</code><a class="headerlink" href="#transactions" title="Permanent link">#</a></h3>
+<p>Exactly one of <code>TRANSACTIONS_COSTUPDATEDINTERVAL</code> or <code>TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE</code> must be set — setting both, 
+or neither, fails startup.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_COSTUPDATEDINTERVAL</code></td>
+<td>integer &gt;= 1</td>
+<td><code>60</code> (from the block default)</td>
+<td>Sends a cost update on a fixed interval, in seconds.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SENDCOSTUPDATEDONMETERVALUE</code></td>
+<td>boolean</td>
+<td>unset</td>
+<td>Sends a cost update on each meter value instead of on an interval.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_RECEIPTBASEURL</code></td>
+<td>string (URL)</td>
+<td>unset</td>
+<td>Base URL used to build receipt links for completed transactions.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_PUBLICKEYFILEID</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required within the block. File ID of the public key used to verify signed meter values.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_SIGNINGMETHOD</code></td>
+<td><code>RSASSA-PKCS1-v1_5</code> | <code>ECDSA</code> | <code>SECP192R1</code></td>
+<td>—</td>
+<td>Required within the block. Signature algorithm to verify against.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_TRANSACTIONS_SIGNEDMETERVALUES_REJECTUNSUPPORTEDSIGNEDMETERVALUES</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Rejects signed meter values that do not match the configured method rather than accepting them unverified.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evdriver"><code>EVDRIVER</code><a class="headerlink" href="#evdriver" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_EVDRIVER_ENABLEGETCHARGINGPROFILESONSTARTTRANSACTION</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Requests the station's charging profiles when a transaction starts.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="networkalerts"><code>NETWORKALERTS</code><a class="headerlink" href="#networkalerts" title="Permanent link">#</a></h3>
+<p>These are system-wide defaults. Per-tenant overrides live in the <code>NetworkAlertConfigs</code> table and are layered on top,
+and each tenant's resolved config is cached for one sweep interval. Severities are <code>Critical</code> | <code>Warning</code> | <code>Info</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_SWEEPINTERVALSECONDS</code></td>
+<td>integer ≥ 1</td>
+<td><code>30</code></td>
+<td>How often the sweeper evaluates time-based rules. Also the per-tenant config cache TTL.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_ENABLED</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_DISCONNECTSEVERITY</code></td>
+<td>severity</td>
+<td><code>Info</code></td>
+<td>Alert raised on each disconnect.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_COUNT</code></td>
+<td>integer &gt; 0</td>
+<td><code>5</code></td>
+<td>Disconnects within the window that trigger an alert.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_WINDOWSECONDS</code></td>
+<td>integer &gt; 0</td>
+<td><code>3600</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_FREQUENTDISCONNECTS_SEVERITY</code></td>
+<td>severity</td>
+<td><code>Warning</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_OFFLINETOOLONG_SECONDS</code></td>
+<td>integer &gt; 0</td>
+<td><code>900</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_OFFLINETOOLONG_SEVERITY</code></td>
+<td>severity</td>
+<td><code>Critical</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_STATIONCONNECTIVITY_RULES_MISSEDHEARTBEATS</code></td>
+<td>integer &gt; 0</td>
+<td><code>2</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_CONNECTORSTATUS_ENABLED</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_CONNECTORSTATUS_RULES_SEVERITYBYSTATUS</code></td>
+<td>JSON map status → severity</td>
+<td><code>{"Unavailable":"Warning","Faulted":"Critical"}</code></td>
+<td>Set as one JSON value, since it's a record.</td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_ENABLED</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_CALLERROR</code></td>
+<td>severity</td>
+<td><code>Warning</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_TIMEOUT</code></td>
+<td>severity</td>
+<td><code>Warning</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_SENDFAILED</code></td>
+<td>severity</td>
+<td><code>Info</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SEVERITYBYREASON_SLOW</code></td>
+<td>severity</td>
+<td><code>Warning</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_CRITICALACTIONS</code></td>
+<td>string[]</td>
+<td><code>["TransactionEvent","StartTransaction","StopTransaction"]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SLOWTHRESHOLDMS</code></td>
+<td>integer &gt; 0</td>
+<td><code>5000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_SLOWSAMPLESIZE</code></td>
+<td>integer &gt; 0</td>
+<td><code>10</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CITRINEOS_NETWORKALERTS_DEFAULTS_OCPPCALLFAILURES_RULES_QUIETPERIODSECONDS</code></td>
+<td>integer &gt; 0</td>
+<td><code>1800</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 5, 2026</span>
+</span>
+</aside>
+<form class="md-feedback" hidden="" name="feedback">
+<fieldset>
+<legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+<div class="md-feedback__inner">
+<div class="md-feedback__list">
+<button class="md-feedback__icon md-icon" data-md-value="1" title="This page was helpful" type="submit">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"></path></svg>
+</button>
+<button class="md-feedback__icon md-icon" data-md-value="0" title="This page could be improved" type="submit">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 15V3h4v12zM15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3zm0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97z"></path></svg>
+</button>
+</div>
+<div class="md-feedback__note">
+<div data-md-value="1" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+<div data-md-value="0" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by opening <a href="https://github.com/citrineos/citrineos/issues/new/?title=[Doc-Feedback]+Configuration+-+/core-concepts/configuration/" rel="noopener" target="_blank">a new issue</a>.
+            </div>
+</div>
+</div>
+</fieldset>
+</form>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      CitrineOS a Series of LF Projects, LLC For web site terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://discord.gg/kkUxF7pRU7" rel="noopener" target="_blank" title="Join Discord">
+<svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox">
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="analytics" type="checkbox">
+<span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+</li>
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox">
+<span class="task-list-indicator"></span>
+          GitHub
+        </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "toc.follow", "navigation.top", "search.suggest", "navigation.expand", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../../assets/javascripts/mermaid.min.js"></script>
+<script src="../../assets/javascripts/mermaid-instant-nav.js"></script>
+<script src="../../assets/javascripts/glightbox-instant-nav.js"></script>
+<script src="../../assets/mermaid-zoom.js?v=1794853068"></script>
+<script>document$.subscribe(() => {
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        
+            const dark_scheme_name = "slate"
+            
+            window.scheme = document.body.getAttribute("data-md-color-scheme")
+            const options = {
+                attributeFilter: ['data-md-color-scheme'],
+            };
+            function color_scheme_callback(mutations) {
+                for (let mutation of mutations) {
+                    if (mutation.attributeName === "data-md-color-scheme") {
+                        scheme = document.body.getAttribute("data-md-color-scheme")
+                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        for(var i = 0; i < iframe_list.length; i++) {
+                            var ele = iframe_list.item(i);
+                            if (ele) {
+                                if (scheme === dark_scheme_name) {
+                                    ele.contentWindow.enable_dark_mode();
+                                } else {
+                                    ele.contentWindow.disable_dark_mode();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            observer = new MutationObserver(color_scheme_callback);
+            observer.observe(document.body, options);
+            })</script>
+<script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
